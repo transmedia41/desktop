@@ -74,6 +74,13 @@ angular
             'force new connection': true
           }).on('connect', function () {
             $rootScope.$emit('connection')
+            socket.emit('get user')
+            socket.on('user responce', function(data){
+              $rootScope.$emit('user responce', data)
+            })
+            socket.on('user responce 404', function(){
+              console.log('user responce 404')
+            })
           }).on('disconnect', function () {
             socket.close()
             if(localStorageService.isSupported) {
@@ -87,6 +94,7 @@ angular
               $rootScope.$emit('error token')
             }
           })
+          return socket
         }
       },
       
@@ -125,13 +133,13 @@ angular
    */
   .run(function ($rootScope, $location, localStorageService) {
     $rootScope.$on('$routeChangeStart', function (event) {
-      console.log('route change start')
       if(localStorageService.isSupported) {
         var t = localStorageService.get('wstoken')
-        console.log(t)
         if(!t){
           console.log('not autorized')
           $location.path('/')
+        } else {
+          console.log('autorized')
         }
       } else {
         $rootScope.$emit('localstorage not supported')
@@ -140,9 +148,12 @@ angular
   })
 
 
+  /**
+   * Ecoute les événements Auth qui sont lancer sur le rootScope
+   * 
+   */
   .run(function ($rootScope, $location) {
     $rootScope.$on('connection', function (event) {
-      $location.path('/sectors')
       console.log('connection')
     })
     $rootScope.$on('register', function (event) {

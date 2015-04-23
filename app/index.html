@@ -36,15 +36,15 @@
             <a class="navbar-brand" href="#/">deskapp</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="mainBarController">
             <ul class="nav navbar-nav">
               <li><a ng-href="#/">Login</a></li>
               <li><a ng-href="#/sectors">Sectors</a></li>
             </ul>
-            <form class="navbar-form navbar-left" ng-controller="mainBarController">
+            <form class="navbar-form navbar-left">
               <button type="button" class="btn btn-default" ng-click="logoutFunc()">Logout</button>
             </form>
+            <p class="navbar-text" ng-bind="playerInfos"></p>
           </div>
         </div>
       </div>

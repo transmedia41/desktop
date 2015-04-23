@@ -8,10 +8,16 @@
  * Controller of the deskappApp
  */
 angular.module('deskappApp')
-  .controller('SectorsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+
+  .controller('SectorsCtrl', function ($scope, SocketService) {
+    
+  $scope.selectors = []
+    
+    SocketService.getSocket()
+      .emit('get sectors')
+      .on('sectors responce', function(data){
+        console.log(data)
+        $scope.selectors = data
+      })
+    
+  })

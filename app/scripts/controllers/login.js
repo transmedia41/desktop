@@ -40,9 +40,11 @@ angular.module('deskappApp')
     // ...
   })
   
-  .controller('mainBarController', function ($scope, HTTPAuhtService, localStorageService) {
+  .controller('mainBarController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
+    
+    $scope.playerInfos = ''
+  
     $scope.logoutFunc = function() {
-      console.log('click logout')
       if(localStorageService.isSupported) {
         var t = localStorageService.get('wstoken')
         if(t){
@@ -56,6 +58,17 @@ angular.module('deskappApp')
         }
       }
     }
+    
+    $rootScope.$on('user responce', function(e, data){
+      $scope.playerInfos = data.name
+      $scope.$apply()
+    })
+    
+    $rootScope.$on('disconnected', function(e, data){
+      $scope.playerInfos = ''
+      $scope.$apply()
+    })
+    
   })
 
   .controller('loginController', function ($scope, HTTPAuhtService, SocketService) {
@@ -67,7 +80,6 @@ angular.module('deskappApp')
       }
       HTTPAuhtService.login(data).
         success(function(data, status, headers, config) {
-          console.log('connect with token: ', data.token)
           SocketService.connect(data.token)
         }).
         error(function(data, status, headers, config) {
