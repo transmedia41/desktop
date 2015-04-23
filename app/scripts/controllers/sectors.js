@@ -8,7 +8,7 @@
  * Controller of the deskappApp
  */
 angular.module('deskappApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('SectorsCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
