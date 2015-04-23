@@ -1,8 +1,8 @@
 # Desktop client pour projet transmédia Hydromerta
 
 ## Yeoman generator
-https://github.com/yeoman/generator-angular
-https://angularjs.org/
+ * https://github.com/yeoman/generator-angular
+ * https://angularjs.org/
 
 ## Install packages
 `npm install && bower install`
