@@ -2,6 +2,7 @@
 
 ## Yeoman generator
 https://github.com/yeoman/generator-angular
+https://angularjs.org/
 
 ## Install packages
 `npm install && bower install`
