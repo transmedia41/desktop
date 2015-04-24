@@ -9,8 +9,8 @@ angular.module('angular.directives-round-progress', []).directive('angRoundProgr
     if (templateElement.length === 1) {
       var node = templateElement[0];
 
-      var width = node.getAttribute('data-round-progress-width') || '400';
-      var height = node.getAttribute('data-round-progress-height') || '400';
+      var width = node.getAttribute('data-round-progress-width') || '80';
+      var height = node.getAttribute('data-round-progress-height') || '80';
 
       var canvas = document.createElement('canvas');
       canvas.setAttribute('width', width);
@@ -19,18 +19,18 @@ angular.module('angular.directives-round-progress', []).directive('angRoundProgr
 
       node.parentNode.replaceChild(canvas, node);
 
-      var outerCircleWidth = node.getAttribute('data-round-progress-outer-circle-width') || '20';
-      var innerCircleWidth = node.getAttribute('data-round-progress-inner-circle-width') || '5';
+      var outerCircleWidth = node.getAttribute('data-round-progress-outer-circle-width') || '10';
+      var innerCircleWidth = node.getAttribute('data-round-progress-inner-circle-width') || '0';
 
-      var outerCircleBackgroundColor = node.getAttribute('data-round-progress-outer-circle-background-color') || '#505769';
-      var outerCircleForegroundColor = node.getAttribute('data-round-progress-outer-circle-foreground-color') || '#12eeb9';
-      var innerCircleColor = node.getAttribute('data-round-progress-inner-circle-color') || '#505769';
-      var labelColor = node.getAttribute('data-round-progress-label-color') || '#12eeb9';
+      var outerCircleBackgroundColor = node.getAttribute('data-round-progress-outer-circle-background-color') || '#cccccc';
+      var outerCircleForegroundColor = node.getAttribute('data-round-progress-outer-circle-foreground-color') || '#14333d';
+      var innerCircleColor = node.getAttribute('data-round-progress-inner-circle-color') || '#14333d';
+      var labelColor = node.getAttribute('data-round-progress-label-color') || '#14333d';
 
-      var outerCircleRadius = node.getAttribute('data-round-progress-outer-circle-radius') || '100';
-      var innerCircleRadius = node.getAttribute('data-round-progress-inner-circle-radius') || '70';
+      var outerCircleRadius = node.getAttribute('data-round-progress-outer-circle-radius') || '30';
+      var innerCircleRadius = node.getAttribute('data-round-progress-inner-circle-radius') || '0';
 
-      var labelFont = node.getAttribute('data-round-progress-label-font') || '50pt Calibri';
+      var labelFont = node.getAttribute('data-round-progress-label-font') || '15pt Helvetica';
 
       return {
         pre: function preLink(scope, instanceElement, instanceAttributes, controller) {
