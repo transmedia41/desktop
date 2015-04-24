@@ -19,5 +19,7 @@ angular.module('deskappApp')
         console.log(data)
         $scope.selectors = data
       })
+
+  $scope.test = 'pimp'
     
   })
