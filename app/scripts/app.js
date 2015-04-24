@@ -29,8 +29,8 @@ angular
         templateUrl: 'views/login.html',
         controller: 'MainCtrl'
       })
-      .when('/sectors', {
-        templateUrl: 'views/sectors.html',
+      .when('/tactic', {
+        templateUrl: 'views/tactic.html',
         controller: 'SectorsCtrl'
       })
       .otherwise({
@@ -133,7 +133,7 @@ angular
    */
   .run(function ($rootScope, $location, localStorageService) {
     $rootScope.$on('$routeChangeStart', function (event) {
-      if(localStorageService.isSupported) {
+      /*if(localStorageService.isSupported) {
         var t = localStorageService.get('wstoken')
         if(!t){
           console.log('not autorized')
@@ -143,7 +143,7 @@ angular
         }
       } else {
         $rootScope.$emit('localstorage not supported')
-      }
+      }*/
     })
   })
 
