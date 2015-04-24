@@ -152,7 +152,25 @@ angular
           console.log('not autorized')
           $location.path('/')
         } else {
-          console.log('autorized')
+          console.log('autorized', $location.path())
+          switch($location.path()) {
+            case '/actions':
+              localStorageService.set('currentPage', '/actions')
+              $rootScope.$emit('update navbar')
+              break;
+            case '/tactic':
+              localStorageService.set('currentPage', '/tactic')
+              $rootScope.$emit('update navbar')
+              break;
+            case '/documents':
+              localStorageService.set('currentPage', '/documents')
+              $rootScope.$emit('update navbar')
+              break;
+            case '/mafia':
+              localStorageService.set('currentPage', '/mafia')
+              $rootScope.$emit('update navbar')
+              break;
+          }
         }
       } else {
         $rootScope.$emit('localstorage not supported')
