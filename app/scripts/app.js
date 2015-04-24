@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angular.directives-round-progress'
   ])
 
 

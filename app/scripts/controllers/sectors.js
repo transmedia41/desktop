@@ -19,5 +19,11 @@ angular.module('deskappApp')
         console.log(data)
         $scope.selectors = data
       })
-    
+
+  $scope.data = {
+   label: 100,
+    percentage: 75
+  }
+
+  
   })
