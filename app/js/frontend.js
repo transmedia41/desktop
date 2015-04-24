@@ -64,8 +64,8 @@ $(".imgGD").toggle();
 
 
  
-L.mapbox.accessToken = 'pk.eyJ1IjoidW1lbGVjIiwiYSI6IkxKQW5MSW8ifQ.ve5wCrGM1rSNiyOa27m45g';
+/*L.mapbox.accessToken = 'pk.eyJ1IjoidW1lbGVjIiwiYSI6IkxKQW5MSW8ifQ.ve5wCrGM1rSNiyOa27m45g';
 L.mapbox.map('map-one', 'mapbox.streets',{
     scrollWheelZoom: false
-});
+});*/
   

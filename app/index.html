@@ -10,14 +10,13 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/bootstrap-theme.min.css">
-	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="styles/theme/bootstrap.css">
+    <link rel="stylesheet" href="styles/theme/bootstrap-theme.css">
   </head>
   <body ng-app="deskappApp">
     
-    <div ng-include="views/headerLogin.html"></div>
-    
+    <div ng-include="'views/headerGame.html'"></div>
+    <div ng-include="'views/navbar.html'" ng-show="true"></div>
 
     <!-- Add your site or application content here -->
     <!--<div class="header">
@@ -49,9 +48,7 @@
       </div>
     </div>-->
 
-    <div class="container">
-      <div ng-view=""></div>
-    </div>
+    <div ng-view=""></div>
 
     <!--<div class="footer">
       <div class="container">
@@ -85,6 +82,11 @@
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/frontend.js"></script>
     
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
        
