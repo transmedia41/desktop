@@ -1,4 +1,4 @@
-<nav id="header" class="navbar navbar-inverse navbar-fixed-top">
+<nav id="header" class="navbar navbar-inverse navbar-fixed-top" ng-controller="mainBarController">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,10 +8,10 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
+    <!--<div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><img src="img/logout.svg" height="30px" width="30px" alt="Logout" /></a></li>
+        <li ng-click="logoutFunc()"><img src="img/logout.svg" height="30px" width="30px" alt="Logout"></li>
       </ul>
-    </div>
+    </div>-->
   </div>
 </nav>

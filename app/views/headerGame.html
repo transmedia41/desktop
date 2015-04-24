@@ -1,4 +1,4 @@
-<nav id="header" class="navbar navbar-inverse navbar-fixed-top">
+<nav id="header" class="navbar navbar-inverse navbar-fixed-top"  ng-controller="mainBarGameController">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -20,7 +20,7 @@
                 <p class="grade">Lieutenant Premiere Classe</p>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><img src="img/logout.svg" height="30px" width="30px" alt="Logout" /></a></li>
+                <li><a ng-href="#/" ng-click="logoutFunc()"><img src="img/logout.svg" height="30px" width="30px" alt="Logout" /></a></li>
             </ul>
         </div>
     </div>
