@@ -145,7 +145,7 @@ angular
    */
   .run(function ($rootScope, $location, localStorageService) {
     $rootScope.$on('$routeChangeStart', function (event) {
-      /*if(localStorageService.isSupported) {
+      if(localStorageService.isSupported) {
         var t = localStorageService.get('wstoken')
         if(!t){
           console.log('not autorized')
@@ -155,7 +155,7 @@ angular
         }
       } else {
         $rootScope.$emit('localstorage not supported')
-      }*/
+      }
     })
   })
 
@@ -167,6 +167,7 @@ angular
   .run(function ($rootScope, $location) {
     $rootScope.$on('connection', function (event) {
       console.log('connection')
+      $rootScope.gameBar = true
     })
     $rootScope.$on('register', function (event) {
       console.log('register')

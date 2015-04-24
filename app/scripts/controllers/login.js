@@ -42,6 +42,12 @@ angular.module('deskappApp')
   
   .controller('mainBarController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
     
+    // to do
+    
+  })
+  
+  .controller('mainBarGameController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
+    
     $scope.playerInfos = ''
   
     $scope.logoutFunc = function() {
@@ -51,6 +57,7 @@ angular.module('deskappApp')
           HTTPAuhtService.logout().
             success(function(data, status, headers, config) {
               // console.log('disconnect')
+              $rootScope.gameBar = false
             }).
             error(function(data, status, headers, config) {
               // ...
