@@ -7,23 +7,26 @@
  * # AboutCtrl
  * Controller of the deskappApp
  */
-angular.module('deskappApp')
+ angular.module('deskappApp')
 
-  .controller('SectorsCtrl', function ($scope, SocketService) {
-    
+ .controller('SectorsCtrl', function ($scope, SocketService) {
+
   $scope.selectors = []
-    
-    SocketService.getSocket()
-      .emit('get sectors')
-      .on('sectors responce', function(data){
-        console.log(data)
-        $scope.selectors = data
-      })
 
-  $scope.data = {
-   label: 100,
-    percentage: 75
-  }
-
-  
+  SocketService.getSocket()
+  .emit('get sectors')
+  .on('sectors responce', function(data){
+    console.log(data)
+    $scope.selectors = data
   })
+
+  $scope.roundProgressData = {
+   label: 100,
+   percentage: 10
+ }
+
+ $scope.$watch('roundProgressData', function (newValue) {
+          newValue.percentage = newValue.label / 100;
+        }, true)
+
+})
