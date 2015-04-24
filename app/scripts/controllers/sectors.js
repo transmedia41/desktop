@@ -20,6 +20,10 @@ angular.module('deskappApp')
         $scope.selectors = data
       })
 
-  $scope.test = 'pimp'
-    
+  $scope.data = {
+   label: 100,
+    percentage: 75
+  }
+
+  
   })
