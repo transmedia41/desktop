@@ -33,6 +33,18 @@ angular
         templateUrl: 'views/tactic.html',
         controller: 'SectorsCtrl'
       })
+      .when('/actions', {
+        templateUrl: 'views/actions.html',
+        controller: 'ActionsCtrl'
+      })
+      .when('/documents', {
+        templateUrl: 'views/documents.html',
+        controller: 'DocumentsCtrl'
+      })
+      .when('/mafia', {
+        templateUrl: 'views/mafia.html',
+        controller: 'MafiaCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
