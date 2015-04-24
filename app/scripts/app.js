@@ -168,6 +168,7 @@ angular
     $rootScope.$on('connection', function (event) {
       console.log('connection')
       $rootScope.gameBar = true
+      //$location.path('/actions')
     })
     $rootScope.$on('register', function (event) {
       console.log('register')

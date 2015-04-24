@@ -58,6 +58,7 @@ angular.module('deskappApp')
             success(function(data, status, headers, config) {
               // console.log('disconnect')
               $rootScope.gameBar = false
+              localStorageService.remove('currentPage')
             }).
             error(function(data, status, headers, config) {
               // ...
@@ -78,7 +79,7 @@ angular.module('deskappApp')
     
   })
 
-  .controller('loginController', function ($scope, HTTPAuhtService, SocketService) {
+  .controller('loginController', function ($scope, $location, HTTPAuhtService, SocketService, localStorageService) {
     
     $scope.loginFunc = function() {
       var data = {
@@ -87,7 +88,10 @@ angular.module('deskappApp')
       }
       HTTPAuhtService.login(data).
         success(function(data, status, headers, config) {
-          SocketService.connect(data.token)
+          SocketService.connect(data.token).on('connect', function(){
+            localStorageService.set('currentPage', 'actions')
+            $location.path('/actions')
+          })
         }).
         error(function(data, status, headers, config) {
           // called asynchronously if an error occurs
