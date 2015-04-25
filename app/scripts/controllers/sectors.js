@@ -21,12 +21,12 @@
   })
 
   $scope.roundProgressData = {
-   label: 90,
+   label: 10,
    percentage: 0
  }
 
- $scope.$watch('roundProgressData', function (newValue) {
+   $scope.$watch('roundProgressData', function (newValue) {
           newValue.percentage = newValue.label / 100;
-        }, true)
+  }, true)
 
 })

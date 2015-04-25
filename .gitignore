@@ -2,5 +2,6 @@ node_modules
 dist
 .tmp
 .sass-cache
+.jshintrc
 bower_components
 hydro-frontend/
