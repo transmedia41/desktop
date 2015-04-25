@@ -91,14 +91,13 @@ angular.module('deskappApp')
   })
 
   .controller("PanelController", function(){
-  this.tab = 1
+    this.tab = 1
 
-  this.selectTab = function(setTab){
-    this.tab = setTab
-  }
+    this.selectTab = function(setTab){
+      this.tab = setTab
+    }
 
-  this.isSelected = function(checkTab){
-    return this.tab === checkTab
-      
-  };
-}); // End PanelController
+    this.isSelected = function(checkTab){
+      return this.tab === checkTab
+    }
+  }) // End PanelController
