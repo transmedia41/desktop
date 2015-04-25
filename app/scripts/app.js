@@ -16,7 +16,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'LocalStorageModule',
-    'angular.directives-round-progress'
+    'angular.directives-round-progress',
+    'leaflet-directive',
+    'geolocation'
   ])
 
 
