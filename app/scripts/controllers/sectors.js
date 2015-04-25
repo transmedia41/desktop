@@ -19,7 +19,7 @@
         .on('sectors responce', function(data){
           localStorageService.set('sectors', data)
           localStorageService.set('last update sectors', Date.now())
-          console.log('get sectors')
+          //console.log('get sectors')
           sectors = data
           callback(sectors)
         })
@@ -64,7 +64,7 @@
  .controller('SectorsCtrl', function ($scope, SocketService, SectorService) {
 
     $scope.sectors = SectorService.getSectors(function(data){
-      console.log(data)
+      //console.log(data)
     })
 
     /*SocketService.getSocket()
@@ -75,12 +75,12 @@
       })*/
 
     $scope.roundProgressData = {
-       label: 10,
-       percentage: 0
-     }
+      label: 10,
+      percentage: 0
+    }
 
-       $scope.$watch('roundProgressData', function (newValue) {
-              newValue.percentage = newValue.label / 100;
-      }, true)
+    $scope.$watch('roundProgressData', function (newValue) {
+      newValue.percentage = newValue.label / 100;
+    }, true)
 
   })

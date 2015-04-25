@@ -62,7 +62,7 @@ angular.module('deskappApp')
   
   })
   
-  .controller('mainBarGameController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
+  .controller('mainBarGameController', function ($rootScope, $scope, $timeout, HTTPAuhtService, localStorageService) {
     
     $scope.playerInfos = ''
   
@@ -84,13 +84,43 @@ angular.module('deskappApp')
     }
     
     $rootScope.$on('user responce', function(e, data){
-      $scope.playerInfos = data.name
+      $scope.playerInfos = data.username
+      $scope.playerRank = data.level.rankName
+      $scope.nbXP = data.xp
+      $scope.nextLvlXP = data.level.xpMax+1
+      $timeout(function(){
+        $scope.progressBar = {
+          transition: 'width 1s ease-in-out',
+          width: (data.xp/(data.level.xpMax)*100)+'%'
+        }
+      }, 200);
+      
+      // emulate new xp
+      /*$timeout(function(){
+        console.log('progress')
+        $scope.progressBar = {
+          transition: 'width 1s ease-in-out',
+          width: ((data.xp+16)/(data.level.xpMax)*100)+'%'
+        }
+      }, 4000);*/
+
       $scope.$apply()
     })
     
+    
     $rootScope.$on('disconnected', function(e, data){
       $scope.playerInfos = ''
+      $scope.playerRank = ''
+      $scope.progressBar = {
+        transition: 'width 1s ease-in-out',
+        width: '0%'
+      }
       $scope.$apply()
     })
+    
+    $scope.progressBar = {
+      transition: 'width 1s ease-in-out'
+    }
+    
     
   })

@@ -46,13 +46,9 @@ angular.module('deskappApp')
     
   })
 
-  .controller('loginController', function ($scope, $location, HTTPAuhtService, SocketService, localStorageService) {
-    
-    $scope.loginFunc = function() {
-      var data = {
-        username: $scope.username,
-        password: $scope.password
-      }
+  .controller('loginController', function ($rootScope, $scope, $location, HTTPAuhtService, SocketService, localStorageService) {
+  
+    function logFunc(data) {
       HTTPAuhtService.login(data).
         success(function(data, status, headers, config) {
           SocketService.connect(data.token).on('connect', function(){
@@ -65,20 +61,32 @@ angular.module('deskappApp')
           // or server returns response with an error status.
         })
     }
+    
+    $scope.loginFunc = function() {
+      var data = {
+        username: $scope.username,
+        password: $scope.password
+      }
+      logFunc(data)
+    }
+    $rootScope.$on('register', function(e, data){
+      logFunc(data)
+    })
   
   })
+
 
   .controller('registerController', function ($rootScope, $scope, HTTPAuhtService) {
   
     $scope.registerFunc = function() {
       if($scope.password == $scope.confirm) {
-        var data = {
+        var dataReg = {
           username: $scope.username,
           password: $scope.password
         }
-        HTTPAuhtService.register(data).
+        HTTPAuhtService.register(dataReg).
           success(function(data, status, headers, config) {
-            $rootScope.$emit('register')
+            $rootScope.$emit('register', dataReg)
           }).error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -90,14 +98,15 @@ angular.module('deskappApp')
     
   })
 
-  .controller("PanelController", function(){
-    this.tab = 1
 
+  .controller("PanelController", function(){
+  
+    this.tab = 1
     this.selectTab = function(setTab){
       this.tab = setTab
     }
-
     this.isSelected = function(checkTab){
       return this.tab === checkTab
     }
-  }) // End PanelController
+    
+  })

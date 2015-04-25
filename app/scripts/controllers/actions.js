@@ -12,7 +12,7 @@ angular.module('deskappApp')
   .controller('ActionsCtrl', function ($scope, SectorService) {
     
     $scope.sectors = SectorService.getSectors(function(data){
-      console.log(data)
+      //console.log(data)
     })
     
   })
