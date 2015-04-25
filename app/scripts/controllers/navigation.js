@@ -61,3 +61,36 @@ angular.module('deskappApp')
     })
   
   })
+  
+  .controller('mainBarGameController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
+    
+    $scope.playerInfos = ''
+  
+    $scope.logoutFunc = function() {
+      if(localStorageService.isSupported) {
+        var t = localStorageService.get('wstoken')
+        if(t){
+          HTTPAuhtService.logout().
+            success(function(data, status, headers, config) {
+              // console.log('disconnect')
+              /*$rootScope.gameBar = false
+              localStorageService.remove('currentPage')*/
+            }).
+            error(function(data, status, headers, config) {
+              // ...
+            })
+        }
+      }
+    }
+    
+    $rootScope.$on('user responce', function(e, data){
+      $scope.playerInfos = data.name
+      $scope.$apply()
+    })
+    
+    $rootScope.$on('disconnected', function(e, data){
+      $scope.playerInfos = ''
+      $scope.$apply()
+    })
+    
+  })

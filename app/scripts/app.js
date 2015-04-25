@@ -32,7 +32,7 @@ angular
       })
       .when('/tactic', {
         templateUrl: 'views/tactic.html',
-        controller: 'SectorsCtrl'
+        controller: 'MainSectorsCtrl'
       })
       .when('/actions', {
         templateUrl: 'views/actions.html',
@@ -183,7 +183,7 @@ angular
    * Ecoute les événements Auth qui sont lancer sur le rootScope
    * 
    */
-  .run(function ($rootScope, $location) {
+  .run(function ($rootScope, $location, localStorageService) {
     $rootScope.$on('connection', function (event) {
       console.log('connection')
       $rootScope.gameBar = true
@@ -195,6 +195,9 @@ angular
     })
     $rootScope.$on('disconnected', function (event) {
       console.log('disconnected')
+      localStorageService.set('last disconnect', Date.now())
+      $rootScope.gameBar = false
+      localStorageService.remove('currentPage')
       $location.path('/')
     })
   })

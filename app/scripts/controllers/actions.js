@@ -9,6 +9,10 @@
  */
 angular.module('deskappApp')
 
-  .controller('ActionsCtrl', function ($scope) {
-    // ...
+  .controller('ActionsCtrl', function ($scope, SectorService) {
+    
+    $scope.sectors = SectorService.getSectors(function(data){
+      console.log(data)
+    })
+    
   })
