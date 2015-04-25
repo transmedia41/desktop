@@ -12,6 +12,8 @@ body {
 }
 .piece {
   background-image: url('../img/halftone.png');
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .imgGD {
   background-image: url('../img/halftone.png');
