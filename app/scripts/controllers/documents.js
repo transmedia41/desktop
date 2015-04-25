@@ -9,6 +9,25 @@
  */
  angular.module('deskappApp')
 
+ .filter('convertName', function() {
+  return function(item) {
+    var out = item
+   if (item == 'video') {
+    out = 'play'
+    return out
+   } 
+    else if (item == 'photo') {
+     out = 'camera'  
+    return out
+  } else {
+    out = 'picture'
+    return out 
+  }
+  }
+})
+
+
+
  .controller('DocumentsCtrl', function ($scope) {
 
 
@@ -19,9 +38,10 @@
   }
 
 
+
   $scope.showDocumentContent = function(){
     console.log('click')
-    $('.imGD').show()
+ 
 
   }
 
@@ -29,7 +49,7 @@
   $scope.documentsList = [
   {
     "order":1,
-    "date":"",
+    "date":"1298323623006",
     "description":"Naissance de Paolo Salvatore",
     "xp":"",
     "documents":[
@@ -73,7 +93,7 @@
   },
   {
     "order":2,
-    "date":"",
+    "date":"1288323623006",
     "description":"Emprisonnement de Daniele Salvatore",
     "xp":"",
     "documents": [

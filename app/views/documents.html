@@ -1,33 +1,34 @@
 <div ng-controller="DocumentsCtrl">
   <div class="timeline"> <!-- TimeLine-->
-    <div class="col-md-11 col-md-offset-1">
+    <div class="col-md-11 col-md-offset-1" >
+    <div class="col-md-12">
       <ol><!--dates-->
-        <li ng-repeat="document in documentsList | orderBy:'-date'"><!--date-->
-          {{document.date}}
+        <li ng-repeat="document in documentsList"><!--date-->
+          {{document.date | date:'yyyy'}}
     <!--<span class="details">
       {{document.desc}}
     </span>--> 
   </li><!--\.date-->
 </ol><!--\.dates-->
 </div>
+</div>
 </div><!--\.end TimeLine-->
 
 
 <div class="col-md-11 col-md-offset-1"><!--contenu-->
- <div class="col-md-5" ><!--piecess a conviction liste-->
+<div class="col-md-12">
+ <div class="col-md-6" ><!--piecess a conviction liste-->
  <div class="col-md-12 piece" ng-repeat="document in documentsList">  <!--piece a conviction galerie thumbs-->
-    <h1>{{document.description}}<span> - {{document.xp}} XP</span></h1>
+    <h1>{{document.description | uppercase}}<span> - {{document.xp}} XP</span></h1>
     <p>{{document.description}}</p>
     <div class="row"><!-- images -->
       <!--Image-->
       <div class="col-md-3" ng-repeat="doc in document.documents">
-       <a href="" ng-click="showDetails = ! showDetails" class="thumbnail imgThumb" >
-        <img src="{{doc.thumbnail}}"class="img-responsive img-rounded" alt="{{doc.title}}">
-        <i class="glyphicon glyphicon-{{doc.type}}-circle"></i> {{doc.type}}
-
-        <div ng-class="{ 'hidden': ! showDetails }">{{doc.xp}}</div>
-
+       <a href="" ng-click="showDocumentContent()" class="thumbnail imgThumb" >
+        <img src="{{doc.thumbnail}}"class="img-responsive" alt="{{doc.title}}">
+        <i class="glyphicon glyphicon-{{doc.type | convertName}}"></i> {{doc.type}}
       </a>
+
     </div>
     <!--\.image-->  
   </div><!-- \. images -->
@@ -36,11 +37,12 @@
 
 
 <!--Afficher une image TODO: gérer les clicks-->
-<div class="col-md-5 col-md-offset-1 imgGD" ng-show="showDetails">
+<div class="col-md-6 imgGD">
   <h1>TitrePhoto</h1>
   <img src="img/imgPieceAConviction/imgPCA.png"class="img-responsive img-rounded" alt="Cinque Terre" width="100%">
   <p>Small description</p>
 </div><!---->
+</div>
 </div><!--\.contenu-->
 
 
