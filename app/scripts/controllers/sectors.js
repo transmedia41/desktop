@@ -56,6 +56,7 @@
 
   })
 
+ 
  .controller('MainSectorsCtrl', function ($scope) {
     //...
   })
@@ -74,12 +75,12 @@
       })*/
 
     $scope.roundProgressData = {
-      label: 90,
-      percentage: 0
-    }
+       label: 10,
+       percentage: 0
+     }
 
-    $scope.$watch('roundProgressData', function (newValue) {
-      newValue.percentage = newValue.label / 100;
-    }, true)
+       $scope.$watch('roundProgressData', function (newValue) {
+              newValue.percentage = newValue.label / 100;
+      }, true)
 
   })

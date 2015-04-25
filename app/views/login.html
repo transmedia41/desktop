@@ -1,67 +1,73 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 mainLogo">
-     <img src="img/mainLogo_hydromerta.png" class="img-responsive" width="300px"  alt="...">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8 descriptionLandingPage">
-      <div class="col-md-12 description">
-      <div class="col-md-10">
-          <h1>Hydromerta - think different</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices dui sit amet mi convallis, non aliquet lorem rutrum. Quisque id sem eget est hendrerit condimentum nec tincidunt massa. Phasellus risus ex, luctus et eros in, blandit malesuada est.</p>
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices dui sit amet mi convallis, non aliquet lorem rutrum. Quisque id sem eget est hendrerit condimentum nec tincidunt massa. Phasellus risus ex, luctus et eros in, blandit malesuada est.</p>
-          <a href="#" class="text-right">en savoir +</a>
-
+   <div class="row">
+      <!-- logoHeader -->
+      <div class="col-md-12 mainLogo">
+         <img src="img/mainLogo_hydromerta.png" class="img-responsive" width="300px"  alt="...">
       </div>
-      <div class="col-md-2">  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="..."></div>
-
-      </div>  
-      <div class="col-md-12 description">
-      <div class="col-md-2">  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="..."></div>
-
-      <div class="col-md-10">
-         <h1>EASY</h1>
-          <p>description</p>
+   </div>
+   <!-- \. logoHeader -->
+   <div class="row">
+      <div class="col-md-8 descriptionLandingPage">
+         <!--descriptionLandingPage-->
+         <div class="col-md-12 description">
+            <div class="col-md-10">
+               <h1>Titre</h1>
+               <p>desc</p>
+               <a href="#" class="text-right">en savoir +</a>
+            </div>
+            <div class="col-md-2">  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="..."></div>
+         </div>
+         <div class="col-md-12 description">
+            <div class="col-md-2">  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="..."></div>
+            <div class="col-md-10">
+               <h1>EASY</h1>
+               <p>description</p>
+            </div>
+         </div>
       </div>
-
-      </div>
-    </div>
-
-
-
-    <!-- login form -->
-    <div class="col-md-3 col-md-offset-1 login">
+      <!-- \.descriptionLandingPage-->
+      <!-- login form -->
+      <div class="col-md-3 col-md-offset-1 login">
          <div class="row loginIcone">
-          <div class="col-md-12 login_header">
-              <img src="img/logo_header.png">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12 login_header">
-            <div class="col-md-6 loginMenu selected">Connexion</div>
-            <div class="col-md-6 loginMenu">S'enregister</div>
-          </div>
-        </div>
-
-        <div class="row" ng-controller="loginController">
-          <div class="col-md-12">
-            <form class="form-inline">
-              <div class="input-group">
-              <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username">
-              </div>
-              <div class="input-group">
-              <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
-              </div>
-               <p class="help-block">* mot de passe non valide</p>
-              <button type="submit" class="btn btn-default" ng-click="loginFunc()">se connecter</button>
-            </form>
-          </div>
-        </div>
-    </div>
-  </div>
+            <!-- LoginIcone -->
+            <div class="col-md-12 login_header">
+               <img src="img/logo_header.png">
+            </div>
+         </div>
+         <!-- \. LoginIcone -->
+         <div  ng-init="tab = 1" ng-controller="PanelController as panel">
+            <!-- MainLogin -->
+            <div class="row">
+               <div class="col-md-12 login_header">
+                  <div class="col-md-6 loginMenu selected " ng-class="{active: panel.isSelected(1)}"><a href ng-click="panel.selectTab(1)">Connexion</a></div>
+                  <div class="col-md-6 loginMenu" ng-class="{active: panel.isSelected(2)}"><a href ng-click="panel.selectTab(2)">S'enregister</a></div>
+               </div>
+            </div>
+            <div class="row" ng-controller="loginController" class="panel" ng-show="panel.isSelected(1)">
+               <!-- loginCtrl -->
+               <div class="col-md-12">
+                  <form class="form-inline">
+                     <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                        <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username">
+                     </div>
+                     <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+                        <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
+                     </div>
+                     <p class="help-block">* mot de passe non valide</p>
+                     <button type="submit" class="btn btn-default" ng-click="loginFunc()">se connecter</button>
+                  </form>
+               </div>
+            </div>
+            <!-- \. loginCtrl -->
+            <div class="row" ng-controller="loginController" class="panel" ng-show="panel.isSelected(2)">
+               <div class="col-md-12">
+                  créer un compte
+               </div>
+            </div>
+         </div>
+         <!-- \. MainLogin -->
+      </div>
+   </div>
 </div>
