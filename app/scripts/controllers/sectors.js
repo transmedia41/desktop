@@ -263,7 +263,7 @@
      				for (var x = latlngs.length - 1; x>= 0; x--) {
      					sector.latlngs[x] = {
      						lat: latlngs[x][1], lng: latlngs[x][0]
-  	   				}
+  	   				    }
      				};
      				shapes["sector"+i] = sector;
   	   			//set the circle radius
