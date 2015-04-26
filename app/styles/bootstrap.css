@@ -20,7 +20,7 @@ body {
 }
 .piece {
   background-image: url('../img/halftone.png');
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .imgGD {
   background-image: url('../img/halftone.png');
@@ -108,7 +108,7 @@ div.dashboard-footer {
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
 }
 .dash_secteurs .secteur_qte {
-  height: 80px;
+  height: 88px;
   position: relative;
 }
 .dash_secteurs .secteur_qte p {
@@ -142,16 +142,20 @@ div.header {
 /*
 * Icones Actionlist
 */
-.icon-actionlist {
+.icon-btn {
   font-size: 3.4em;
   color: #cccccc;
 }
-.icon-actionlist:hover {
+.icon-btn:hover {
   color: #3e758e;
   cursor: pointer;
 }
 .active {
   color: #14333d;
+}
+.contentActionLogo span {
+  color: #2b1a11;
+  font-size: 7vw;
 }
 /*
 * Bottom Cotent
@@ -2308,11 +2312,11 @@ img {
   border-radius: 6px;
 }
 .img-thumbnail {
-  padding: 4px;
+  padding: 10px;
   line-height: 1.42857143;
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  border-radius: 4px;
+  border-radius: 0px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -6212,7 +6216,7 @@ a.badge:focus {
 }
 .thumbnail {
   display: block;
-  padding: 4px;
+  padding: 10px;
   margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #ffffff;
@@ -6225,13 +6229,16 @@ a.badge:focus {
   margin-left: auto;
   margin-right: auto;
 }
+.thumbnail img {
+  border-bottom: solid 5px #817874;
+}
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #337ab7;
 }
 .thumbnail .caption {
-  padding: 9px;
+  padding: 10px;
   color: #817874;
 }
 .alert {
