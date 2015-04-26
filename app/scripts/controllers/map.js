@@ -9,6 +9,82 @@
  */
 angular.module('deskappApp')
 
+  /**
+   * Service to manage geoJSON layering with Leaflet.js' angular directive, which only allows 1 set of geoJSON data.
+   *
+   * Assuming you have a leaflet directive with its 'geojson' attribute set to `geojson`, usage is as follows:
+   *     var layers = new GeoJSONLayers();
+   *
+   *     layers.addLayer('myLayer', geoJSON, function(feature) { return { fillColor: '#00F' }; });
+   *     $scope.geojson = layers.get();
+   *
+   *     layers.removeLayer('myLayer');
+   *     $scope.geojson = layers.get();
+   */
+  .factory('GeoJSONLayers', function() {
+    var handler = function() {
+      this.clear()
+    }
+
+    handler.prototype.clear = function() {
+      this.json = {
+        type : "FeatureCollection",
+        features : []
+      }
+      this.layerStyles = {}
+    }
+
+    handler.prototype.addLayer = function(layerID, geoJSON, styleCallback) {
+      this.layerStyles[layerID] = styleCallback
+
+      // tag features with their assigned layer
+      geoJSON.features.forEach(function(feature, i) {
+        feature.properties.__LAYERID__ = layerID
+      });
+
+      // merge into current objects
+      Array.prototype.push.apply(this.json.features, geoJSON.features)
+    }
+
+    handler.prototype.removeLayer = function(layerID) {
+      var feats = this.json.features,
+          i = 0
+
+      delete this.layerStyles[layerID]
+
+      // remove relevant geoJSON objects as well
+      for (; i < feats.length; ++i) {
+        feature = feats[i]
+        if (feature.properties.__LAYERID__ == layerID) {
+          feats.splice(i, 1)
+          --i
+        }
+      }
+    }
+
+    handler.prototype.__handleStyle = function(feature) {
+      if (feature.properties['__LAYERID__'] === undefined) {
+          return {}
+      }
+      return this.layerStyles[feature.properties.__LAYERID__](feature)
+    }
+
+    // return geoJSON data for assignment to scope
+    handler.prototype.get = function() {
+      var self = this
+
+      return {
+        data: this.json,
+        style: function(feature) {
+            return self.__handleStyle.call(self, feature)
+        },
+        resetStyleOnMouseout: true
+      }
+    }
+
+    return handler
+  })
+
   .controller('SectorDashboardCtrl', function ($scope, SectorService) {
     
     $scope.visible = true // init value
@@ -20,7 +96,7 @@ angular.module('deskappApp')
   })
 
 
-  .controller('ActionDashboardCtrl', function ($scope, SectorService) {
+  .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService) {
     
     $scope.visible = false // init value
     
@@ -28,9 +104,14 @@ angular.module('deskappApp')
       $scope.visible = false
     }
     
+    $rootScope.$on('click on sector', function(featureSelected){
+      console.log(featureSelected)
+      $scope.visible = true
+    })
+    
   })
 
-  .controller('MapActionCtrl', function ($scope, leafletData, geolocation, SectorService) {
+  .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService) {
     
     var mapboxMapId =  "hydromerta.lpkj6fe5"
     var mapboxAccessToken = "pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA"
@@ -146,16 +227,13 @@ angular.module('deskappApp')
           })
         },
       
-        addSectorsGeoJSONToMap: function(sectors) {
-          
+        stylingSectorsGeoJSON: function(sectors) {
           var data = {
-            "type": "FeatureCollection",
-            "features": [sectors]
+            type: "FeatureCollection",
+            features: []
           }
-          console.log(data)
-          $scope.geojson = {
-            data: data,
-            style: {
+          angular.forEach(sectors, function(value, key){
+            value.style = {
               fillColor: "green",
               weight: 2,
               opacity: 1,
@@ -163,7 +241,48 @@ angular.module('deskappApp')
               dashArray: '3',
               fillOpacity: 0.7
             }
+            data.features.push(value)
+          })
+          return data
+        },
+      
+        addSectorsGeoJSONToMap: function(sectors) {
+          
+          /*var data = $scope.stylingSectorsGeoJSON(sectors)
+          console.log(data)*/
+          
+          $scope.geojson = {
+            data: {
+              type: "FeatureCollection",
+              features: sectors
+            },
+            style: function (feature) {
+              switch (feature.properties.nomsquart) {
+                case 'Quartier 4': 
+                  return {
+                    fillColor: "red",
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 0.7
+                  }
+                default:
+                  return {
+                    fillColor: "green",
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 0.7
+                  }
+              }
+            }
           }
+          
+          console.log($scope.geojson)
+          
+          //$scope.geojson= data
           
         }
 
@@ -180,10 +299,18 @@ angular.module('deskappApp')
       //console.log($scope.paths)
     })
     
-    $scope.$on('leafletDirectivePath.dblclick',function(ev, featureSelected, leafletEvent){
+    //var map = leafletData.getMap()
+    
+    
+    $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
+      //console.log(featureSelected, leafletEvent)
+      $rootScope.$emit('click on sector', featureSelected)
+    });
+    
+    /*$scope.$on('leafletDirectivePath.dblclick',function(ev, featureSelected, leafletEvent){
       var sectorName = featureSelected.pathName
       console.log(featureSelected)
-    })
+    })*/
 
 //	$scope.markers = $scope.addSectorMarkersToMap(sectors);
 //	$scope.paths = $scope.addPointRadiusToMap(sectors, $scope);
