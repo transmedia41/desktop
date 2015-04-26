@@ -1,22 +1,20 @@
-<!--    <leaflet id="map" defaults="defaults" center="mapCenter" height="500px" width="500px" markers="markers" geojson="geojson" paths="paths" layers="layers" maxbounds="maxbounds"></leaflet>-->
 <div ng-controller="MapActionCtrl" class="fullpage"> 
   <leaflet id="leafletMap" defaults="defaults" center="mapCenter" maxbounds="maxbounds"></leaflet>
 </div>
 
 
-
 <!-- Fin contenu -->
-<footer ng-controller="SectorsCtrl">
+<footer ng-controller="ActionDashboardCtrl" ng-show="visible">
     <div class="navbar navbar-fixed-bottom dashboard-footer">
 
 
         <div class="col-md-11 col-md-offset-1">
             <div class="pannelClose"><!--close-->
-                <button> <i class="glyphicon glyphicon-remove"></i> </button>
+                <button ng-click="closeDashboard()"> <i class="glyphicon glyphicon-remove"></i> </button>
             </div><!-- \. close -->
         </div>
 
-        <div class="col-md-12 mainDaschboard"> <!-- DashboardControll" -->
+        <div ng-controller="SectorsCtrl" class="col-md-12 mainDaschboard"> <!-- DashboardControll" -->
             <div class="row contentDashboardRow">
                 <section class="col-md-offset-1 col-md-1" >
                     <img src="img/iconesAction.png"class="img-responsive img-rounded" alt="Cinque Terre">

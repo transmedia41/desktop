@@ -9,6 +9,26 @@
  */
 angular.module('deskappApp')
 
+  .controller('ActionDashboardCtrl', function ($scope, SectorService) {
+    
+    $scope.visible = false // init value
+    
+    $scope.closeDashboard = function(){
+      $scope.visible = false
+    }
+    
+  })
+
+  .controller('SectorDashboardCtrl', function ($scope, SectorService) {
+    
+    $scope.visible = true // init value
+    
+    $scope.closeDashboard = function(){
+      $scope.visible = false
+    }
+    
+  })
+
   .controller('MapActionCtrl', function ($scope, leafletData, geolocation) {
     
     var mapboxMapId =  "hydromerta.lpkj6fe5"
@@ -16,20 +36,13 @@ angular.module('deskappApp')
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken
     
     
-    var body = angular.element.find("body");
-    //var height = body.height();
-  console.log(body[0].clientHeight)
-  console.log(body)
-  //console.log(height)f
-  
-    //$scope.heightMap = '500px'
-    
 	angular.extend($scope, {
 	    defaults: {
           maxZoom: 18,
           minZoom: 14,
+          attributionControl: false,
           tileLayer: mapboxTileLayer,
-          zoomControlPosition: 'topright',
+          zoomControlPosition: false
 	    },
 	    maxbounds : {
 			    southWest: {
@@ -42,8 +55,8 @@ angular.module('deskappApp')
 			    }
 			},
 	    mapCenter: {
-	            lat: 46.78,
-	            lng: 6.65,
+	            lat: 46.779463, 
+	            lng: 6.638802,
 	            zoom: 15
 	          },
 	   
