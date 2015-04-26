@@ -20,8 +20,8 @@
   </head>
   <body ng-app="deskappApp">
     
-    <div ng-show="gameBar" ng-include="'views/headerGame.html'"></div>
-    <div ng-show="!gameBar" ng-include="'views/headerLogin.html'"></div>
+    <div ng-show="gameBar" ng-include="'views/headerGame.html'" class="navbar-fixed-top header"></div>
+    <div ng-show="!gameBar" ng-include="'views/headerLogin.html'" class="navbar-fixed-top header"></div>
     <div ng-show="gameBar" ng-include="'views/navbar.html'" ng-show="true"></div>
 
     <!-- Add your site or application content here -->
@@ -54,7 +54,7 @@
       </div>
     </div>-->
 
-    <div ng-view=""></div>
+    <div ng-view="" id="content"></div>
 
     <!--<div class="footer">
       <div class="container">

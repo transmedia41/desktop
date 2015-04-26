@@ -22,7 +22,7 @@ angular.module('deskappApp')
   console.log(body)
   //console.log(height)f
   
-    $scope.heightMap = '500px'
+    //$scope.heightMap = '500px'
     
 	angular.extend($scope, {
 	    defaults: {
