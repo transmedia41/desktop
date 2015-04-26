@@ -15,11 +15,21 @@ angular.module('deskappApp')
     var mapboxAccessToken = "pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA"
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken
     
+    
+    var body = angular.element.find("body");
+    //var height = body.height();
+  console.log(body[0].clientHeight)
+  console.log(body)
+  //console.log(height)f
+  
+    $scope.heightMap = '500px'
+    
 	angular.extend($scope, {
 	    defaults: {
           maxZoom: 18,
           minZoom: 14,
-          tileLayer: mapboxTileLayer
+          tileLayer: mapboxTileLayer,
+          zoomControlPosition: 'topright',
 	    },
 	    maxbounds : {
 			    southWest: {

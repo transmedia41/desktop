@@ -1,6 +1,10 @@
 /*
  * Base structure
  */
+html,
+body {
+  height: 100%;
+}
 .input {
   outline: none !important;
 }
@@ -12,7 +16,7 @@ body {
 }
 .piece {
   background-image: url('../img/halftone.png');
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .imgGD {
   background-image: url('../img/halftone.png');
@@ -2294,11 +2298,11 @@ img {
   border-radius: 6px;
 }
 .img-thumbnail {
-  padding: 10px;
+  padding: 4px;
   line-height: 1.42857143;
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  border-radius: 0px;
+  border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -6198,7 +6202,7 @@ a.badge:focus {
 }
 .thumbnail {
   display: block;
-  padding: 10px;
+  padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #ffffff;
@@ -6217,7 +6221,7 @@ a.thumbnail.active {
   border-color: #337ab7;
 }
 .thumbnail .caption {
-  padding: 10px;
+  padding: 9px;
   color: #817874;
 }
 .alert {
