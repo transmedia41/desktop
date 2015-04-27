@@ -383,6 +383,9 @@ div.header {
 .icon-label:before {
   content: "\e617";
 }
+.icon-hydrante:before {
+  content: "\e618";
+}
 .icon-sidenav-action:before {
   content: "\e600";
 }
