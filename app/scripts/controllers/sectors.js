@@ -119,11 +119,12 @@
 	angular.extend($scope, {
       
 	    defaults: {
-          maxZoom: 18,
+          maxZoom: 16,
           minZoom: 14,
           attributionControl: false,
           tileLayer: mapboxTileLayer,
-          zoomControl:false
+          zoomControl:false,
+          reuseTiles: true
 	    },
       
 	    maxbounds: {
