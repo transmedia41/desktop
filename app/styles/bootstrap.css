@@ -323,6 +323,69 @@ div.header {
 .icon-iconeRound:before {
   content: "\ea92";
 }
+.icon-locked:before {
+  content: "\e604";
+}
+.icon-cuve_recup:before {
+  content: "\e605";
+}
+.icon-affiche:before {
+  content: "\e606";
+}
+.icon-toilettes:before {
+  content: "\e607";
+}
+.icon-arrosage:before {
+  content: "\e608";
+}
+.icon-bouche_egout:before {
+  content: "\e609";
+}
+.icon-shop:before {
+  content: "\e60a";
+}
+.icon-fontaine:before {
+  content: "\e60b";
+}
+.icon-dechet_lac:before {
+  content: "\e60c";
+}
+.icon-filtrage:before {
+  content: "\e60d";
+}
+.icon-denoncer:before {
+  content: "\e60e";
+}
+.icon-ctrl_canalisation:before {
+  content: "\e60f";
+}
+.icon-ctrl_instal_hydro:before {
+  content: "\e610";
+}
+.icon-ctrl_canaux:before {
+  content: "\e611";
+}
+.icon-ctrl_step:before {
+  content: "\e612";
+}
+.icon-loi:before {
+  content: "\e613";
+}
+.icon-block_prod:before {
+  content: "\e614";
+}
+.icon-test_conso:before {
+  content: "\e615";
+}
+.icon-campagne:before {
+  content: "\e616";
+}
+.icon-label:before {
+  content: "\e617";
+}
+.icon-hydrante:before {
+  content: "\e618";
+}
 .icon-sidenav-action:before {
   content: "\e600";
 }
@@ -334,6 +397,9 @@ div.header {
 }
 .icon-sidenav-tactic:before {
   content: "\e603";
+}
+.icon-cross:before {
+  content: "\ea0f";
 }
 /* ---- Timeline ---- */
 .timeline {

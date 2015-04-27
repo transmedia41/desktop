@@ -1,83 +1,106 @@
-<div ng-controller="DocumentsCtrl">
+<div ng-controller="MafiaCtrl">
 
-<div class="col-md-11 col-md-offset-1"><!--contenu-->
-  <div class="col-md-12 mainMafiaOrganigramme">
-   <div class="col-md-6" ><!--piecess a conviction liste-->
-     <div class="col-md-12 piece">  <!--piece a conviction galerie thumbs-->
-      <div class="table-responsive">
-  <table class="table organigramme">
-    <thead>
-      <th colspan="4">
-           <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Paolo Salvatore <span> - Boss</span></h1>
-           <h2>"Don Pellegrino"</h2>
-      </th>
-    </thead>
+  <div class="col-md-11 col-md-offset-1"><!--contenu-->
+    <div class="col-md-12 mainMafiaOrganigramme">
+     <div class="col-md-6" ><!--piecess a conviction liste-->
+       <div class="col-md-12 piece">  <!--piece a conviction galerie thumbs-->
+        <div class="table-responsive">
 
-    <tbody>
-      <tr>
-      <td>
-      <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span>- Boss</span></h1>
-           <h2>"Don Pellegrino"</h2>
-           </td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Sousboss</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Conseillere</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      <td></td>
-      </tr>
+          <table class="table organigramme">
+            <thead>
+              <th colspan="4">
+               <div ng-repeat="character in characterList | character:'vinzenzo' "   ng-show="!character.length">
+                 <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+                 <h1>{{character.firstname}} {{character.lastname}} <span> - {{character.status}}</span></h1>
+                 <h2>"{{character.nickname}}"</h2>
+               </div>
 
-         <tr>
-      <td>
-      <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Boss</span></h1>
-           <h2>"Don Pellegrino"</h2>
-           </td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Boss</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Boss</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-           <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Boss</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      </tr>
+             </th>
+           </thead>
 
+           <tbody>
             <tr>
-      <td>
-      <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Associé</span></h1>
-           <h2>"Don Pellegrino"</h2>
-           </td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Soldat</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Soldat</span></h1>
+              <td>
+               <div ng-repeat="character in characterList | character:'Paolo' ">
+                 <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+                 <h1>{{character.firstname}} {{character.lastname}} <span> - {{character.status}}</span></h1>
+                 <h2>"{{character.nickname}}"</h2>
+               </div>
+
+             </td>
+
+             <td ng-repeat="character in characterList | character:'Samanta'">
+       
+              <div ng-show="character"  ng-click"showMafiosiContent(character)">
+               <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+               <h1>{{character.firstname}} {{character.lastname}} <span> - {{character.status}}</span></h1>
+               <h2>"{{character.nickname}}"</h2>
+             </div>
+             <div  ng-show="!character">
+               <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+               <h1>... <span> - ...</span></h1>
+               <h2>...</h2>
+             </div>
+             </td>
+
+         <td>
+
+
+         </td>
+
+
+
+         <td></td>
+       </tr>
+
+       <tr>
+        <td>
+          <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+          <h1>Rage <span> - Boss</span></h1>
+          <h2>"Don Pellegrino"</h2>
+        </td>
+        <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+         <h1>Rage <span> - Boss</span></h1>
+         <h2>"Don Pellegrino"</h2></td>
+         <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+           <h1>Rage <span> - Boss</span></h1>
            <h2>"Don Pellegrino"</h2></td>
            <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
-           <h1>Rage <span> - Soldat</span></h1>
-           <h2>"Don Pellegrino"</h2></td>
-      </tr>
+             <h1>Rage <span> - Boss</span></h1>
+             <h2>"Don Pellegrino"</h2></td>
+           </tr>
+
+           <tr>
+            <td>
+              <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+              <h1>Rage <span> - Associé</span></h1>
+              <h2>"Don Pellegrino"</h2>
+            </td>
+            <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+             <h1>Rage <span> - Soldat</span></h1>
+             <h2>"Don Pellegrino"</h2></td>
+             <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+               <h1>Rage <span> - Soldat</span></h1>
+               <h2>"Don Pellegrino"</h2></td>
+               <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+                 <h1>Rage <span> - Soldat</span></h1>
+                 <h2>"Don Pellegrino"</h2></td>
+               </tr>
 
 
-    </tbody>
+             </tbody>
 
 
-  </table>
-</div>
-    </div><!--\pieces a conviction liste -->
-</div><!-- \.pieces a conviction-->
-<!--Afficher une image TODO: gérer les clicks-->
-<div class="col-md-6 imgGD">
-  <h1>TitrePhoto</h1>
-  <img src="img/imgPieceAConviction/imgPCA.png"class="img-responsive" alt="Cinque Terre" width="100%">
-  <p>Small description</p>
-</div><!---->
-</div>
+           </table>
+         </div>
+       </div><!--\pieces a conviction liste -->
+     </div><!-- \.pieces a conviction-->
+     <!--Afficher une image TODO: gérer les clicks-->
+     <div class="col-md-6 imgGD">
+      <h1>TitrePhoto</h1>
+      <img src="img/imgPieceAConviction/imgPCA.png"class="img-responsive" alt="Cinque Terre" width="100%">
+      <p>Small description</p>
+    </div><!---->
+  </div>
 </div><!--\.contenu-->
 </div>
