@@ -9,7 +9,19 @@
  */
 angular.module('deskappApp')
 
-  .controller('NavBarCtrl', function ($rootScope, $scope, $location, localStorageService) {
+  .controller('NavBarCtrl', function ($rootScope, $scope, $location, SocketService, localStorageService) {
+  
+    if(localStorageService.get('notifDoc')) {
+      $scope.notifDoc = localStorageService.get('notifDoc')
+    } else {
+      $scope.notifDoc = 0
+    }
+  
+    if(localStorageService.get('notifChar')) {
+      $scope.notifChar = localStorageService.get('notifChar')
+    } else {
+      $scope.notifChar = 0
+    }
   
     function setBtnsFalse() {
       $scope.actionsBtn = false
@@ -58,6 +70,31 @@ angular.module('deskappApp')
   
     $rootScope.$on('update navbar', function(){
       update()
+    })
+    
+    
+    $rootScope.$on('connection', function (event) {
+      // CHARACTERE NOTIFICATIONS
+      SocketService.getSocket().emit('get character count')
+      SocketService.getSocket().on('character count responce', function(data){
+        $scope.notifChar = data
+        localStorageService.set('notifChar', data)
+      })
+      SocketService.getSocket().on('update character count', function(data){
+        $scope.notifChar = data
+        localStorageService.set('notifChar', data)
+      })
+      
+      // DOCUMENT NOTIFICATIONS
+      SocketService.getSocket().emit('get document count')
+      SocketService.getSocket().on('document count responce', function(data){
+        $scope.notifDoc = data
+        localStorageService.set('notifDoc', data)
+      })
+      SocketService.getSocket().on('update document count', function(data){
+        $scope.notifDoc = data
+        localStorageService.set('notifDoc', data)
+      })
     })
   
   })
@@ -124,11 +161,12 @@ angular.module('deskappApp')
       
     })
     
-    if(typeof SocketService.getSocket() != 'undefined') {
+  
+    $rootScope.$on('connection', function (event) {
       SocketService.getSocket().on('user update', function(data){
         updateInfos(data)
       })
-    }
+    })
     
     
     $rootScope.$on('disconnected', function(e, data){

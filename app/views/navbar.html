@@ -17,15 +17,13 @@
                 <li ng-class="{active: documentsBtn}">
                     <a ng-href="#/documents" ng-click="goToDocuments()">
                         <span class="icon-sidenav-docs"></span>
-                        <p>pieces a conviction</p>
+                        <p>pieces a conviction <span class="badge badgePimp" ng-show="notifDoc>0" ng-bind="notifDoc"></span></p>
                     </a>
                 </li>
                 <li ng-class="{active: mafiaBtn}">
                     <a ng-href="#/mafia" ng-click="goToMafia()">
-
                         <span class="icon-sidenav-mafia"></span>
-                        <p>mafia  <span class="badge badgePimp">42</span></p>
-                       
+                        <p>mafia  <span class="badge badgePimp" ng-show="notifChar>0" ng-bind="notifChar"></span></p>
                     </a>
                 </li>
             </ul>

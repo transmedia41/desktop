@@ -84,7 +84,7 @@
     }, true)
     
     $scope.makeAction = function(){
-      console.log('click')
+      //console.log('click')
       SocketService.getSocket().emit('make action')
     }
 
@@ -99,7 +99,7 @@
     }
     
     $rootScope.$on('click on sector', function(e, featureSelected){
-      console.log(featureSelected)
+      //console.log(featureSelected)
       $scope.visible = true
     })
     
@@ -211,11 +211,11 @@
     
     SectorService.getSectors(function(data){
       $scope.addSectorsGeoJSONToMap(data)
-      console.log($scope.geojson)
+      //console.log($scope.geojson)
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-      console.log(featureSelected, leafletEvent)
+      //console.log(featureSelected, leafletEvent)
       $rootScope.$emit('click on sector', featureSelected)
     })
 

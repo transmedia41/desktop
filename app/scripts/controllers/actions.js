@@ -27,7 +27,7 @@ angular.module('deskappApp')
     }
     
     $rootScope.$on('click on action', function(e, featureSelected){
-      console.log(featureSelected)
+      //console.log(featureSelected)
       $scope.visible = true
     })
     
@@ -213,7 +213,7 @@ angular.module('deskappApp')
     //$scope.markers = $scope.addSectorMarkersToMap(SectorService.getSectors())
     
     SectorService.getSectors(function(data){
-      console.log(data)
+      //console.log(data)
       //$scope.markers = $scope.addSectorMarkersToMap(data)
       //$scope.addSectorsPathToMap(data)
       $scope.addSectorsGeoJSONToMap(data)
