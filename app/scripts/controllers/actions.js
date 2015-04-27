@@ -26,7 +26,7 @@ angular.module('deskappApp')
       $scope.visible = false
     }
     
-    $rootScope.$on('click on action', function(featureSelected){
+    $rootScope.$on('click on action', function(e, featureSelected){
       console.log(featureSelected)
       $scope.visible = true
     })
@@ -224,7 +224,7 @@ angular.module('deskappApp')
     
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-      //console.log(featureSelected, leafletEvent)
+      (ev, featureSelected, leafletEvent)
       $rootScope.$emit('click on action', featureSelected)
     });
     

@@ -8,7 +8,7 @@
                 <p class="xp">xp</p>
                 <div class="loader_wrap">
                     <div class="fill" ng-style="progressBar">
-                        <p><span ng-bind="nbXP"></span><span>pts</span> / <span ng-bind="nextLvlXP"></span><span>pts</span></p>
+                        <p><span ng-bind="nbXP"></span><span>pts</span> <span ng-show="level<12">/</span> <span ng-bind="nextLvlXP" ng-show="level<12"></span><span ng-show="level<12">pts</span></p>
                     </div>
                 </div>
                 <p class="grade"><span ng-bind="playerRank"></span> <span ng-bind="playerInfos"></span></p>

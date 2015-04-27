@@ -82,6 +82,11 @@
     $scope.$watch('roundProgressData', function (newValue) {
       newValue.percentage = newValue.label / 100;
     }, true)
+    
+    $scope.makeAction = function(){
+      console.log('click')
+      SocketService.getSocket().emit('make action')
+    }
 
   })
 
@@ -93,7 +98,7 @@
       $scope.visible = false
     }
     
-    $rootScope.$on('click on sector', function(featureSelected){
+    $rootScope.$on('click on sector', function(e, featureSelected){
       console.log(featureSelected)
       $scope.visible = true
     })
@@ -135,7 +140,7 @@
 	    mapCenter: {
           lat: 46.779463, 
           lng: 6.638802,
-          zoom: 15
+          zoom: 14
         },
       
 	    layers: {
@@ -206,10 +211,11 @@
     
     SectorService.getSectors(function(data){
       $scope.addSectorsGeoJSONToMap(data)
+      console.log($scope.geojson)
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-      //console.log(featureSelected, leafletEvent)
+      console.log(featureSelected, leafletEvent)
       $rootScope.$emit('click on sector', featureSelected)
     })
 

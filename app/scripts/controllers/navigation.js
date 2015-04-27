@@ -62,7 +62,7 @@ angular.module('deskappApp')
   
   })
   
-  .controller('mainBarGameController', function ($rootScope, $scope, $timeout, HTTPAuhtService, localStorageService) {
+  .controller('mainBarGameController', function ($rootScope, $scope, $timeout, HTTPAuhtService, SocketService, localStorageService) {
     
     $scope.playerInfos = ''
   
@@ -83,17 +83,34 @@ angular.module('deskappApp')
       }
     }
     
-    $rootScope.$on('user responce', function(e, data){
+    function updateInfos(data) {
       $scope.playerInfos = data.username
-      $scope.playerRank = data.level.rankName
-      $scope.nbXP = data.xp
-      $scope.nextLvlXP = data.level.xpMax+1
-      $timeout(function(){
-        $scope.progressBar = {
-          transition: 'width 1s ease-in-out',
-          width: (data.xp/(data.level.xpMax)*100)+'%'
-        }
-      }, 200);
+      $scope.playerRank =  data.level.rankName
+      $scope.level =  data.level.level
+      if(data.level.level == 12) {
+        // general, last level
+        $scope.nbXP = data.xp
+        $timeout(function(){
+          $scope.progressBar = {
+            transition: 'width 1s ease-in-out',
+            width: '100%'
+          }
+        }, 200);
+      } else {
+        $scope.nbXP = data.xp-data.level.xp
+        $scope.nextLvlXP = data.level.xpMax+1-data.level.xp
+        $timeout(function(){
+          $scope.progressBar = {
+            transition: 'width 1s ease-in-out',
+            width: ((data.xp-data.level.xp)/(data.level.xpMax-data.level.xp)*100)+'%'
+          }
+        }, 200);
+      }
+      $scope.$apply()
+    }
+    
+    $rootScope.$on('user responce', function(e, data){
+      updateInfos(data)
       
       // emulate new xp
       /*$timeout(function(){
@@ -104,8 +121,14 @@ angular.module('deskappApp')
         }
       }, 4000);*/
 
-      $scope.$apply()
+      
     })
+    
+    if(typeof SocketService.getSocket() != 'undefined') {
+      SocketService.getSocket().on('user update', function(data){
+        updateInfos(data)
+      })
+    }
     
     
     $rootScope.$on('disconnected', function(e, data){
