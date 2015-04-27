@@ -98,21 +98,25 @@
             </div>
          </div>
       </div>
-      <div class="col-md-6 imgGD" ng-hide="showDesc">
+      <div class="col-md-6 imgGD mafiosiDesc" ng-hide="showDesc">
          <div class="media">
             <div class="media-left">
-               <a href="#">
-                  <img class="media-object" src="..." alt="...">
-               </a>
+                  <img class="media-object" src="img/lede.png" alt="...">
             </div>
             <div class="media-body">
-               <h4 class="media-heading">{{desc_lastname}} -  {{desc_firstname}}</h4>
+               <h1 class="media-heading">{{desc_lastname}} {{desc_firstname}} - <span>{{desc_status}}</span></h1>
                {{desc_life}}
             </div>
          </div>
-         <table class="table table-striped">
+         <table class="table">
             <tbody>
                <tr>
+                  <th>
+                     Family
+                  </th>
+                  <td>
+                     {{desc_family}}
+                  </td>
                   <th>
                      Family
                   </th>
@@ -127,9 +131,21 @@
                   <td>
                      {{desc_family}}
                   </td>
+                  <th>
+                     Status
+                  </th>
+                  <td>
+                     {{desc_family}}
+                  </td>
                </tr>
                <tr>
                   <th>
+                     weakness
+                  </th>
+                  <td>
+                     {{desc_weakness}}
+                  </td>
+                   <th>
                      weakness
                   </th>
                   <td>
