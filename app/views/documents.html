@@ -4,7 +4,9 @@
       <div class="col-md-12">
         <ol><!--dates-->
           <li ng-repeat="document in documentsList"><!--date-->
-            {{document.date | date:'yyyy'}}
+          <a href="">
+            {{document.date | date:'dd/mm/yyyy'}}
+            </a>
     <!--<span class="details">
       {{document.desc}}
     </span>--> 
@@ -16,12 +18,12 @@
 <div class="col-md-11 col-md-offset-1"><!--contenu-->
   <div class="col-md-12">
    <div class="col-md-6" ><!--piecess a conviction liste-->
-     <div class="col-md-12 piece" ng-repeat="document in documentsList">  <!--piece a conviction galerie thumbs-->
+     <div class="col-md-12 piece" ng-repeat="document in documentsList" id="{{document.date | date:'dd/mm/yyyy'}}">  <!--piece a conviction galerie thumbs-->
       <h1>{{document.description | uppercase}}<span> - {{document.xp}} XP</span></h1>
       <p>{{document.description}}</p>
       <div class="row"><!-- images -->
         <!--Image-->
-        <div class="col-md-3" ng-repeat="doc in document.documents">
+        <div class="col-md-3 thumbIcones" ng-repeat="doc in document.documents">
          <a href="" ng-click="showDocumentContent(doc)" class="thumbnail imgThumb" >
           <img src="{{doc.thumbnail}}"class="img-responsive" alt="{{doc.title}}">
           <i class="glyphicon glyphicon-{{doc.type | convertName}}"></i>
