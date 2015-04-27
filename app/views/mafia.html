@@ -1,1 +1,145 @@
-<h1>Mafia view</h1>
+<div ng-controller="MafiaCtrl">
+   <div class="col-md-11 col-md-offset-1 mafiaContent">
+      <div class="col-md-6" >
+         <div class="col-md-12 piece">
+            <div class="table-responsive">
+               <table class="table organigramme">
+                  <thead>
+                     <th colspan="4" ng-click="showMafiosiContent(characterList[0])">
+                        <div ng-show="characterList[0].characterAvaible">
+                           <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                           <h1>{{characterList[0].firstname}} {{characterList[0].lastname}} <span> - {{characterList[0].status}}</span></h1>
+                           <h2>"{{characterList[0].nickname}}"</h2>
+                        </div>
+                        <div  ng-show="!characterList[0].characterAvaible">
+                           <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                           <h1>... <span> - ...</span></h1>
+                           <h2>...</h2>
+                        </div>
+                     </th>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td ng-click="showMafiosiContent(characterList[1])">
+                           <div ng-show="characterList[1].characterAvaible">
+                              <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                              <h1>{{characterList[1].firstname}} {{characterList[1].lastname}} <span> - {{characterList[1].status}}</span></h1>
+                              <h2>"{{characterList[1].nickname}}"</h2>
+                           </div>
+                           <div  ng-show="!characterList[1].characterAvaible">
+                              <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                              <h1>... <span> - ...</span></h1>
+                              <h2>...</h2>
+                           </div>
+                        </td>
+                        <td ng-click="showMafiosiContent(characterList[2])">
+                           <div ng-show="characterList[2].characterAvaible">
+                              <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                              <h1>{{characterList[2].firstname}} {{characterList[2].lastname}} <span> - {{characterList[2].status}}</span></h1>
+                              <h2>"{{characterList[2].nickname}}"</h2>
+                           </div>
+                           <div  ng-show="!characterList[2].characterAvaible">
+                              <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                              <h1>... <span> - ...</span></h1>
+                              <h2>...</h2>
+                           </div>
+                        </td>
+                        <td ng-click="showMafiosiContent(characterList[3])"> 
+                           <div ng-show="characterList[3].characterAvaible">
+                              <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                              <h1>{{characterList[3].firstname}} {{characterList[3].lastname}} <span> - {{characterList[3].status}}</span></h1>
+                              <h2>"{{characterList[3].nickname}}"</h2>
+                           </div>
+                           <div  ng-show="!characterList[3].characterAvaible">
+                              <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                              <h1>... <span> - ...</span></h1>
+                              <h2>...</h2>
+                           </div>
+                        </td>          
+                        <td>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td ng-click="showMafiosiContent(characterList[4])"> 
+                           <div ng-show="characterList[4].characterAvaible">
+                              <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                              <h1>{{characterList[4].firstname}} {{characterList[4].lastname}} <span> - {{characterList[4].status}}</span></h1>
+                              <h2>"{{characterList[4].nickname}}"</h2>
+                           </div>
+                           <div  ng-show="!characterList[4].characterAvaible">
+                              <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                              <h1>... <span> - ...</span></h1>
+                              <h2>...</h2>
+                           </div>
+                        </td>   
+                        <td ng-click="showMafiosiContent(characterList[5])"> 
+                           <div ng-show="characterList[5].characterAvaible">
+                              <img src="img/lede.png"class="img-responsive img-round" alt="...">
+                              <h1>{{characterList[5].firstname}} {{characterList[5].lastname}} <span> - {{characterList[5].status}}</span></h1>
+                              <h2>"{{characterList[5].nickname}}"</h2>
+                           </div>
+                           <div  ng-show="!characterList[5].characterAvaible">
+                              <img src="img/unknown.png"class="img-responsive img-round" alt="...">
+                              <h1>... <span> - ...</span></h1>
+                              <h2>...</h2>
+                           </div>
+                        </td>
+                        <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+                           <h1>Rage <span> - Boss</span></h1>
+                           <h2>"Don Pellegrino"</h2>
+                        </td>
+                        <td>  <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+                           <h1>Rage <span> - Boss</span></h1>
+                           <h2>"Don Pellegrino"</h2>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 imgGD" ng-hide="showDesc">
+         <div class="media">
+            <div class="media-left">
+               <a href="#">
+                  <img class="media-object" src="..." alt="...">
+               </a>
+            </div>
+            <div class="media-body">
+               <h4 class="media-heading">{{desc_lastname}} -  {{desc_firstname}}</h4>
+               {{desc_life}}
+            </div>
+         </div>
+         <table class="table table-striped">
+            <tbody>
+               <tr>
+                  <th>
+                     Family
+                  </th>
+                  <td>
+                     {{desc_family}}
+                  </td>
+               </tr>
+               <tr>
+                  <th>
+                     Status
+                  </th>
+                  <td>
+                     {{desc_family}}
+                  </td>
+               </tr>
+               <tr>
+                  <th>
+                     weakness
+                  </th>
+                  <td>
+                     {{desc_weakness}}
+                  </td>
+               </tr>
+               <tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>

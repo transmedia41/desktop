@@ -18,6 +18,64 @@ body {
   padding: 0;
   background-image: url('../img/halftoneDark.png');
 }
+.thumbIcones {
+  text-align: center;
+}
+.thumbIcones a {
+  color: #817874;
+}
+.thumbIcones i {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2em;
+  color: #817874;
+  background-color: white;
+  border-radius: 100px;
+  padding: 15px 0px;
+  margin-top: -25px;
+  border: solid 3px #817874;
+}
+.mainMafiaOrganigramme {
+  margin-top: 75px;
+}
+.mafiaContent {
+  margin-top: 100px;
+}
+.organigramme h1 {
+  font-size: 1.5em;
+  margin: 0px;
+}
+.organigramme h1 > span {
+  color: #9e1915;
+}
+.organigramme h2 {
+  font-size: 1em;
+  margin: 0px;
+}
+.organigramme th,
+.organigramme td {
+  text-align: center;
+}
+.organigramme th:hover,
+.organigramme td:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+.organigramme img {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100px;
+}
+span#actiondetail {
+  font-size: 5vw;
+}
+span.icon-actionlist {
+  font-size: 2vw;
+  padding-right: 5px;
+}
+span.icon-actionlist:last-child {
+  padding: 0;
+}
 .piece {
   background-image: url('../img/halftone.png');
   margin-bottom: 10px;
@@ -295,6 +353,69 @@ div.header {
 .icon-iconeRound:before {
   content: "\ea92";
 }
+.icon-locked:before {
+  content: "\e604";
+}
+.icon-cuve_recup:before {
+  content: "\e605";
+}
+.icon-affiche:before {
+  content: "\e606";
+}
+.icon-toilettes:before {
+  content: "\e607";
+}
+.icon-arrosage:before {
+  content: "\e608";
+}
+.icon-bouche_egout:before {
+  content: "\e609";
+}
+.icon-shop:before {
+  content: "\e60a";
+}
+.icon-fontaine:before {
+  content: "\e60b";
+}
+.icon-dechet_lac:before {
+  content: "\e60c";
+}
+.icon-filtrage:before {
+  content: "\e60d";
+}
+.icon-denoncer:before {
+  content: "\e60e";
+}
+.icon-ctrl_canalisation:before {
+  content: "\e60f";
+}
+.icon-ctrl_instal_hydro:before {
+  content: "\e610";
+}
+.icon-ctrl_canaux:before {
+  content: "\e611";
+}
+.icon-ctrl_step:before {
+  content: "\e612";
+}
+.icon-loi:before {
+  content: "\e613";
+}
+.icon-block_prod:before {
+  content: "\e614";
+}
+.icon-test_conso:before {
+  content: "\e615";
+}
+.icon-campagne:before {
+  content: "\e616";
+}
+.icon-label:before {
+  content: "\e617";
+}
+.icon-hydrante:before {
+  content: "\e618";
+}
 .icon-sidenav-action:before {
   content: "\e600";
 }
@@ -307,9 +428,12 @@ div.header {
 .icon-sidenav-tactic:before {
   content: "\e603";
 }
+.icon-cross:before {
+  content: "\ea0f";
+}
 /* ---- Timeline ---- */
 .timeline {
-  margin-top: 0px;
+  margin-top: 90px;
   /* ---- Timeline elements ---- */
   /* ---- Details ---- */
   /* ---- Hover effects ---- */
@@ -349,7 +473,8 @@ div.header {
   float: left;
   width: 35px;
   transform: rotate(-45deg);
-  font: bold 14px arial;
+  font: 1.2em "hoverageregular", Helvetica, Arial, sans-serif;
+  color: #14333d;
 }
 @media (max-width: 1300px) {
   .timeline li {
@@ -359,7 +484,8 @@ div.header {
     float: left;
     width: 25px;
     transform: rotate(-45deg);
-    font: bold 12px arial;
+    font: 1em "hoverageregular", Helvetica, Arial, sans-serif;
+    color: #14333d;
   }
 }
 .timeline li::before {
@@ -405,7 +531,7 @@ div.header {
 }
 .timeline li:hover::before {
   top: 1px;
-  left: -31px;
+  left: -30px;
   width: 8px;
   height: 8px;
   border-width: 5px;
@@ -6134,13 +6260,12 @@ a.label:focus {
   min-width: 10px;
   padding: 3px 7px;
   font-size: 12px;
-  font-weight: bold;
   color: #ffffff;
   line-height: 1;
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
-  background-color: #777777;
+  background-color: #ea590c;
   border-radius: 10px;
 }
 .badge:empty {
@@ -6174,6 +6299,14 @@ a.badge:focus {
 }
 .nav-pills > li > a > .badge {
   margin-left: 3px;
+}
+#navBar .badge {
+  font-size: 1em !important;
+  background-color: #ea590c !important;
+}
+.badgePimp {
+  font-size: 1em !important;
+  background-color: #ea590c !important;
 }
 .jumbotron {
   padding: 30px 15px;
