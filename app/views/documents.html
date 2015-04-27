@@ -22,7 +22,7 @@
       <div class="row"><!-- images -->
         <!--Image-->
         <div class="col-md-3" ng-repeat="doc in document.documents">
-         <a href="" ng-click="showDocumentContent()" class="thumbnail imgThumb" >
+         <a href="" ng-click="showDocumentContent(doc)" class="thumbnail imgThumb" >
           <img src="{{doc.thumbnail}}"class="img-responsive" alt="{{doc.title}}">
           <i class="glyphicon glyphicon-{{doc.type | convertName}}"></i> {{doc.type}}
           {{hello}}
@@ -34,9 +34,8 @@
 </div><!-- \.pieces a conviction-->
 <!--Afficher une image TODO: gérer les clicks-->
 <div class="col-md-6 imgGD">
-  <h1>TitrePhoto</h1>
-  <img src="img/imgPieceAConviction/imgPCA.png"class="img-responsive" alt="Cinque Terre" width="100%">
-  <p>Small description</p>
+  <h1>{{imgGD_title}}</h1>
+  <img src="{{imgGD_link}}"class="img-responsive" alt="{{imgGD_title}}" width="100%">
 </div><!---->
 </div>
 </div><!--\.contenu-->

@@ -28,8 +28,14 @@
 
  .controller('DocumentsCtrl', function ($scope, SocketService, localStorageService) {
 
-  $scope.showDocumentContent = function(){
-    console.log('click')
+  $scope.showDocumentContent = function(doc){
+    console.log(doc)
+
+    
+     $scope.imgGD_title = doc.title;
+     $scope.imgGD_link = doc.versionUrl;
+
+
     //Show / hide document right
   
   }
