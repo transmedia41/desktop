@@ -22,7 +22,7 @@
     $scope.showDesc = false
 
     $scope.desc_lastname = character.lastname
-    $scope.desc_status = character.staus
+    $scope.desc_status = character.status
     $scope.desc_firstname = character.firstname
     $scope.desc_nickname = character.nickname
     $scope.desc_life = character.life

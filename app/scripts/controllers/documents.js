@@ -37,6 +37,7 @@
 
      $scope.imgGD_title = doc.title;
      $scope.imgGD_link = doc.versionUrl;
+     $scope.imgGD_type = doc.type;
 
 
     //Show / hide document right

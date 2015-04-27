@@ -35,6 +35,15 @@ body {
   margin-top: -25px;
   border: solid 3px #817874;
 }
+.mafiosiDesc table {
+  font-size: 1.4em;
+}
+.mafiosiDesc th {
+  text-align: right;
+}
+.mafiosiDesc h1 > span {
+  color: #9e1915;
+}
 .mainMafiaOrganigramme {
   margin-top: 75px;
 }
@@ -6538,7 +6547,7 @@ a.thumbnail.active {
   margin-top: 15px;
 }
 .media:first-child {
-  margin-top: 0;
+  margin-top: 15px;
 }
 .media,
 .media-body {
@@ -6572,7 +6581,7 @@ a.thumbnail.active {
   vertical-align: bottom;
 }
 .media-heading {
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 .media-list {
