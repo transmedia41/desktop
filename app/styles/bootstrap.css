@@ -46,6 +46,16 @@ body {
   margin-left: auto;
   height: 100px;
 }
+span#actiondetail {
+  font-size: 5vw;
+}
+span.icon-actionlist {
+  font-size: 2vw;
+  padding-right: 5px;
+}
+span.icon-actionlist:last-child {
+  padding: 0;
+}
 .piece {
   background-image: url('../img/halftone.png');
   margin-bottom: 10px;
