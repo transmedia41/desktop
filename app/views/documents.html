@@ -24,16 +24,14 @@
         <div class="col-md-3" ng-repeat="doc in document.documents">
          <a href="" ng-click="showDocumentContent(doc)" class="thumbnail imgThumb" >
           <img src="{{doc.thumbnail}}"class="img-responsive" alt="{{doc.title}}">
-          <i class="glyphicon glyphicon-{{doc.type | convertName}}"></i> {{doc.type}}
-          {{hello}}
+          <i class="glyphicon glyphicon-{{doc.type | convertName}}"></i>
         </a>
       </div>
       <!--\.image-->  
     </div><!-- \. images -->
   </div><!--\pieces a conviction liste -->
 </div><!-- \.pieces a conviction-->
-<!--Afficher une image TODO: gérer les clicks-->
-<div class="col-md-6 imgGD">
+<div class="col-md-6 imgGD" ng-hide="showDesc">
   <h1>{{imgGD_title}}</h1>
   <img src="{{imgGD_link}}"class="img-responsive" alt="{{imgGD_title}}" width="100%">
 </div><!---->
