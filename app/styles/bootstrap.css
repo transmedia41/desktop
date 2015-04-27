@@ -18,6 +18,34 @@ body {
   padding: 0;
   background-image: url('../img/halftoneDark.png');
 }
+.mainMafiaOrganigramme {
+  margin-top: 75px;
+}
+.organigramme h1 {
+  font-size: 1.5em;
+  margin: 0px;
+}
+.organigramme h1 > span {
+  color: #9e1915;
+}
+.organigramme h2 {
+  font-size: 1em;
+  margin: 0px;
+}
+.organigramme th,
+.organigramme td {
+  text-align: center;
+}
+.organigramme th:hover,
+.organigramme td:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+.organigramme img {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100px;
+}
 .piece {
   background-image: url('../img/halftone.png');
   margin-bottom: 10px;
