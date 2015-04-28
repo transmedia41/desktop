@@ -40,10 +40,7 @@ var colors = {
       percentage: 0
     }
 
-    /*$scope.$watch('roundProgressData', function (newValue) {
-      newValue.percentage = newValue.label / 100;
-    }, true)*/
-     
+
     $scope.makeAction = function(){
       //console.log('click')
       SocketService.getSocket().emit('make action')
