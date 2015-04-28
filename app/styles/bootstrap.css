@@ -71,6 +71,9 @@ body {
 .thumbIcones a {
   color: #817874;
 }
+.thumbIcones a:hover i {
+  background-color: #cccccc;
+}
 .thumbIcones i {
   width: 50px;
   height: 50px;

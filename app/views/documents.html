@@ -19,7 +19,7 @@
   <div class="col-md-12">
    <div class="col-md-6" ><!--piecess a conviction liste-->
      <div class="col-md-12 piece" ng-repeat="document in documentsList" id="{{document.date | date:'dd/mm/yyyy'}}">  <!--piece a conviction galerie thumbs-->
-      <h1>{{document.description | uppercase}}<span> - {{document.xp}} XP</span></h1>
+      <h1><span class="date">{{document.date | date:'dd/mm/yyyy'}} </span> - {{document.description | uppercase}}</h1>
       <p>{{document.description}}</p>
       <div class="row"><!-- images -->
         <!--Image-->
@@ -34,10 +34,10 @@
   </div><!--\pieces a conviction liste -->
 </div><!-- \.pieces a conviction-->
 <div class="col-md-6 imgGD" ng-hide="showDesc">
-  <h1>{{document_title}}</h1>
+  <h1>{{document_title}} <span>- {{document_xp}} XP</span></h1>
   
 <div ng-show="isPicture">
-  <img src="{{document_link}}"class="img-responsive" alt="{{document_title}}" width="100%">
+  <img src="img/04_02_TXT_FR.jpg" class="img-responsive" alt="{{document_title}}" width="100%">
 </div>
 
 <div ng-show="isVideo">
