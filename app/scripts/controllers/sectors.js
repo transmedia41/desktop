@@ -1,5 +1,11 @@
 'use strict';
-
+var colors = {
+  rouge : "#9e1915",
+  orangeFonce :"#ea590c",
+  orange:"#fff161",
+  jaune:"#ffca61",
+  vert:"#089b6e"
+}
 /**
  * @ngdoc function
  * @name deskappApp.controller:AboutCtrl
@@ -139,12 +145,49 @@
             data: {
               type: "FeatureCollection",
               features: sectors
-            },
+            },// 
+           //  
             style: function (feature) {
-              switch (feature.properties.nomsquart) {
-                case 'Quartier 4': 
+              switch (true) {
+                case (feature.properties.influence<=20): 
                   return {
-                    fillColor: "#db0032",
+                    fillColor: colors.vert,
+                    weight: 4,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '9',
+                    fillOpacity: 0.7
+                  }
+                 case (feature.properties.influence>20 && feature.properties.influence<=40): 
+                  return {
+                    fillColor: colors.jaune,
+                    weight: 4,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '9',
+                    fillOpacity: 0.7
+                  }
+                 case (feature.properties.influence>40 && feature.properties.influence<=60): 
+                  return {
+                    fillColor: colors.orange,
+                    weight: 4,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '9',
+                    fillOpacity: 0.7
+                  }
+                   case (feature.properties.influence>60 && feature.properties.influence<=80): 
+                  return {
+                    fillColor: colors.orangeFonce,
+                    weight: 4,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '9',
+                    fillOpacity: 0.7
+                  }
+                   case (feature.properties.influence>80 && feature.properties.influence<100): 
+                  return {
+                    fillColor: colors.rouge,
                     weight: 4,
                     opacity: 1,
                     color: 'white',
@@ -153,7 +196,7 @@
                   }
                 default:
                   return {
-                    fillColor: "#3b8931",
+                    fillColor: "#089b6e",
                     weight: 4,
                     opacity: 1,
                     color: 'white',
@@ -166,6 +209,7 @@
         }
 
 	})
+
     
     SectorService.getSectorsLocal(function(data){
       $scope.addSectorsGeoJSONToMap(data)
@@ -190,8 +234,9 @@
       $rootScope.$emit('click on sector', featureSelected);
       $scope.sectorSelected = featureSelected.properties;
       $scope.actionSelected = featureSelected.properties.actionsPolygon[0];
-      $scope.roundProgressData = {
-          label: featureSelected.properties.influence
+      $scope.progressInfluence = {
+          label: featureSelected.properties.influence,
+          percentage: featureSelected.properties.influence/100
         }
     })
 
