@@ -131,7 +131,7 @@
         },
         updateActionDescription :function(action){
           $scope.actionSelected = action;
-          console.log($scope);
+          //console.log($scope);
         },
       
         addSectorsGeoJSONToMap: function(sectors) {
@@ -167,9 +167,22 @@
 
 	})
     
-    SectorService.getSectors(function(data){
+    SectorService.getSectorsLocal(function(data){
       $scope.addSectorsGeoJSONToMap(data)
-      //console.log($scope.geojson)
+    })
+    
+    $rootScope.$on('new sector available', function(){
+      console.log('sectors update')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
+    })
+    
+    $rootScope.$on('sector available', function(){
+      console.log('sectors charged')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
@@ -180,7 +193,6 @@
       $scope.roundProgressData = {
           label: featureSelected.properties.influence
         }
-      console.log($scope);
     })
 
  })

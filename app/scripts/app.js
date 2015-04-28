@@ -205,9 +205,17 @@ angular
   })
 
 
- .service('SectorService', function(localStorageService, SocketService){
+ .service('SectorService', function($rootScope, localStorageService, SocketService){
 
     var sectors = []
+    
+    $rootScope.$on('connection', function (e) {
+      SocketService.getSocket().on('action polygon performed', function(data){
+        //console.log(data)
+        remplaceSector(data)
+        $rootScope.$emit('new sector available')
+      })
+    })
     
     function getListSectors(callback) {
       SocketService.getSocket()
@@ -219,6 +227,16 @@ angular
           sectors = data
           callback(sectors)
         })
+    }
+  
+    function remplaceSector(newSector) {
+      angular.forEach(sectors, function(oldSector, key) {
+        if(oldSector.id == newSector.id) {
+          sectors[key] = newSector
+        }
+      })
+      localStorageService.set('sectors', sectors)
+      localStorageService.set('last update sectors', Date.now())
     }
 
     var service = {
@@ -240,22 +258,28 @@ angular
           $rootScope.$emit('localstorage not supported')
         }
       },
-      onUpdate: function(callback) {
-        // use socket to track update and execute callback...
-        // update sectors and save into localstorage
-        socket.on('sectors update', function(data) {
-          callback(data)
-        })
+      getSectorsLocal: function(callback) {
+        callback(sectors)
       }
     }
     return service
 
   })
 
- .controller('GameCoreCtrl', function ($scope) {
-    
+ .controller('GameCoreCtrl', function ($scope, $rootScope, SectorService) {
+
     // ...
-    
+
+
+
+    $rootScope.$on('connection', function (event) {
+      SectorService.getSectors(function(data){
+        //console.log(data)
+        $rootScope.$emit('sector available')
+        // le servce sector est charger et à jour
+      })
+    })
+
   })
 
 

@@ -212,19 +212,19 @@ angular.module('deskappApp')
     
     //$scope.markers = $scope.addSectorMarkersToMap(SectorService.getSectors())
     
-    SectorService.getSectors(function(data){
+    /*SectorService.getSectors(function(data){
       //console.log(data)
       //$scope.markers = $scope.addSectorMarkersToMap(data)
       //$scope.addSectorsPathToMap(data)
       $scope.addSectorsGeoJSONToMap(data)
       //console.log($scope.paths)
-    })
+    })*/
     
     //var map = leafletData.getMap()
     
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-      (ev, featureSelected, leafletEvent)
+      
       $rootScope.$emit('click on action', featureSelected)
     });
     
