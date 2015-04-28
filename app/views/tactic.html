@@ -75,7 +75,6 @@
           <div class="dash_secteurs">				
             <div class="secteur">
               <div class="secteur_qte">
-             <!-- KURWAAA!!!!!!!!!! -->
                 <p><i>{{nbActionPerformed}}</i> - {{sectorSelected.nbActions}}</p>
               </div>
               <div class="secteur_titre">
@@ -106,8 +105,9 @@
               -->
               <section class="col-md-2">
                 <h1>Action list</h1>
-                
-                <span ng-repeat="action in sectorSelected.actionsPolygon" class="icon-{{action.type}} icon-actionlist icon-btn active" action-name="{{action.name}}" ng-click="updateActionDescription(action)"></span>
+                <div class="iconeReturn" ng-repeat="action in sectorSelected.actionsPolygon" >
+                <span class="icon-{{action.type}} icon-actionlist icon-btn active" action-name="{{action.name}}" ng-click="updateActionDescription(action)"></span>
+                </div>
 
               </section>
             </div>
