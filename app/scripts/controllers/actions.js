@@ -102,6 +102,7 @@ angular.module('deskappApp')
             }
           }
         },
+      markers:{},
       
    		addSectorsPathToMap: function(sectors) {
           
@@ -205,9 +206,43 @@ angular.module('deskappApp')
           
           //$scope.geojson= data
           
+        },
+        addMarkersToMap : function(sectors){
+          var markers= [];
+          for (var i = sectors.length - 1; i >= 0; i--) {
+             var marker = {};
+             var actionPoints = sectors[i].properties.actionsPoint;
+             for (var j = actionPoints.length - 1; j >= 0; j--) {
+               marker.lat = actionPoints[j].geometry.coordinates[1];
+               marker.lng = actionPoints[j].geometry.coordinates[0];
+               markers.push(marker)
+             };
+          };
+          return markers;
         }
 
+
 	})
+
+  SectorService.getSectorsLocal(function(data){
+      $scope.addSectorsGeoJSONToMap(data)
+      $scope.markers = $scope.addMarkersToMap(data);
+      console.log($scope)
+    })
+    
+    $rootScope.$on('new sector available', function(){
+      console.log('sectors update')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
+    })
+    
+    $rootScope.$on('sector available', function(){
+      console.log('sectors charged')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
+    })
   
     
     //$scope.markers = $scope.addSectorMarkersToMap(SectorService.getSectors())
