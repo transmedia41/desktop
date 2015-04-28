@@ -226,15 +226,25 @@ var colors = {
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
       })
-      
-      console.log(SectorService.getActionPoint())
+    })
+    
+    angular.extend($rootScope, {
+      getNbActionPerformed: function(theId) {
+        var actionPerformedInTheSector = 0
+        angular.forEach($rootScope.playerInfos.sectors, function(sector){
+          if(sector.sector_id == theId) {
+            actionPerformedInTheSector = sector.actionsPerformed
+          }
+        })
+        return actionPerformedInTheSector
+      }
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       //console.log(featureSelected, leafletEvent)
       $rootScope.$emit('click on sector', featureSelected)
       $scope.sectorSelected = featureSelected.properties
-      $scope.nbActionPerformed = 10
+      $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
       $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
       $scope.progressInfluence = {
         label: featureSelected.properties.influence,
