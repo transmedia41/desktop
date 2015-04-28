@@ -8,6 +8,32 @@
  * Controller of the deskappApp
  */
  angular.module('deskappApp')
+ 
+  .controller('MainDocumentsCtrl', function ($scope) {
+    //...
+  })
+ 
+   .service('DocumentService', function($rootScope, SocketService){
+
+    var documents = []
+    
+    var service = {
+      getDocuments: function(callback) {
+        SocketService.getSocket()
+        .emit('get my documents')
+        .on('my documents responce', function(data){
+          documents = data
+          callback(data)
+        })
+      },
+      getDocumentsLocal: function() {
+        return documents
+      }
+    }
+    return service
+    
+
+  })
 
    .filter('convertName', function() {
     return function(item) {
@@ -26,12 +52,16 @@
     }
   })
 
- .controller('DocumentsCtrl', function ($scope, SocketService, localStorageService) {
+ .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService) {
 
   //default
   $scope.showDesc = true
   $scope.isVideo = false
   $scope.isPicture = false
+  
+  DocumentService.getDocuments(function(data){
+    console.log(data)
+  })
 
 
   $scope.showDocumentContent = function(doc){

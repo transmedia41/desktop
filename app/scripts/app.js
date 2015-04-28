@@ -39,15 +39,15 @@ angular
       })
       .when('/actions', {
         templateUrl: 'views/actions.html',
-        controller: 'ActionsCtrl'
+        controller: 'MainActionsCtrl'
       })
       .when('/documents', {
         templateUrl: 'views/documents.html',
-        controller: 'DocumentsCtrl'
+        controller: 'MainDocumentsCtrl'
       })
       .when('/mafia', {
         templateUrl: 'views/mafia.html',
-        controller: 'MafiaCtrl'
+        controller: 'MainMafiaCtrl'
       })
       .otherwise({
         redirectTo: '/'

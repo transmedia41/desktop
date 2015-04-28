@@ -3,6 +3,10 @@
 
 angular.module('deskappApp')
 
+  .controller('MainMafiaCtrl', function ($scope) {
+    //...
+  })
+
   .service('CharacterService', function($rootScope, SocketService){
 
     var characters = []
@@ -13,7 +17,7 @@ angular.module('deskappApp')
         .emit('get my characters')
         .on('my characters responce', function(data){
           characters = data
-          callback(characters)
+          callback(data)
         })
       },
       getCharactersLocal: function() {

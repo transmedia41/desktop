@@ -53,6 +53,11 @@ var hydranteIcon = {
  */
 angular.module('deskappApp')
 
+ 
+  .controller('MainActionsCtrl', function ($scope) {
+    //...
+  })
+
   .controller('ActionsCtrl', function ($scope, SectorService) {
     
     $scope.sectors = SectorService.getSectors(function(data){
@@ -91,7 +96,7 @@ angular.module('deskappApp')
       
 	    defaults: {
           maxZoom: 18,
-          minZoom: 14,
+          minZoom: 15,
           attributionControl: false,
           tileLayer: mapboxTileLayer,
           zoomControl:false
@@ -234,7 +239,7 @@ angular.module('deskappApp')
             }
           }
           
-          console.log($scope.geojson)
+          //console.log($scope.geojson)
           
           //$scope.geojson= data
           
@@ -248,7 +253,7 @@ angular.module('deskappApp')
               properties : point.properties,
               
             }
-            console.log(point.properties.type.toLowerCase())
+            //console.log(point.properties.type.toLowerCase())
             if (point.properties.type == "hydrante") {
               marker.icon = hydranteIcon
             };
@@ -283,7 +288,7 @@ angular.module('deskappApp')
   SectorService.getSectorsLocal(function(data){
     $scope.addSectorsGeoJSONToMap(data)
     $scope.markers = $scope.addMarkersToMap(SectorService.getActionPoint());
-    console.log($scope)
+    //console.log($scope)
   })
 
 

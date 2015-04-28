@@ -18,11 +18,11 @@ var colors = {
  angular.module('deskappApp')
 
  
- .controller('MainSectorsCtrl', function ($scope) {
+  .controller('MainSectorsCtrl', function ($scope) {
     //...
   })
 
- .controller('SectorsCtrl', function ($scope, $rootScope, ngProgress, SocketService, SectorService) {
+  .controller('SectorsCtrl', function ($scope, $rootScope, ngProgress, SocketService, SectorService) {
 
     //$scope.sectors = SectorService.getSectors(function(data){
       //console.log(data)
