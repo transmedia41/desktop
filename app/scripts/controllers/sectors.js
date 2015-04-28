@@ -24,9 +24,9 @@ var colors = {
 
  .controller('SectorsCtrl', function ($scope, $rootScope, SocketService, SectorService) {
 
-    $scope.sectors = SectorService.getSectors(function(data){
+    //$scope.sectors = SectorService.getSectors(function(data){
       //console.log(data)
-    })
+    //})
 
     /*SocketService.getSocket()
       .emit('get sectors')
@@ -44,9 +44,13 @@ var colors = {
       newValue.percentage = newValue.label / 100;
     }, true)*/
      
-    $scope.makeAction = function(){
-      //console.log('click')
-      SocketService.getSocket().emit('make action')
+    $scope.makeAction = function(actionId){
+      var o = {
+        id : actionId,
+        sector_id : $scope.completeSectorSelected.id
+      }
+      SocketService.getSocket().emit('make action', o)
+      $scope.closeDashboard()
     }
 
   })
@@ -138,7 +142,7 @@ var colors = {
           }
         },
         updateActionDescription :function(action){
-          $scope.actionSelected = action;
+          $scope.actionSelected = action
           //console.log($scope);
         },
       
@@ -247,6 +251,7 @@ var colors = {
       //console.log(featureSelected, leafletEvent)
       $rootScope.$emit('click on sector', featureSelected)
       $scope.sectorSelected = featureSelected.properties
+      $scope.completeSectorSelected = featureSelected
       $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
       $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
       $scope.progressInfluence = {
