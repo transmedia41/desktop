@@ -18,7 +18,8 @@ angular
     'LocalStorageModule',
     'angular.directives-round-progress',
     'leaflet-directive',
-    'geolocation'
+    'geolocation',
+    'ngProgress'
   ])
 
 

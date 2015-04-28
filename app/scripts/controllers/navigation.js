@@ -133,7 +133,7 @@ angular.module('deskappApp')
             transition: 'width 1s ease-in-out',
             width: '100%'
           }
-        }, 200);
+        }, 200)
       } else {
         $scope.nbXP = data.xp-data.level.xp
         $scope.nextLvlXP = data.level.xpMax+1-data.level.xp
@@ -142,8 +142,11 @@ angular.module('deskappApp')
             transition: 'width 1s ease-in-out',
             width: ((data.xp-data.level.xp)/(data.level.xpMax-data.level.xp)*100)+'%'
           }
-        }, 200);
+        }, 200)
       }
+      $timeout(function(){
+        $rootScope.$emit('complete sector update after action')
+      }, 1000)
       $scope.$apply()
     }
     

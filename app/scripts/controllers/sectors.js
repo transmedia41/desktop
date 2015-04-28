@@ -3,8 +3,8 @@
 var colors = {
   rouge : "#9e1915",
   orangeFonce :"#ea590c",
-  orange:"#fff161",
-  jaune:"#ffca61",
+  orange:"#ffca61",
+  jaune:"#fff161",
   vert:"#089b6e"
 }
 
@@ -22,7 +22,7 @@ var colors = {
     //...
   })
 
- .controller('SectorsCtrl', function ($scope, $rootScope, SocketService, SectorService) {
+ .controller('SectorsCtrl', function ($scope, $rootScope, ngProgress, SocketService, SectorService) {
 
     //$scope.sectors = SectorService.getSectors(function(data){
       //console.log(data)
@@ -45,6 +45,9 @@ var colors = {
     }, true)*/
      
     $scope.makeAction = function(actionId){
+      ngProgress.color('#eeece1')
+      ngProgress.height(3)
+      ngProgress.start()
       var o = {
         id : actionId,
         sector_id : $scope.completeSectorSelected.id
@@ -52,6 +55,10 @@ var colors = {
       SocketService.getSocket().emit('make action', o)
       $scope.closeDashboard()
     }
+    
+    $rootScope.$on('complete sector update after action', function(){
+      ngProgress.complete()
+    })
 
   })
 
