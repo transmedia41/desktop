@@ -67,6 +67,12 @@ angular
   })
 
 
+  .run(function (ngProgress) {
+    ngProgress.color('#eeece1')
+    ngProgress.height(3)
+  })
+
+
   /**
    * Service mettant à disposition la connexion websocket de l'application.
    * Le service se charge d'initier la connection avec la fonction 'connection'

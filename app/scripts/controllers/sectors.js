@@ -22,32 +22,31 @@ var colors = {
     //...
   })
 
-  .controller('SectorsCtrl', function ($scope, $rootScope, ngProgress, SocketService, SectorService) {
+  .controller('SectorsCtrl', function ($scope, $rootScope, $interval, ngProgress, SocketService, SectorService) {
 
-    //$scope.sectors = SectorService.getSectors(function(data){
-      //console.log(data)
-    //})
-
-    /*SocketService.getSocket()
-      .emit('get sectors')
-      .on('sectors responce', function(data){
-        console.log(data)
-        $scope.selectors = data
-      })*/
-
-    $scope.roundProgressData = {
-      label: 10,
+    $scope.progressInfluence = {
+      label: 0,
       percentage: 0
     }
-
-
-    /*$scope.$watch('roundProgressData', function (newValue) {
-      newValue.percentage = newValue.label / 100;
-    }, true)*/
+    
+    $scope.$watch('progressInfluence', function (newValue) {
+      newValue.percentage = newValue.label / 100
+    }, true)
+    
+    $rootScope.$on('click on sector', function(e, featureSelected){
+      var nbRound = Math.abs($scope.progressInfluence.label-featureSelected.properties.influence)
+      if(nbRound > 0){
+        $interval(function(){
+          if($scope.progressInfluence.label>featureSelected.properties.influence) {
+            $scope.progressInfluence.label--
+          } else {
+            $scope.progressInfluence.label++
+          }
+        }, 10, nbRound, true, featureSelected)
+      }
+    })
      
     $scope.makeAction = function(actionId){
-      ngProgress.color('#eeece1')
-      ngProgress.height(3)
       ngProgress.start()
       var o = {
         id : actionId,
@@ -262,10 +261,6 @@ var colors = {
       $scope.completeSectorSelected = featureSelected
       $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
       $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
-      $scope.progressInfluence = {
-        label: featureSelected.properties.influence,
-        percentage: featureSelected.properties.influence/100
-      }
     })
 
  })
