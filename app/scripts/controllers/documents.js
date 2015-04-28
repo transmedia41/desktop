@@ -28,16 +28,28 @@
 
  .controller('DocumentsCtrl', function ($scope, SocketService, localStorageService) {
 
+  //default
   $scope.showDesc = true
+  $scope.isVideo = false
+  $scope.isPicture = false
 
 
   $scope.showDocumentContent = function(doc){
 
-      $scope.showDesc = false
+   
 
-     $scope.imgGD_title = doc.title;
-     $scope.imgGD_link = doc.versionUrl;
-     $scope.imgGD_type = doc.type;
+    if (doc.type === 'video') {
+        $scope.isVideo = true
+        $scope.isPicture = false
+    } else {
+        $scope.isVideo = false
+        $scope.isPicture = true
+    }
+
+    $scope.showDesc = false
+    $scope.document_title = doc.title;
+    $scope.document_link = doc.versionUrl;
+    $scope.document_type = doc.type;
 
 
     //Show / hide document right
@@ -137,4 +149,6 @@
     }*/
 
 })
+
+
 

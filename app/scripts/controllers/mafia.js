@@ -12,15 +12,32 @@
 
  .controller('MafiaCtrl', function ($scope) {
 
-   $scope.showDesc = true
+  $scope.showDesc = true
+  $scope.showDescNotAvaible = true
 
 
 
    $scope.showMafiosiContent = function(character){
     console.log(character)
 
-    $scope.showDesc = false
+    //$scope.isDisabled = true;
+    //return false;
 
+    if (!character.characterAvaible){
+      console.log('disable')
+
+    $scope.desc_lastname = 'No name'
+    $scope.desc_status = 'No status'
+    $scope.desc_firstname = 'no life'
+    $scope.showDesc = true
+    $scope.showDescNotAvaible = false
+  
+
+    } else {
+
+    $scope.desc_avaible = character.characterAvaible
+    $scope.showDescNotAvaible = true
+    $scope.showDesc = false
     $scope.desc_lastname = character.lastname
     $scope.desc_status = character.status
     $scope.desc_firstname = character.firstname
@@ -36,8 +53,7 @@
     $scope.desc_body = character.body
     $scope.desc_family = character.family
     $scope.desc_weapon = character.weapon
-
-     //Show / hide document right
+     }
 
    }
 
@@ -67,8 +83,8 @@
   },
   {
     id: 2,
-    characterAvaible: true,
-    status: 'Boss',
+    characterAvaible: false,
+    status: 'Soldat',
     lastname: 'Postgres',
     firstname: 'Alessandra',
     nickname: 'mouarf',
@@ -87,9 +103,9 @@
   ,
   {
     id: 3,
-    status: 'Boss',
+    status: 'Conseillere',
     characterAvaible: true,
-    lastname: 'René',
+    lastname: 'Rene',
     firstname: 'Lucas',
     nickname: 'mouarf',
    life: 'desc',
@@ -106,7 +122,7 @@
   },
   {
     id: 4,
-    status: 'Autre',
+    status: 'Associe',
     characterAvaible: false,
     lastname: 'René',
     firstname: 'Lucas',

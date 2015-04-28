@@ -3,9 +3,9 @@
     <div class="col-md-11 col-md-offset-1" >
       <div class="col-md-12">
         <ol><!--dates-->
-          <li ng-repeat="document in documentsList"><!--date-->
-          <a href="">
-            {{document.date | date:'dd/mm/yyyy'}}
+          <li ng-repeat="document in documentsList" ><!--date-->
+            <a href="">
+              {{document.date | date:'dd/mm/yyyy'}}
             </a>
     <!--<span class="details">
       {{document.desc}}
@@ -34,14 +34,17 @@
   </div><!--\pieces a conviction liste -->
 </div><!-- \.pieces a conviction-->
 <div class="col-md-6 imgGD" ng-hide="showDesc">
-  <h1>{{imgGD_title}}</h1>
-  <img src="{{imgGD_link}}"class="img-responsive" alt="{{imgGD_title}}" width="100%">
+  <h1>{{document_title}}</h1>
+  
+<div ng-show="isPicture">
+  <img src="{{document_link}}"class="img-responsive" alt="{{document_title}}" width="100%">
+</div>
 
-
-<div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
- <iframe allowfullscreen="" src="http://player.vimeo.com/video/71876963" frameborder="0" width="500" height="281"></iframe>
-  </div> 
-
+<div ng-show="isVideo">
+  <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+   <iframe allowfullscreen="" src="http://player.vimeo.com/video/71876963" frameborder="0" width="500" height="281"></iframe>
+ </div> 
+</div>
 
 
 
