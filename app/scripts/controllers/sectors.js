@@ -40,10 +40,10 @@ var colors = {
       percentage: 0
     }
 
-    $scope.$watch('roundProgressData', function (newValue) {
+    /*$scope.$watch('roundProgressData', function (newValue) {
       newValue.percentage = newValue.label / 100;
-    }, true)
-    
+    }, true)*/
+     
     $scope.makeAction = function(){
       //console.log('click')
       SocketService.getSocket().emit('make action')
@@ -229,6 +229,8 @@ var colors = {
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
       })
+      
+      console.log(SectorService.getActionPoint())
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {

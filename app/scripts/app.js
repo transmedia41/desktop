@@ -260,6 +260,15 @@ angular
       },
       getSectorsLocal: function(callback) {
         callback(sectors)
+      },
+      getActionPoint: function() {
+        var actionPoint = []
+        angular.forEach(sectors, function(sector, key) {
+          angular.forEach(sector.properties.actionsPoint, function(point) {
+            actionPoint.push(point)
+          })
+        })
+        return actionPoint
       }
     }
     return service
