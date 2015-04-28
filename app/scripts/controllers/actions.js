@@ -1,5 +1,49 @@
 'use strict';
 
+    var egoutIcon = {
+        type : "extraMarker",
+        markerColor: 'orange',
+        shape: 'square',
+        icon : "icon",
+        extraClasses : "icon-bouche_egout"       
+    }
+     var toiletteIcon = {
+        type : "extraMarker",
+        markerColor: 'blue',
+        shape: 'square',
+        icon : "icon",
+        extraClasses : "icon-toilettes"       
+    }
+     var afficheIcon = {
+        type : "extraMarker",
+        markerColor: 'black',
+        shape: 'square',
+        icon : "icon",
+        extraClasses : "icon-affiche"       
+    }
+     var arrosageIcon = {
+        type : "extraMarker",
+        icon : "icon",
+        markerColor: 'violet',
+        shape: 'square',
+        extraClasses : "icon-arrosage"       
+    }
+    var fontaineIcon = {
+       type : "extraMarker",
+        markerColor: 'red',
+        shape: 'square' , 
+        icon:"icon",
+        extraClasses: 'icon-fontaine'    
+    }
+    var hydranteIcon = {
+        type : "extraMarker",
+        markerColor: 'green',
+        extraClasses: 'icon-hydrante', 
+         icon:"icon",   
+        shape: 'square'
+    
+    }
+
 /**
  * @ngdoc function
  * @name deskappApp.controller:MainCtrl
@@ -26,9 +70,9 @@ angular.module('deskappApp')
       $scope.visible = false
     }
     
-    $rootScope.$on('click on action', function(e, featureSelected){
-      //console.log(featureSelected)
+    $rootScope.$on('click on marker', function(e, featureSelected){
       $scope.visible = true
+      $scope.markerSelected = featureSelected
     })
     
   })
@@ -102,6 +146,7 @@ angular.module('deskappApp')
             }
           }
         },
+      markers:{},
       
    		addSectorsPathToMap: function(sectors) {
           
@@ -205,9 +250,69 @@ angular.module('deskappApp')
           
           //$scope.geojson= data
           
+        },
+        addMarkersToMap : function(points){
+           var markers= []
+           angular.forEach(points,function(point,index){
+            var marker = {
+              lat : point.geometry.coordinates[1],
+              lng : point.geometry.coordinates[0],
+              properties : point.properties,
+              
+            }
+            console.log(point.properties.type.toLowerCase())
+            if (point.properties.type == "hydrante") {
+              marker.icon = hydranteIcon
+            };
+            if (point.properties.type.toLowerCase() == "fontaine") {
+              marker.icon = fontaineIcon
+            };
+            if (point.properties.type == "arrosage") {
+              marker.icon = arrosageIcon
+            };
+            if (point.properties.type == "affiche") {
+              marker.icon = afficheIcon
+            };
+            if (point.properties.type == "toilettes") {
+              marker.icon = toiletteIcon
+            };
+            if (point.properties.type == "bouche_egout") {
+              marker.icon = egoutIcon
+            };
+            if (point.properties.type == "dechet_lac") {
+              marker.icon = dechetIcon
+            };
+
+            markers.push(marker)
+          })   
+          
+          return markers
         }
 
+
 	})
+
+  SectorService.getSectorsLocal(function(data){
+    $scope.addSectorsGeoJSONToMap(data)
+    $scope.markers = $scope.addMarkersToMap(SectorService.getActionPoint());
+    console.log($scope)
+  })
+
+
+  
+  $rootScope.$on('new sector available', function(){
+    console.log('sectors update')
+    SectorService.getSectorsLocal(function(data){
+      $scope.addSectorsGeoJSONToMap(data)
+    })
+  })
+  
+  $rootScope.$on('sector available', function(){
+    console.log('sectors charged')
+    SectorService.getSectorsLocal(function(data){
+      $scope.addSectorsGeoJSONToMap(data)
+    })
+  })
   
     
     //$scope.markers = $scope.addSectorMarkersToMap(SectorService.getSectors())
@@ -226,6 +331,9 @@ angular.module('deskappApp')
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       
       $rootScope.$emit('click on action', featureSelected)
+    });
+    $scope.$on("leafletDirectiveMarker.click", function(ev, featureSelected, leafletEvent) {
+      $rootScope.$emit('click on marker', featureSelected.model)
     });
     
     /*$scope.$on('leafletDirectivePath.dblclick',function(ev, featureSelected, leafletEvent){

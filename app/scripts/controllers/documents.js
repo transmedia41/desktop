@@ -50,6 +50,7 @@
     $scope.document_title = doc.title;
     $scope.document_link = doc.versionUrl;
     $scope.document_type = doc.type;
+    $scope.document_xp = doc.xp;
 
 
     //Show / hide document right

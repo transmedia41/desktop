@@ -40,6 +40,7 @@ var colors = {
       percentage: 0
     }
 
+
     /*$scope.$watch('roundProgressData', function (newValue) {
       newValue.percentage = newValue.label / 100;
     }, true)*/
