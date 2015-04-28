@@ -1,21 +1,40 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name deskappApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the deskappApp
- */
- angular.module('deskappApp')
+
+angular.module('deskappApp')
+
+  .service('CharacterService', function($rootScope, SocketService){
+
+    var characters = []
+    
+    var service = {
+      getCharacters: function(callback) {
+        SocketService.getSocket()
+        .emit('get my characters')
+        .on('my characters responce', function(data){
+          characters = data
+          callback(characters)
+        })
+      },
+      getCharactersLocal: function() {
+        return characters
+      }
+    }
+    return service
+    
+
+  })
 
 
- .controller('MafiaCtrl', function ($scope) {
+ .controller('MafiaCtrl', function ($scope, CharacterService) {
 
     $scope.showDesc = true
     $scope.showDescNotAvaible = true
 
-
+    
+    CharacterService.getCharacters(function(data){
+      console.log(data)
+    })
 
     $scope.showMafiosiContent = function(character){
       console.log(character)

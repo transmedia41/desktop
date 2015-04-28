@@ -9,7 +9,7 @@
  */
 angular.module('deskappApp')
 
-  .controller('NavBarCtrl', function ($rootScope, $scope, $location, SocketService, localStorageService) {
+  .controller('NavBarCtrl', function ($rootScope, $scope, $location, CharacterService, SocketService, localStorageService) {
   
     if(localStorageService.get('notifDoc')) {
       $scope.notifDoc = localStorageService.get('notifDoc')
