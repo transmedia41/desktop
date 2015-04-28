@@ -1,4 +1,5 @@
 'use strict';
+
 var colors = {
   rouge : "#9e1915",
   orangeFonce :"#ea590c",
@@ -6,6 +7,7 @@ var colors = {
   jaune:"#ffca61",
   vert:"#089b6e"
 }
+
 /**
  * @ngdoc function
  * @name deskappApp.controller:AboutCtrl
@@ -231,13 +233,14 @@ var colors = {
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       //console.log(featureSelected, leafletEvent)
-      $rootScope.$emit('click on sector', featureSelected);
-      $scope.sectorSelected = featureSelected.properties;
-      $scope.actionSelected = featureSelected.properties.actionsPolygon[0];
+      $rootScope.$emit('click on sector', featureSelected)
+      $scope.sectorSelected = featureSelected.properties
+      $scope.nbActionPerformed = 10
+      $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
       $scope.progressInfluence = {
-          label: featureSelected.properties.influence,
-          percentage: featureSelected.properties.influence/100
-        }
+        label: featureSelected.properties.influence,
+        percentage: featureSelected.properties.influence/100
+      }
     })
 
  })
