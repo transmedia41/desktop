@@ -1,48 +1,48 @@
 'use strict';
 
-    var egoutIcon = {
-        type : "extraMarker",
-        markerColor: 'orange',
-        shape: 'square',
-        icon : "icon",
-        extraClasses : "icon-bouche_egout"       
-    }
-     var toiletteIcon = {
-        type : "extraMarker",
-        markerColor: 'blue',
-        shape: 'square',
-        icon : "icon",
-        extraClasses : "icon-toilettes"       
-    }
-     var afficheIcon = {
-        type : "extraMarker",
-        markerColor: 'black',
-        shape: 'square',
-        icon : "icon",
-        extraClasses : "icon-affiche"       
-    }
-     var arrosageIcon = {
-        type : "extraMarker",
-        icon : "icon",
-        markerColor: 'violet',
-        shape: 'square',
-        extraClasses : "icon-arrosage"       
-    }
-    var fontaineIcon = {
-       type : "extraMarker",
-        markerColor: 'red',
-        shape: 'square' , 
-        icon:"icon",
-        extraClasses: 'icon-fontaine'    
-    }
-    var hydranteIcon = {
-        type : "extraMarker",
-        markerColor: 'green',
-        extraClasses: 'icon-hydrante', 
-         icon:"icon",   
-        shape: 'square'
-    
-    }
+var egoutIcon = {
+    type : "extraMarker",
+    markerColor: 'orange',
+    shape: 'square',
+    icon : "icon",
+    extraClasses : "icon-bouche_egout"       
+}
+ var toiletteIcon = {
+    type : "extraMarker",
+    markerColor: 'blue',
+    shape: 'square',
+    icon : "icon",
+    extraClasses : "icon-toilettes"       
+}
+ var afficheIcon = {
+    type : "extraMarker",
+    markerColor: 'black',
+    shape: 'square',
+    icon : "icon",
+    extraClasses : "icon-affiche"       
+}
+ var arrosageIcon = {
+    type : "extraMarker",
+    icon : "icon",
+    markerColor: 'violet',
+    shape: 'square',
+    extraClasses : "icon-arrosage"       
+}
+var fontaineIcon = {
+   type : "extraMarker",
+    markerColor: 'red',
+    shape: 'square' , 
+    icon:"icon",
+    extraClasses: 'icon-fontaine'    
+}
+var hydranteIcon = {
+    type : "extraMarker",
+    markerColor: 'green',
+    extraClasses: 'icon-hydrante', 
+     icon:"icon",   
+    shape: 'square'
+
+}
 
 /**
  * @ngdoc function
@@ -224,24 +224,12 @@ angular.module('deskappApp')
               features: sectors
             },
             style: function (feature) {
-              switch (feature.geometry.type) {
-                case 'Polygon': 
-                  return {
-                    weight: 5,
-                    opacity: 1,
-                    color: 'white',
-                    dashArray: '12',
-                    fillOpacity: 0.1
-                  }
-                case 'Point': 
-                  return {
-                    fillColor: "green",
-                    weight: 2,
-                    opacity: 1,
-                    color: 'white',
-                    dashArray: '3',
-                    fillOpacity: 0.7
-                  }
+              return {
+                weight: 5,
+                opacity: 1,
+                color: 'white',
+                dashArray: '12',
+                fillOpacity: 0.4
               }
             }
           }
