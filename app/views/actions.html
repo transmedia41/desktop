@@ -1,5 +1,5 @@
 <div ng-controller="MapActionCtrl" class="fullpage"> 
-  <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" layers="layers" maxbounds="maxbounds"></leaflet>
+  <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" layers="layers" maxbounds="maxbounds" markers="markers"></leaflet>
 </div>
 
 
@@ -19,11 +19,11 @@
                 <section class="col-md-offset-1 col-md-1" >
 <!--                     <img src="img/iconesAction.png"class="img-responsive img-rounded" alt="Cinque Terre"> -->
 						
-                    <span id="actiondetail" class="icon-dechet_lac icon-actionlist"></span>
+                    <span id="actiondetail" class="icon-{{markerSelected.properties.type}} icon-actionlist"></span>
                 </section>
                 <section class="col-md-4 contentDashboard"> <!-- Action -->
-                    <h1>Titre</h1>
-                    <p>Desc</p>
+                    <h1>{{markerSelected.properties.name}}</h1>
+                    <p>{{markerSelected.properties.description}}</p>
                     
                 </section><!-- \. Action-->
 
@@ -31,11 +31,11 @@
                     <table class="table dash_experience">
                         <tr>
                             <th>XP max</th>
-                            <td>25 XP</td>
+                            <td>{{markerSelected.properties.maxXp}}</td>
                         </tr>
                         <tr>
                             <th>XP min</th>
-                            <td>12 XP</td>
+                            <td>{{markerSelected.properties.accessLevel}}</td>
                         </tr>
                         <tr>
                             <th>Influence prévue</th>
@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <th>cooldown</th>
-                            <td>35 min</td>
+                            <td>{{markerSelected.properties.coolDown/60}} min</td>
                         </tr>
                     </table>
                 </section> <!-- XP -->

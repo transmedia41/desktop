@@ -205,4 +205,93 @@ angular
   })
 
 
+ .service('SectorService', function($rootScope, localStorageService, SocketService){
+
+    var sectors = []
+    
+    $rootScope.$on('connection', function (e) {
+      SocketService.getSocket().on('action polygon performed', function(data){
+        //console.log(data)
+        remplaceSector(data)
+        $rootScope.$emit('new sector available')
+      })
+    })
+    
+    function getListSectors(callback) {
+      SocketService.getSocket()
+        .emit('get sectors')
+        .on('sectors responce', function(data){
+          localStorageService.set('sectors', data)
+          localStorageService.set('last update sectors', Date.now())
+          //console.log('get sectors')
+          sectors = data
+          callback(sectors)
+        })
+    }
+  
+    function remplaceSector(newSector) {
+      angular.forEach(sectors, function(oldSector, key) {
+        if(oldSector.id == newSector.id) {
+          sectors[key] = newSector
+        }
+      })
+      localStorageService.set('sectors', sectors)
+      localStorageService.set('last update sectors', Date.now())
+    }
+
+    var service = {
+      getSectors: function(callback) {
+        if(localStorageService.isSupported){
+          if(!localStorageService.get('sectors')){
+            getListSectors(callback)
+          } else {
+            var lastDisconnect
+            (!localStorageService.get('last disconnect')) ? lastDisconnect = 0 : lastDisconnect = localStorageService.get('last disconnect')
+            if(lastDisconnect > localStorageService.get('last update sectors')) {
+              getListSectors(callback)
+            } else {
+              sectors = localStorageService.get('sectors')
+              callback(sectors)
+            }
+          }
+        } else {
+          $rootScope.$emit('localstorage not supported')
+        }
+      },
+      getSectorsLocal: function(callback) {
+        callback(sectors)
+      },
+      getActionPoint: function() {
+        var actionPoint = []
+        angular.forEach(sectors, function(sector, key) {
+          angular.forEach(sector.properties.actionsPoint, function(point) {
+            actionPoint.push(point)
+          })
+        })
+        return actionPoint
+      }
+    }
+    return service
+
+  })
+
+ .controller('GameCoreCtrl', function ($scope, $rootScope, SectorService) {
+
+    // ...
+
+
+
+    $rootScope.$on('connection', function (event) {
+      SectorService.getSectors(function(data){
+        //console.log(data)
+        $rootScope.$emit('sector available')
+        // le servce sector est charger et à jour
+      })
+    })
+
+  })
+
+
+
+
 

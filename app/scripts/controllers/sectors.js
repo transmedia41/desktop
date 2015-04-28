@@ -1,4 +1,5 @@
 'use strict';
+
 var colors = {
   rouge : "#9e1915",
   orangeFonce :"#ea590c",
@@ -6,6 +7,7 @@ var colors = {
   jaune:"#ffca61",
   vert:"#089b6e"
 }
+
 /**
  * @ngdoc function
  * @name deskappApp.controller:AboutCtrl
@@ -14,53 +16,6 @@ var colors = {
  * Controller of the deskappApp
  */
  angular.module('deskappApp')
- 
- .service('SectorService', function(localStorageService, SocketService){
-
-    var sectors = []
-    
-    function getListSectors(callback) {
-      SocketService.getSocket()
-        .emit('get sectors')
-        .on('sectors responce', function(data){
-          localStorageService.set('sectors', data)
-          localStorageService.set('last update sectors', Date.now())
-          //console.log('get sectors')
-          sectors = data
-          callback(sectors)
-        })
-    }
-
-    var service = {
-      getSectors: function(callback) {
-        if(localStorageService.isSupported){
-          if(!localStorageService.get('sectors')){
-            getListSectors(callback)
-          } else {
-            var lastDisconnect
-            (!localStorageService.get('last disconnect')) ? lastDisconnect = 0 : lastDisconnect = localStorageService.get('last disconnect')
-            if(lastDisconnect > localStorageService.get('last update sectors')) {
-              getListSectors(callback)
-            } else {
-              sectors = localStorageService.get('sectors')
-              callback(sectors)
-            }
-          }
-        } else {
-          $rootScope.$emit('localstorage not supported')
-        }
-      },
-      onUpdate: function(callback) {
-        // use socket to track update and execute callback...
-        // update sectors and save into localstorage
-        socket.on('sectors update', function(data) {
-          callback(data)
-        })
-      }
-    }
-    return service
-
-  })
 
  
  .controller('MainSectorsCtrl', function ($scope) {
@@ -85,10 +40,7 @@ var colors = {
       percentage: 0
     }
 
-    $scope.$watch('roundProgressData', function (newValue) {
-      newValue.percentage = newValue.label / 100;
-    }, true)
-    
+
     $scope.makeAction = function(){
       //console.log('click')
       SocketService.getSocket().emit('make action')
@@ -135,12 +87,12 @@ var colors = {
       
 	    maxbounds: {
           southWest: {
-            lat: 46.749859206774524,
-            lng: 6.559438705444336
+            lat: 46.71,
+            lng: 6.5
           },
           northEast: {
-           lat: 46.8027621127906,
-           lng: 6.731100082397461
+           lat: 46.85,
+           lng: 6.8
           }
         },
       
@@ -184,7 +136,7 @@ var colors = {
         },
         updateActionDescription :function(action){
           $scope.actionSelected = action;
-          console.log($scope);
+          //console.log($scope);
         },
       
         addSectorsGeoJSONToMap: function(sectors) {
@@ -258,21 +210,46 @@ var colors = {
 	})
 
     
-    SectorService.getSectors(function(data){
+    SectorService.getSectorsLocal(function(data){
       $scope.addSectorsGeoJSONToMap(data)
-      //console.log($scope.geojson)
+    })
+    
+    $rootScope.$on('new sector available', function(){
+      console.log('sectors update')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
+    })
+    
+    $rootScope.$on('sector available', function(){
+      console.log('sectors charged')
+      SectorService.getSectorsLocal(function(data){
+        $scope.addSectorsGeoJSONToMap(data)
+      })
+    })
+    
+    angular.extend($rootScope, {
+      getNbActionPerformed: function(theId) {
+        var actionPerformedInTheSector = 0
+        angular.forEach($rootScope.playerInfos.sectors, function(sector){
+          if(sector.sector_id == theId) {
+            actionPerformedInTheSector = sector.actionsPerformed
+          }
+        })
+        return actionPerformedInTheSector
+      }
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       //console.log(featureSelected, leafletEvent)
-      $rootScope.$emit('click on sector', featureSelected);
-      $scope.sectorSelected = featureSelected.properties;
-      $scope.actionSelected = featureSelected.properties.actionsPolygon[0];
+      $rootScope.$emit('click on sector', featureSelected)
+      $scope.sectorSelected = featureSelected.properties
+      $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
+      $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
       $scope.progressInfluence = {
-          label: featureSelected.properties.influence,
-          percentage: featureSelected.properties.influence/100
-        }
-      console.log($scope);
+        label: featureSelected.properties.influence,
+        percentage: featureSelected.properties.influence/100
+      }
     })
 
  })

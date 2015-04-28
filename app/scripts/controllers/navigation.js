@@ -101,6 +101,7 @@ angular.module('deskappApp')
   
   .controller('mainBarGameController', function ($rootScope, $scope, $timeout, HTTPAuhtService, SocketService, localStorageService) {
     
+    $rootScope.playerInfos = {}
     $scope.playerInfos = ''
   
     $scope.logoutFunc = function() {
@@ -147,6 +148,7 @@ angular.module('deskappApp')
     }
     
     $rootScope.$on('user responce', function(e, data){
+      $rootScope.playerInfos = data
       updateInfos(data)
       
       // emulate new xp
@@ -164,12 +166,14 @@ angular.module('deskappApp')
   
     $rootScope.$on('connection', function (event) {
       SocketService.getSocket().on('user update', function(data){
+        $rootScope.playerInfos = data
         updateInfos(data)
       })
     })
     
     
     $rootScope.$on('disconnected', function(e, data){
+      $rootScope.playerInfos = {}
       $scope.playerInfos = ''
       $scope.playerRank = ''
       $scope.progressBar = {
