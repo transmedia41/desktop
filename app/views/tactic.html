@@ -1,6 +1,6 @@
 <div ng-controller="MapSectorCtrl" class="fullpage"> 
   <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" maxbounds="maxbounds"></leaflet>
-</div>
+
 
 <!-- Fin contenu -->
 <footer ng-controller="SectorDashboardCtrl" ng-show="visible">
@@ -18,34 +18,36 @@
     <div ng-controller="SectorsCtrl" class="col-md-12 mainDaschboard" > <!-- DashboardControll" -->
       <div class="row contentDashboardRow">
         <section class="col-md-offset-1 col-md-1 contentActionLogo" >
-           <span class="icon-iconeRound icon-actionlist"></span>
+                  <span id="actiondetail" class="icon-dechet_lac icon-actionlist"></span>
         </section>
         <section class="col-md-4 contentDashboard">
-          <h1>Test</h1>
-          <p>Nam commodo enim ac leo posuere lacinia. Aenean ultricies ante velit, porta rhoncus ipsum tempor vel. Curabitur libero diam, ultricies sed nisl quis, tincidunt euismod purus. Pellentesque iaculis in neque sit amet accumsan. Nunc eu dolor euismod, dignissim turpis nec, efficitur tortor. Duis ac vehicula eros. Aenean magna purus, dignissim efficitur posuere id, tempor quis mi.</p>
+          <h1>{{actionSelected.name}}</h1>
+          <p>{{actionSelected.description}}</p>
           
         </section>
         <section class="col-md-2 col-md-offset-1">
           <table class="table dash_experience">
             <tr>
               <th>XP max</th>
-              <td>25 XP</td>
+              <td>{{actionSelected.maxXp}}</td>
             </tr>
             <tr>
               <th>XP min</th>
-              <td>12 XP</td>
+              <td>{{actionSelected.accessLevel}}</td>
             </tr>
             <tr>
+             <!-- KURWAAA!!!!!!!!!! -->
               <th>Influence prévue</th>
               <td>56%</td>
             </tr>
             <tr>
+             <!-- KURWAAA!!!!!!!!!! -->
               <th>baisse</th>
               <td>1,5%</td>
             </tr>
             <tr>
               <th>cooldown</th>
-              <td>35 min</td>
+              <td>{{actionSelected.coolDown/60}}</td>
             </tr>
           </table>
         </section>
@@ -55,10 +57,10 @@
       </div>
       <div class="row">
         <section class="col-md-offset-1 col-md-1" >
-          <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="...">
+          <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="imageMafioso">
         </section>
         <section class="col-md-4" >
-          <h1>Centre Ville</h1>
+          <h1>{{sectorSelected.nomsquart}}</h1>
           
 
         </section>
@@ -73,10 +75,11 @@
           <div class="dash_secteurs">				
             <div class="secteur">
               <div class="secteur_qte">
-                <p><i>2</i> - 5</p>
+             <!-- KURWAAA!!!!!!!!!! -->
+                <p><i>2</i> - {{sectorSelected.nbActions}}</p>
               </div>
               <div class="secteur_titre">
-                <h1>secteur(s)</h1>
+                <h1>Actions</h1>
               </div>
             </div>
           </div>
@@ -103,13 +106,12 @@
               -->
               <section class="col-md-2">
                 <h1>Action list</h1>
-                <span class="icon-iconeRound icon-actionlist icon-btn active"></span>
-                <span class="icon-iconeRound icon-actionlist icon-btn"></span>
-                <span class="icon-iconeRound icon-actionlist icon-btn"></span>
-                <span class="icon-iconeRound icon-actionlist icon-btn"></span>
-                <span class="icon-iconeRound icon-actionlist icon-btn"></span>
+                
+                <span ng-repeat="action in sectorSelected.actionsPolygon" class="icon-{{action.type}} icon-actionlist icon-btn active" action-name="{{action.name}}" ng-click="updateActionDescription(action)"></span>
+
               </section>
             </div>
           </div> <!-- \. DashboardControll" -->
         </div>
       </footer>
+      </div>

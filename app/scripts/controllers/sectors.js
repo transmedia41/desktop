@@ -129,6 +129,10 @@
             }
           }
         },
+        updateActionDescription :function(action){
+          $scope.actionSelected = action;
+          console.log($scope);
+        },
       
         addSectorsGeoJSONToMap: function(sectors) {
           $scope.geojson = {
@@ -170,7 +174,13 @@
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       //console.log(featureSelected, leafletEvent)
-      $rootScope.$emit('click on sector', featureSelected)
+      $rootScope.$emit('click on sector', featureSelected);
+      $scope.sectorSelected = featureSelected.properties;
+      $scope.actionSelected = featureSelected.properties.actionsPolygon[0];
+      $scope.roundProgressData = {
+          label: featureSelected.properties.influence
+        }
+      console.log($scope);
     })
 
  })
