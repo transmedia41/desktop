@@ -282,11 +282,7 @@ angular
 
   })
 
- .controller('GameCoreCtrl', function ($scope, $rootScope, SectorService) {
-
-    // ...
-
-
+  .controller('GameCoreCtrl', function ($scope, $rootScope, SectorService) {
 
     $rootScope.$on('connection', function (event) {
       SectorService.getSectors(function(data){
@@ -296,6 +292,17 @@ angular
       })
     })
 
+  })
+
+   .service('GameCoreService', function(){
+
+    var core = {
+      getExpectedDrop: function (action) {
+        return 1
+      }
+    }
+    return core
+    
   })
 
 

@@ -38,16 +38,16 @@
             <tr>
              <!-- KURWAAA!!!!!!!!!! -->
               <th>Influence prévue</th>
-              <td>56%</td>
+              <td>{{actionSelected.sectorInfluence - actionSelected.expectedDrop}}%</td>
             </tr>
             <tr>
              <!-- KURWAAA!!!!!!!!!! -->
               <th>baisse</th>
-              <td>1,5%</td>
+              <td>{{actionSelected.expectedDrop}}%</td>
             </tr>
             <tr>
-              <th>cooldown</th>
-              <td>{{actionSelected.coolDown/60}}</td>
+              <th>Dispoblie dans</th>
+              <td>{{actionSelected.disponibility}}</td>
             </tr>
           </table>
         </section>
@@ -106,7 +106,11 @@
               <section class="col-md-2">
                 <h1>Liste des actions disponible sur ce secteur</h1>
                 <div class="iconeReturn" ng-repeat="action in sectorSelected.actionsPolygon" >
-                <span class="icon-{{action.type}} icon-actionlist icon-btn active" action-name="{{action.name}}" ng-click="updateActionDescription(action)"></span>
+                <span 
+                  class="icon-{{action.type}} icon-actionlist icon-btn active" 
+                  action-name="{{action.name}}" 
+                  ng-click="updateActionDescription(action)"
+                  ng-class="{orange: !action.isAvailable}"></span>
                 </div>
 
               </section>

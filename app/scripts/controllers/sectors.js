@@ -64,7 +64,7 @@ var colors = {
 
   .controller('SectorDashboardCtrl', function ($scope, $rootScope, SectorService) {
     
-    $scope.visible = false // init value
+    $scope.visible = false
     
     $scope.closeDashboard = function(){
       $scope.visible = false
@@ -78,7 +78,7 @@ var colors = {
   })
  
  
-  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService) {
+  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, GameCoreService) {
     
     var mapboxMapId =  "hydromerta.lpkj6fe5"
     var mapboxAccessToken = "pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA"
@@ -87,6 +87,14 @@ var colors = {
     $scope.paths = {}
     $scope.geojson = {}
     
+    function getCooldownTest(secTot) {
+      var rest = secTot / 3600
+      var h = Math.floor(rest)
+      rest = (rest - h) * 60
+      var min = Math.floor(rest)
+      var sec = Math.floor((rest - min) * 60)
+      return h+'h '+min+'\'\' '+sec+'\''
+    }
     
 	angular.extend($scope, {
       
@@ -148,9 +156,15 @@ var colors = {
             }
           }
         },
-        updateActionDescription :function(action){
+      
+        updateActionDescription: function(action) {
+          if (action.isAvailable) {
+            action.disponibility = 'Maintenant'
+          } else {
+            var secTot = (action.coolDown + action.lastPerformed) - Math.floor(Date.now()/1000)
+            action.disponibility = getCooldownTest(secTot)
+          }
           $scope.actionSelected = action
-          //console.log($scope);
         },
       
         addSectorsGeoJSONToMap: function(sectors) {
@@ -255,12 +269,16 @@ var colors = {
     })
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-      //console.log(featureSelected, leafletEvent)
+      angular.forEach(featureSelected.properties.actionsPolygon, function(actionPolygon, key){
+        featureSelected.properties.actionsPolygon[key].isAvailable = (actionPolygon.lastPerformed + actionPolygon.coolDown < Math.floor(Date.now()/1000))
+        featureSelected.properties.actionsPolygon[key].expectedDrop = GameCoreService.getExpectedDrop(featureSelected)
+        featureSelected.properties.actionsPolygon[key].sectorInfluence = featureSelected.properties.influence
+      })
       $rootScope.$emit('click on sector', featureSelected)
       $scope.sectorSelected = featureSelected.properties
       $scope.completeSectorSelected = featureSelected
       $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
-      $scope.actionSelected = featureSelected.properties.actionsPolygon[0]
+      $scope.updateActionDescription(featureSelected.properties.actionsPolygon[0])
     })
 
  })
