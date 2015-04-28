@@ -69,7 +69,7 @@ angular.module('deskappApp')
 
   .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService) {
     
-    $scope.visible = false // init value
+    $scope.visible = false
     
     $scope.closeDashboard = function(){
       $scope.visible = false
@@ -82,11 +82,9 @@ angular.module('deskappApp')
     
   })
 
-  .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService) {
+  .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, Config) {
     
-    var mapboxMapId =  "hydromerta.lpkj6fe5"
-    var mapboxAccessToken = "pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA"
-    var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken
+    var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + Config.mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + Config.mapboxAccessToken
     
     $scope.paths = {}
     $scope.geojson = {}

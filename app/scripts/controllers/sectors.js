@@ -71,18 +71,15 @@ var colors = {
     }
     
     $rootScope.$on('click on sector', function(e, featureSelected){
-      //console.log(featureSelected)
       $scope.visible = true
     })
     
   })
  
  
-  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, GameCoreService) {
-    
-    var mapboxMapId =  "hydromerta.lpkj6fe5"
-    var mapboxAccessToken = "pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA"
-    var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + mapboxAccessToken
+  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, GameCoreService, Config) {
+   
+    var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + Config.mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + Config.mapboxAccessToken
     
     $scope.paths = {}
     $scope.geojson = {}
@@ -172,8 +169,8 @@ var colors = {
             data: {
               type: "FeatureCollection",
               features: sectors
-            },// 
-           //  
+            },
+           
             style: function (feature) {
               switch (true) {
                 case (feature.properties.influence<=20): 

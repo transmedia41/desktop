@@ -24,6 +24,17 @@ angular
 
 
   /**
+   * Configuration des constantes de l'application
+   * 
+   */
+  .constant('Config', {
+    API_URL: 'http://localhost:3000/',
+    mapboxMapId:  'hydromerta.lpkj6fe5',
+    mapboxAccessToken: 'pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA'
+  })
+
+
+  /**
    * Configuration des URLs de l'application et de leur template.
    * 
    */
@@ -67,6 +78,10 @@ angular
   })
 
 
+  /**
+   * Configure la bare de chargement par défaut pour toute l'application
+   * 
+   */
   .run(function (ngProgress) {
     ngProgress.color('#eeece1')
     ngProgress.height(3)
@@ -82,7 +97,7 @@ angular
    * deconnexion.
    * 
    */
-  .service('SocketService', function($rootScope, localStorageService){
+  .service('SocketService', function($rootScope, localStorageService, Config){
     
     var socket
   
@@ -91,7 +106,7 @@ angular
       connect: function(t){
         if(localStorageService.isSupported) {
           localStorageService.set('wstoken', t)
-          socket = io.connect('http://localhost:3000/', {
+          socket = io.connect(Config.API_URL, {
             query: 'token=' + t,
             'force new connection': true
           }).on('connect', function () {
@@ -212,7 +227,13 @@ angular
   })
 
 
- .service('SectorService', function($rootScope, localStorageService, SocketService){
+  /**
+   * Service qui distribue les données de secteur pour toute l'application.
+   * Le service stock dans le local storage les données pour minimiser les apples
+   * au web service.
+   * 
+   */
+  .service('SectorService', function($rootScope, localStorageService, SocketService){
 
     var sectors = []
     
@@ -282,19 +303,27 @@ angular
 
   })
 
+
+  /**
+   * Controleur logique pour certaine partie du jeu
+   * 
+   */
   .controller('GameCoreCtrl', function ($scope, $rootScope, SectorService) {
 
     $rootScope.$on('connection', function (event) {
       SectorService.getSectors(function(data){
-        //console.log(data)
         $rootScope.$emit('sector available')
-        // le servce sector est charger et à jour
       })
     })
 
   })
 
-   .service('GameCoreService', function(){
+
+  /**
+   * Service qui fourni les methodes de calcule du jeu
+   * 
+   */
+  .service('GameCoreService', function(){
 
     var core = {
       getExpectedDrop: function (action) {
@@ -302,7 +331,7 @@ angular
       }
     }
     return core
-    
+
   })
 
 
