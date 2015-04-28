@@ -8,7 +8,7 @@
                      <th colspan="4" ng-click="showMafiosiContent(characterList[0])">
                         <div ng-show="characterList[0].characterAvaible">
                            <img src="img/lede.png"class="img-responsive img-round" alt="...">
-                           <h1>{{characterList[0].firstname}} {{characterList[0].lastname}} <span> - {{characterList[0].status}}</span></h1>
+                           <h1>{{characterList[0].lastname}} <span> - {{characterList[0].status}}</span></h1>
                            <h2>"{{characterList[0].nickname}}"</h2>
                         </div>
                         <div  ng-show="!characterList[0].characterAvaible">
@@ -23,19 +23,18 @@
                         <td ng-click="showMafiosiContent(characterList[1])">
                            <div ng-show="characterList[1].characterAvaible">
                               <img src="img/lede.png"class="img-responsive img-round" alt="...">
-                              <h1>{{characterList[1].firstname}} {{characterList[1].lastname}} <span> - {{characterList[1].status}}</span></h1>
+                              <h1>{{characterList[1].lastname}} <span> - {{characterList[1].status}}</span></h1>
                               <h2>"{{characterList[1].nickname}}"</h2>
                            </div>
                            <div  ng-show="!characterList[1].characterAvaible">
                               <img src="img/unknown.png"class="img-responsive img-round" alt="...">
-                              <h1>... <span> - ...</span></h1>
-                              <h2>...</h2>
+                              <h1> inconnu</h1>
                            </div>
                         </td>
                         <td ng-click="showMafiosiContent(characterList[2])">
                            <div ng-show="characterList[2].characterAvaible">
                               <img src="img/lede.png"class="img-responsive img-round" alt="...">
-                              <h1>{{characterList[2].firstname}} {{characterList[2].lastname}} <span> - {{characterList[2].status}}</span></h1>
+                              <h1>{{characterList[2].lastname}} <span> - {{characterList[2].status}}</span></h1>
                               <h2>"{{characterList[2].nickname}}"</h2>
                            </div>
                            <div  ng-show="!characterList[2].characterAvaible">
@@ -47,7 +46,7 @@
                         <td ng-click="showMafiosiContent(characterList[3])"> 
                            <div ng-show="characterList[3].characterAvaible">
                               <img src="img/lede.png"class="img-responsive img-round" alt="...">
-                              <h1>{{characterList[3].firstname}} {{characterList[3].lastname}} <span> - {{characterList[3].status}}</span></h1>
+                              <h1>{{characterList[3].lastname}} <span> - {{characterList[3].status}}</span></h1>
                               <h2>"{{characterList[3].nickname}}"</h2>
                            </div>
                            <div  ng-show="!characterList[3].characterAvaible">
@@ -98,7 +97,21 @@
             </div>
          </div>
       </div>
-      <div class="col-md-6 imgGD mafiosiDesc" ng-hide="showDesc">
+
+
+      <div class="col-md-6 imgGD mafiosiDesc">
+       <div ng-hide="showDescNotAvaible">
+         <div class="media">
+            <div class="media-left">
+                  <img class="media-object" src="img/unknown.png" alt="...">
+            </div>
+            <div class="media-body">
+               <h1 class="media-heading"> INCONNU</h1>
+            </div>
+         </div>
+        </div>
+        
+<div ng-hide="showDesc">
          <div class="media">
             <div class="media-left">
                   <img class="media-object" src="img/lede.png" alt="...">
@@ -155,6 +168,7 @@
                <tr>
                </tbody>
             </table>
+            </div>
          </div>
       </div>
    </div>
