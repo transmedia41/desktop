@@ -116,6 +116,7 @@ angular
           }).on('connect', function () {
             $rootScope.$emit('connection')
             socket.emit('get user')
+            socket.emit('has new document')
             socket.on('user responce', function(data){
               $rootScope.$emit('user responce', data)
             })

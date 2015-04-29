@@ -1,32 +1,5 @@
 'use strict';
 
-var egoutIcon = {
-    type : "extraMarker",
-    extraClasses : "icon-bouche_egout"       
-}
- var toiletteIcon = {
-    type : "extraMarker",
-    extraClasses : "icon-toilettes" 
-
-}
- var afficheIcon = {
-    type : "extraMarker",
-    extraClasses : "icon-affiche" 
-
-}
- var arrosageIcon = {
-    type : "extraMarker",
-    extraClasses : "icon-arrosage"       
-}
-var fontaineIcon = {
-   type : "extraMarker",
-    extraClasses: 'icon-fontaine'  
-}
-var hydranteIcon = {
-    type : "extraMarker",   
-    extraClasses: 'icon-hydrante'
-
-}
 
 /**
  * @ngdoc function
@@ -149,53 +122,51 @@ angular.module('deskappApp')
         }
       },
 
-         markerColor:function(cooldown){
-          // lastperformed+coooldown > date.now()
-          if (cooldown <=600) {
-            return '../images/green.png';
-          }else{
-            return '../images/grey.png';
-          };
 
-        },
-
-      addMarkersToMap : function(points){
-           var markers= []
-           angular.forEach(points,function(point,index){
+        addMarkersToMap : function(points){
+          var markers= []
+          angular.forEach(points,function(point,index){
             var marker = {
               lat : point.geometry.coordinates[1],
               lng : point.geometry.coordinates[0],
               properties : point.properties,
-              
+              icon: {}
             }
-          
-            if (point.properties.type == "hydrante") {
-              marker.icon = hydranteIcon
-            };
-            if (point.properties.type.toLowerCase() == "fontaine") {
-              marker.icon = fontaineIcon
-            };
-            if (point.properties.type == "arrosage") {
-              marker.icon = arrosageIcon
-            };
-            if (point.properties.type == "affiche") {
-              marker.icon = afficheIcon
-            };
-            if (point.properties.type == "toilettes") {
-              marker.icon = toiletteIcon
-            };
-            if (point.properties.type == "bouche_egout") {
-              marker.icon = egoutIcon
-            };
-            if (point.properties.type == "dechet_lac") {
-              marker.icon = dechetIcon
-            };
-            marker.icon.iconImg = $scope.markerColor(point.properties.coolDown)
+            switch(point.properties.type.toLowerCase()) {
+              case 'hydrante':
+                marker.icon.extraClasses = 'icon-hydrante'
+                marker.icon.iconImg = '../images/hydrante.png'//hydrante
+                break;
+              case 'fontaine':
+                marker.icon.extraClasses = 'icon-fontaine'
+                marker.icon.iconImg = '../images/fontaine.png'
+                break;
+              case 'arrosage':
+                marker.icon.extraClasses = 'icon-arrosage'
+                marker.icon.iconImg = '../images/arrosage.png'
+                break;
+              case 'affiche':
+                marker.icon.extraClasses = 'icon-affiche'
+                marker.icon.iconImg = '../images/affiche.png'
+                break;
+              case 'toilettes':
+                marker.icon.extraClasses = 'icon-toilettes'
+                marker.icon.iconImg = '../images/toilettes.png'
+                break;
+              case 'bouche_egout':
+                marker.icon.extraClasses = 'icon-bouche_egout'
+                marker.icon.iconImg = '../images/bouche-egout.png'//'../images/bouche-egout.png'
+                break;
+              case 'dechet_lac':
+                marker.icon.extraClasses = 'icon-dechet_lac'
+                marker.icon.iconImg = '../images/dechet-lac.png'
+                break;
+            }
+            marker.icon.type  = 'extraMarker'
             marker.icon.imgWidth = 42
             marker.icon.imgHeight = 52
             markers.push(marker)
-          })   
-          
+          })
           return markers
         }
 
