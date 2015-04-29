@@ -1,49 +1,36 @@
 <div ng-controller="MafiaCtrl" class="mafia">
 	<div class="col-md-1 col-md-offset-1 sidebar mafiaList">
 		<ul class="list_wrapper">
-			<li class="mafieu" ng-repeat="mafieu in characterList" ng-class="active[($index+1)]" ng-click="showMafiosiContent(mafieu)">
+			<li class="mafieu" ng-repeat="mafieu in characters" ng-class="active[($index)]" ng-click="showMafiosiContent(mafieu)">
 				<h3>
-					<span ng-if="mafieu.characterAvaible" class="icon-mafieu"></span>
-					<span ng-if="!mafieu.characterAvaible" class="icon-locked"></span>
+					<span ng-if="mafieu.available" class="icon-mafieu"></span>
+					<span ng-if="!mafieu.available" class="icon-locked"></span>
 					{{mafieu.status}}
 				</h3>
 			</li>
-<!-- 			<li><h3><span class="icon-mafieu"></span>{{characterList[0].status}}</h3></li> -->
 		</ul>
 	</div>
-	<div class="col-md-10 col-md-offset-2 mafiaContent ">
+	<div ng-if="showDesc" class="col-md-10 col-md-offset-2 mafiaContent ">
 		<div class="content_wrapper">
-			<div ng-hide="showDescNotAvaible" class="locked">
-				<img class="media-object" src="img/unknown.png" alt="...">
-				<h1 class="media-heading"> INCONNU</h1>
+			<div ng-class="locked" ng-if="!desc_available">
+				<img class="media-object" src="{{desc_portrait}}" alt="{{desc_nickname}}">
+				<h1>{{desc_lastname}}</h1>
 			</div>
-			<div ng-hide="showDesc" class="mafieu_desc">
+			<div ng-if="desc_available" class="mafieu_desc" ng-class="locked">
 				<div class="descHeader">
-					<img class="media-object" src="img/lede.png" alt="...">
+					<img class="media-object" src="{{desc_portrait}}" alt="{{desc_nickname}}">
 					<h1>{{desc_lastname}} {{desc_firstname}} - <span>{{desc_nickname}}</span></h1>
 					<h4>{{desc_status}}</h4>
 				</div>
-<!--
-				<div class="media">
-					<div class="media-left">
-						<img class="media-object" src="img/lede.png" alt="...">
-					</div>
-					<div class="media-body">
-						<h1 class="media-heading">{{desc_lastname}} {{desc_firstname}} - <span>{{desc_status}}</span></h1>
-						{{desc_life}}
-					</div>
+				<div class="desc_life">
+					<p ng-repeat="p in desc_life">{{p}}</p>
 				</div>
-				<table class="table">
+				<div class="desc_table">
+						<table class="table">
 					<tbody>
 						<tr>
 							<th>
-								Family
-							</th>
-							<td>
-								{{desc_family}}
-							</td>
-							<th>
-								Family
+								Famille
 							</th>
 							<td>
 								{{desc_family}}
@@ -51,36 +38,79 @@
 						</tr>
 						<tr>
 							<th>
-								Status
+								Physique
 							</th>
 							<td>
-								{{desc_family}}
-							</td>
-							<th>
-								Status
-							</th>
-							<td>
-								{{desc_family}}
+								{{desc_body}}
 							</td>
 						</tr>
 						<tr>
 							<th>
-								weakness
+								Signe disctinctif
+							</th>
+							<td>
+								{{desc_distinctive}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Personnalite
+							</th>
+							<td>
+								{{desc_personality}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Force
+							</th>
+							<td>
+								{{desc_strength}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Faiblesse
 							</th>
 							<td>
 								{{desc_weakness}}
 							</td>
+						</tr>
+						<tr>
 							<th>
-								weakness
+								Tic
 							</th>
 							<td>
-								{{desc_weakness}}
+								{{desc_twitch}}
 							</td>
 						</tr>
 						<tr>
+							<th>
+								Vice
+							</th>
+							<td>
+								{{desc_vice}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Boisson
+							</th>
+							<td>
+								{{desc_drink}}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Arme
+							</th>
+							<td>
+								{{desc_weapon}}
+							</td>
+						</tr>
 					</tbody>
 				</table>
--->
+				</div>
 			</div>
 		</div>
 	</div>
