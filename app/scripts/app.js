@@ -29,6 +29,7 @@ angular
    */
   .constant('Config', {
     API_URL: 'http://localhost:3000/',
+    //API_URL: 'http://hydromerta.comem.ch:9001/',
     mapboxMapId:  'hydromerta.lpkj6fe5',
     mapboxAccessToken: 'pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA'
   })
