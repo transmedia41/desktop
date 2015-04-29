@@ -379,6 +379,6 @@ angular
           }
         })
         return sectorIsDebloced
-      }
+      },
     })
   })
