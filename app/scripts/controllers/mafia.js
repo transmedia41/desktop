@@ -18,7 +18,7 @@ angular.module('deskappApp')
 		}
 		return service
 	})
-	.controller('MafiaCtrl', function($scope, CharacterService, Config, SocketService) {
+	.controller('MafiaCtrl', function($scope, CharacterService, Config, SocketService, $rootScope) {
 		$scope.showDesc = false
 		$scope.desc_available = false
 		$scope.active = []
