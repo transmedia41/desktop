@@ -209,7 +209,7 @@ var colors = {
                     dashArray: '9',
                     fillOpacity: 0.7
                   }
-                   case (feature.properties.influence>80 && feature.properties.influence<100): 
+                   case (feature.properties.influence>80 && feature.properties.influence<=100): 
                   return {
                     fillColor: colors.rouge,
                     weight: 4,
