@@ -219,6 +219,7 @@ angular
     })
     $rootScope.$on('register', function (event) {
       console.log('register')
+      // TODO : inclure la vidéo du chef de la résistance
       // ... do something
     })
     $rootScope.$on('disconnected', function (event) {
