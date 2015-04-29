@@ -884,11 +884,11 @@ div.header {
   -o-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   cursor: pointer;
-  -ms-transform: rotate(1deg);
+  -ms-transform: rotate(3deg);
   /* IE 9 */
-  -webkit-transform: rotate(1deg);
+  -webkit-transform: rotate(3deg);
   /* Chrome, Safari, Opera */
-  transform: rotate(1deg);
+  transform: rotate(3deg);
 }
 .piecesCollection img:last-child {
   margin-right: 0px;
