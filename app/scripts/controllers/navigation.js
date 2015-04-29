@@ -77,11 +77,11 @@ angular.module('deskappApp')
       // CHARACTERE NOTIFICATIONS
       SocketService.getSocket().emit('get character count')
       SocketService.getSocket().on('character count responce', function(data){
-        $scope.notifChar = data
+        $scope.$apply($scope.notifChar = data)
         localStorageService.set('notifChar', data)
       })
       SocketService.getSocket().on('update character count', function(data){
-        $scope.notifChar = data
+        $scope.$apply($scope.notifChar = data)
         localStorageService.set('notifChar', data)
       })
       
