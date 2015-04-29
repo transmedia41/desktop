@@ -29,10 +29,8 @@ angular.module('deskappApp')
 		})
 		$scope.showMafiosiContent = function(character) {
                         // TODO : changer l'attribut du mafiosi yetvisited en yes
-                        if(!character.yetVisited) {
-                          SocketService.getSocket().emit('character vu', character.id)
-                          $scope.apply()
-                        }
+                        console.log(character)
+                        if(!character.yetVisited) SocketService.getSocket().emit('character vu', character.id)
 			$scope.active = []
 			$scope.active[character.char_id - 1] = 'active'
 			$scope.locked = null;
