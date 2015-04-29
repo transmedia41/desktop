@@ -18,7 +18,7 @@ angular.module('deskappApp')
 		}
 		return service
 	})
-	.controller('MafiaCtrl', function($scope, CharacterService, Config) {
+	.controller('MafiaCtrl', function($scope, CharacterService, Config, SocketService) {
 		$scope.showDesc = false
 		$scope.desc_available = false
 		$scope.active = []
@@ -28,14 +28,16 @@ angular.module('deskappApp')
 			$scope.$apply()
 		})
 		$scope.showMafiosiContent = function(character) {
+                        // TODO : changer l'attribut du mafiosi yetvisited en yes
+                        if(!character.yetVisited) {
+                          SocketService.getSocket().emit('character vu', character.id)
+                          $scope.apply()
+                        }
 			$scope.active = []
 			$scope.active[character.char_id - 1] = 'active'
 			$scope.locked = null;
 			$scope.showDesc = true;
-			if (!character.available) {
-				$scope.locked = "locked"
-			}
-			console.log(character, $scope.showDesc, $scope.desc_available)
+			if (!character.available) $scope.locked = "locked"
 			$scope.desc_available = character.available
 			$scope.showDescNotAvaible = true
 			$scope.desc_lastname = character.lastname
