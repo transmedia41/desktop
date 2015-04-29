@@ -2,45 +2,29 @@
 
 var egoutIcon = {
     type : "extraMarker",
-    markerColor: 'orange',
-    shape: 'square',
-    icon : "icon",
     extraClasses : "icon-bouche_egout"       
 }
  var toiletteIcon = {
     type : "extraMarker",
-    markerColor: 'blue',
-    shape: 'square',
-    icon : "icon",
-    extraClasses : "icon-toilettes"       
+    extraClasses : "icon-toilettes" 
+
 }
  var afficheIcon = {
     type : "extraMarker",
-    markerColor: 'black',
-    shape: 'square',
-    icon : "icon",
-    extraClasses : "icon-affiche"       
+    extraClasses : "icon-affiche" 
+
 }
  var arrosageIcon = {
     type : "extraMarker",
-    icon : "icon",
-    markerColor: 'violet',
-    shape: 'square',
     extraClasses : "icon-arrosage"       
 }
 var fontaineIcon = {
    type : "extraMarker",
-    markerColor: 'red',
-    shape: 'square' , 
-    icon:"icon",
-    extraClasses: 'icon-fontaine'    
+    extraClasses: 'icon-fontaine'  
 }
 var hydranteIcon = {
-    type : "extraMarker",
-    markerColor: 'green',
-    extraClasses: 'icon-hydrante', 
-     icon:"icon",   
-    shape: 'square'
+    type : "extraMarker",   
+    extraClasses: 'icon-hydrante'
 
 }
 
@@ -165,41 +149,55 @@ angular.module('deskappApp')
         }
       },
 
-      addMarkersToMap : function(points){
-         var markers= []
-         angular.forEach(points,function(point,index){
-          var marker = {
-            lat : point.geometry.coordinates[1],
-            lng : point.geometry.coordinates[0],
-            properties : point.properties,
-            sector : point.sector
-          }
-          if (point.properties.type == "hydrante") {
-            marker.icon = hydranteIcon
-          };
-          if (point.properties.type.toLowerCase() == "fontaine") {
-            marker.icon = fontaineIcon
-          };
-          if (point.properties.type == "arrosage") {
-            marker.icon = arrosageIcon
-          };
-          if (point.properties.type == "affiche") {
-            marker.icon = afficheIcon
-          };
-          if (point.properties.type == "toilettes") {
-            marker.icon = toiletteIcon
-          };
-          if (point.properties.type == "bouche_egout") {
-            marker.icon = egoutIcon
-          };
-          if (point.properties.type == "dechet_lac") {
-            marker.icon = dechetIcon
+         markerColor:function(cooldown){
+          // lastperformed+coooldown > date.now()
+          if (cooldown <=600) {
+            return '../images/green.png';
+          }else{
+            return '../images/grey.png';
           };
 
-          markers.push(marker)
-        })
-        return markers
-      }
+        },
+
+      addMarkersToMap : function(points){
+           var markers= []
+           angular.forEach(points,function(point,index){
+            var marker = {
+              lat : point.geometry.coordinates[1],
+              lng : point.geometry.coordinates[0],
+              properties : point.properties,
+              
+            }
+          
+            if (point.properties.type == "hydrante") {
+              marker.icon = hydranteIcon
+            };
+            if (point.properties.type.toLowerCase() == "fontaine") {
+              marker.icon = fontaineIcon
+            };
+            if (point.properties.type == "arrosage") {
+              marker.icon = arrosageIcon
+            };
+            if (point.properties.type == "affiche") {
+              marker.icon = afficheIcon
+            };
+            if (point.properties.type == "toilettes") {
+              marker.icon = toiletteIcon
+            };
+            if (point.properties.type == "bouche_egout") {
+              marker.icon = egoutIcon
+            };
+            if (point.properties.type == "dechet_lac") {
+              marker.icon = dechetIcon
+            };
+            marker.icon.iconImg = $scope.markerColor(point.properties.coolDown)
+            marker.icon.imgWidth = 42
+            marker.icon.imgHeight = 52
+            markers.push(marker)
+          })   
+          
+          return markers
+        }
 
 	})
 
