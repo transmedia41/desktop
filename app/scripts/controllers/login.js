@@ -1,20 +1,13 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name deskappApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the deskappApp
- */
+
 angular.module('deskappApp')
 
-  .service('HTTPAuhtService', function($http, localStorageService){
+  .service('HTTPAuhtService', function($http, localStorageService, Config){
   
     return {
-      
       login: function(data) {
-        return $http.post('http://localhost:3000/login', data)
+        return $http.post(Config.API_URL + 'login', data)
       },
       logout: function() {
         var data = {}
@@ -26,12 +19,11 @@ angular.module('deskappApp')
             }
           }
         }
-        return $http.post('http://localhost:3000/logout', data)
+        return $http.post(Config.API_URL + 'logout', data)
       },
       register: function(data) {
-        return $http.post('http://localhost:3000/register', data)
+        return $http.post(Config.API_URL + 'register', data)
       }
-    
     }
   
   })
@@ -41,9 +33,7 @@ angular.module('deskappApp')
   })
   
   .controller('mainBarController', function ($rootScope, $scope, HTTPAuhtService, localStorageService) {
-    
-    // to do
-    
+    // ...
   })
 
   .controller('loginController', function ($rootScope, $scope, $location, HTTPAuhtService, SocketService, localStorageService) {
