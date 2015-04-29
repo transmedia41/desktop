@@ -46,18 +46,18 @@
             <div class="row" ng-controller="loginController" class="panel" ng-show="panel.isSelected(1)">
                <!-- loginCtrl -->
                <div class="col-md-12">
-                  <form class="form-inline">
+                  <form class="form-inline" name="loginForm" novalidate>
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                        <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username">
+                        <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username" requried>
                      </div>
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                        <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password" required>
                      </div>
                      <p class="help-block" ng-show="false">* mot de passe non valide</p>
                      <div class="error-msg"><p>{{error}}</p></div>
-                     <button type="submit" class="btn btn-default" ng-click="loginFunc()">se connecter</button>
+                     <button type="submit" class="btn btn-default" ng-click="loginFunc()" ng-disabled="loginForm.$invalid">se connecter</button>
                   </form>
                </div>
                <!-- \. loginCtrl -->
@@ -65,7 +65,7 @@
             <div class="row" ng-controller="registerController" class="panel" ng-show="panel.isSelected(2)">
                <!-- loginCtrl -->
                <div class="col-md-12">
-                  <form class="form-inline">
+                  <form class="form-inline" name="registerForm">
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                         <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username" required>
@@ -79,7 +79,7 @@
                         <input type="password" class="form-control" ng-model="confirm" id="confirm" placeholder="Confirm password" required>
                      </div>
                      <div class='error-msg'><p>{{error}}</p></div>
-                     <button type="submit" class="btn btn-default" ng-click="registerFunc()">créer un compte</button>
+                     <button type="submit" class="btn btn-default" ng-click="registerFunc()" ng-disabled="registerForm.$invalid">créer un compte</button>
                   </form>
                </div>
                <!-- \. loginCtrl -->
