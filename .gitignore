@@ -5,3 +5,4 @@ dist
 .jshintrc
 bower_components
 hydro-frontend/
+nbproject
