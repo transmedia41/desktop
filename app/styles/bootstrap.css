@@ -892,16 +892,7 @@ div.header {
   width: 180px;
 }
 .piecesCollection img:hover {
-  -webkit-transition: 1s ease-in-out;
-  -moz-transition: 1s ease-in-out;
-  -o-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
   cursor: pointer;
-  -ms-transform: rotate(3deg);
-  /* IE 9 */
-  -webkit-transform: rotate(3deg);
-  /* Chrome, Safari, Opera */
-  transform: rotate(3deg);
 }
 .piecesCollection img:last-child {
   margin-right: 0px;
