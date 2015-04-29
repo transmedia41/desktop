@@ -30,9 +30,9 @@ angular
    * 
    */
   .constant('Config', {
-    //API_URL: 'http://localhost:3000/',
+    API_URL: 'http://localhost:3000/',
     //API_URL: 'http://hydromerta.comem.ch/backend/',
-    API_URL: 'http://hydromerta.di-rosa.ch:3000/',
+    //API_URL: 'http://hydromerta.di-rosa.ch:3000/',
     mapboxMapId:  'hydromerta.lpkj6fe5',
     mapboxAccessToken: 'pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA'
   })
@@ -116,6 +116,7 @@ angular
           }).on('connect', function () {
             $rootScope.$emit('connection')
             socket.emit('get user')
+            socket.emit('has new document')
             socket.on('user responce', function(data){
               $rootScope.$emit('user responce', data)
             })
