@@ -69,6 +69,8 @@
 
 
 
+
+
     $scope.openLightboxModal = function (index, document) {
       $scope.images = document.documents
       $scope.rootUrl = Config.API_URL
@@ -106,6 +108,21 @@
     });
   }
 
+
+
+// Tabulation dans la light box
+
+this.tab = 1;
+  this.selectTab = function(setTab) {
+    console.log('click');
+    this.tab = setTab;
+  }
+  this.isSelected = function(checkTab) {
+    return this.tab === checkTab;
+  } 
+
+
+
     
 
 }).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config) {
@@ -123,13 +140,15 @@
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
+}).controller("panelController", function($scope) {
+  this.tab = 1;
+  this.selectTab = function(setTab) {
+    this.tab = setTab;
+  }
+  this.isSelected = function(checkTab) {
+    return this.tab === checkTab;
+  } 
 })
-
-
-
-
-
-
 
 
 
