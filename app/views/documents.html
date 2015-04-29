@@ -1,17 +1,17 @@
-<div ng-controller="eventsCtrl">
+<div ng-controller="DocumentsCtrl">
 
+  
 
   <div class="col-md-11 col-md-offset-1"><!--contenu-->
     <div class="col-md-12 piecesConviction">
 
+    <div class="col-md-3 piecesCollection" ng-repeat="document in documentsList">
+        <h1>{{document.date}}</h1>
+        <p>{{document.description}}</p>   
 
-    <div class="col-md-3 piecesCollection" ng-repeat="event in eventsList">
-        <h1>{{event.date}}</h1>
-        <p>{{event.description}}</p>   
-
-      <div class="imgPiecesCollection" ng-repeat="doc in event.documents">
-          <a ng-click="openLightboxModal($index, event)">
-            <img ng-src="{{rootUrl+doc.thumbnail}}"  class="img-responsive">
+      <div class="imgPiecesCollection" ng-repeat="doc in document.documents">
+          <a ng-click="open('lg',doc)">
+            <img ng-src="{{rootUrl+doc.thumbnail}}"  class="img-responsive" class="img-responsive">
           </a>
       </div>
 

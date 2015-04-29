@@ -102,6 +102,8 @@ angular.module('bootstrapLightbox').provider('Lightbox', function () {
     return image.title;
   };
 
+
+
   /**
    * Calculate the max and min limits to the width and height of the displayed
    *   image (all are optional). The max dimensions override the min

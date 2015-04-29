@@ -58,10 +58,10 @@
 })
 
 
- .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config) {
+ .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log) {
 
     DocumentService.getDocuments(function(data){
-      console.log(data)
+      console.log('documents',data)
       $scope.rootUrl = Config.API_URL
       $scope.documentsList = data
     })
@@ -72,15 +72,75 @@
     $scope.openLightboxModal = function (index, document) {
       $scope.images = document.documents
       $scope.rootUrl = Config.API_URL
+
       console.log(document.documents)
       for (var i = 0; i < document.documents.length; i++) {
         document.documents[i].src = Config.API_URL + document.documents[i].src
         console.log(document.documents[i])
       };
+
       Lightbox.openModal($scope.images, index)
     }
 
-    /*Lightbox.$on('click', function() {
+
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function (size, doc) {
+    $scope.items = doc
+    console.log($scope.items)
+    var modalInstance = $modal.open({
+      templateUrl: 'views/modal.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  }
+
+    
+
+}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config) {
+  $scope.rootUrl = Config.API_URL
+  console.log($scope.rootUrl)
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Lightbox.$on('click', function() {
       console.log($scope);
     })*/
 
@@ -112,8 +172,6 @@
     function updateEvent(){
       console.log($scope.events)
     }*/
-
-})
 
 
 
