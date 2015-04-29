@@ -303,6 +303,8 @@ div.header {
     overflow-x: hidden;
     overflow-y: auto;
     /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
   }
 }
 /*
@@ -583,31 +585,6 @@ div.header {
   display: block;
   color: #444;
 }
-/*
-	.description{
-		background-image: url('../img/halftone.png');
-		background-color: white;
-		margin-bottom: 10px;
-	}
-
-	.organigrammeDescription {
-
-		.description{
-			background-image: url('../img/halftone.png');
-			background-color: white;
-			margin-top: 50px;
-			margin-bottom: 10px;
-		}
-	}
-
-
-
-	#mynetwork {
-		width: 600px;
-		min-height: 600px;
-		border: 1px solid lightgray;
-	}
-*/
 .mafia {
   height: 100%;
 }
@@ -631,7 +608,7 @@ div.header {
   list-style: none;
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
   text-transform: lowercase;
-  padding: 10px 0 0 5px;
+  padding: 10px 0 0 15px;
   width: 100%;
   margin: 0 0 20px;
   height: 45px;
@@ -640,7 +617,7 @@ div.header {
 .mafia .mafiaList ul li h3 {
   font-size: 1.2em;
   margin: 0;
-  color: #817874;
+  color: #eeece1;
 }
 .mafia .mafiaList ul li h3 span {
   font-size: 1.5em;
@@ -694,6 +671,77 @@ div.header {
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
   text-align: center;
   padding-top: 20%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc {
+  background: url('../img/halftone.png') top left repeat;
+  padding: 50px 20px 0;
+  float: left;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 50px;
+  color: #333033;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader {
+  float: left;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader img {
+  float: left;
+  width: 10%;
+  margin-right: 2%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h1 {
+  float: left;
+  width: 88%;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 3.5em;
+  color: #14333d;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h1 span {
+  color: #3e758e;
+  font-size: 0.7em;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h4 {
+  color: #14333d;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  float: left;
+  font-size: 2em;
+  width: 88%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_life {
+  float: left;
+  width: 49%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_life p {
+  font-size: 1.7em;
+  line-height: 1.1em;
+  margin-bottom: 1em;
+  letter-spacing: 1px;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table {
+  float: right;
+  width: 49%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table th {
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 1.4em;
+  text-align: right;
+  width: 30%;
+  vertical-align: middle;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table td {
+  width: 70%;
+  font-size: 1.5em;
+  text-rendering: optimizeLegibility;
+  vertical-align: middle;
 }
 #leafletMap {
   z-index: 1;
@@ -838,25 +886,59 @@ div.header {
   -o-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   cursor: pointer;
-<<<<<<< HEAD
   -ms-transform: rotate(3deg);
   /* IE 9 */
   -webkit-transform: rotate(3deg);
   /* Chrome, Safari, Opera */
   transform: rotate(3deg);
-=======
-  -ms-transform: rotate(1deg);
-  /* IE 9 */
-  -webkit-transform: rotate(1deg);
-  /* Chrome, Safari, Opera */
-  transform: rotate(1deg);
->>>>>>> 5fc87380106c53b3251866b90b0dc5a2607045e6
 }
 .piecesCollection img:last-child {
   margin-right: 0px;
 }
 .piecesCollection .imgPiecesCollection {
   margin-right: 25px;
+}
+.lightbox-nav {
+  position: relative;
+  margin-bottom: 12px;
+  /* the font-size of .btn-xs */
+  text-align: center;
+  font-size: 0;
+  /* prevent the otherwise inherited font-size and line-height from adding extra space to the bottom of this div */
+}
+.lightbox-nav .btn-group {
+  vertical-align: top;
+}
+.lightbox-nav .close {
+  /* absolutely position this in order to center the nav buttons */
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.lightbox-image-container {
+  position: relative;
+  text-align: center;
+  /* center the image */
+}
+/* the caption overlays the top left corner of the image */
+.lightbox-image-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0.5em 0.9em;
+  /* the left and right margins are offset by 0.4em for the span box-shadow */
+  color: #000;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: left;
+  text-shadow: 0.1em 0.1em 0.2em rgba(255, 255, 255, 0.5);
+}
+.lightbox-image-caption span {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  background-color: rgba(255, 255, 255, 0.75);
+  /* pad the left and right of each line of text */
+  box-shadow: 0.4em 0 0 rgba(255, 255, 255, 0.75), -0.4em 0 0 rgba(255, 255, 255, 0.75);
 }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
@@ -6757,7 +6839,6 @@ button.close {
   background-color: #ffffff;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;

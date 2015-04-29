@@ -19,7 +19,9 @@ angular
     'angular.directives-round-progress',
     'leaflet-directive',
     'geolocation',
-    'ngProgress'
+    'ngProgress',
+    'bootstrapLightbox',
+    'ui.bootstrap'
   ])
 
 

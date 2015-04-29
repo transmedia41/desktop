@@ -1,66 +1,22 @@
-<div ng-controller="DocumentsCtrl">
+<div ng-controller="eventsCtrl">
 
 
   <div class="col-md-11 col-md-offset-1"><!--contenu-->
     <div class="col-md-12 piecesConviction">
 
 
-    <div class="col-md-3 piecesCollection">
-        <h1>Titre</h1>
-        <p>description dsafsdaf asdf sdf asdf asdf   ads f ads f ds a f dsa f  ads fdas fads f dsf dsaf ads  f adf ds </p>   
+    <div class="col-md-3 piecesCollection" ng-repeat="event in eventsList">
+        <h1>{{event.date}}</h1>
+        <p>{{event.description}}</p>   
 
-        <div imgPiecesCollection>
-       
-          <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>   
-             <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>   
-             <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>
+      <div class="imgPiecesCollection" ng-repeat="doc in event.documents">
+          <a ng-click="openLightboxModal($index, event)">
+            <img ng-src="{{rootUrl+doc.thumbnail}}"  class="img-responsive">
+          </a>
       </div>
+
     </div>
 
-
-    <div class="col-md-3 piecesCollection">
-        <h1>Titre</h1>
-        <p>description dsafsdaf asdf sdf asdf asdf   ads f ads f ds a f dsa f  ads fdas fads f dsf dsaf ads  f adf ds </p>   
-
-        <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>
-            <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb.png"  class="img-responsive">
-             </div>
-    
-    </div>
-
-    <div class="col-md-3 piecesCollection">
-        <h1>Titre</h1>
-        <p>description dsafsdaf asdf sdf asdf asdf   ads f ads f ds a f dsa f  ads fdas fads f dsf dsaf ads  f adf ds </p>   
-
-        <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>
-            <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb.png"  class="img-responsive">
-             </div>
-    
-    </div>
-
-    <div class="col-md-3 piecesCollection">
-        <h1>Titre</h1>
-        <p>description dsafsdaf asdf sdf asdf asdf   ads f ads f ds a f dsa f  ads fdas fads f dsf dsaf ads  f adf ds </p>   
-
-        <div imgPiecesCollection>
-          <img src="img/pceConvictionTest_thumb2.png"  class="img-responsive">
-            </div>
-    
-    </div>
-
-    
 
 
 

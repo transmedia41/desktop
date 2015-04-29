@@ -52,104 +52,38 @@
     }
   })
 
- .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService) {
-
-  //default
-  $scope.showDesc = true
-  $scope.isVideo = false
-  $scope.isPicture = false
-  
-  DocumentService.getDocuments(function(data){
-    console.log(data)
-  })
+  .config(function (LightboxProvider) {
+  // set a custom template
+  LightboxProvider.templateUrl = 'views/Lightbox.html';
+})
 
 
-  $scope.showDocumentContent = function(doc){
+ .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config) {
 
-   
+    DocumentService.getDocuments(function(data){
+      console.log(data)
+      $scope.rootUrl = Config.API_URL
+      $scope.documentsList = data
+    })
 
-    if (doc.type === 'video') {
-        $scope.isVideo = true
-        $scope.isPicture = false
-    } else {
-        $scope.isVideo = false
-        $scope.isPicture = true
+
+
+
+    $scope.openLightboxModal = function (index, document) {
+      $scope.images = document.documents
+      $scope.rootUrl = Config.API_URL
+      console.log(document.documents)
+      for (var i = 0; i < document.documents.length; i++) {
+        document.documents[i].src = Config.API_URL + document.documents[i].src
+        console.log(document.documents[i])
+      };
+      Lightbox.openModal($scope.images, index)
     }
 
-    $scope.showDesc = false
-    $scope.document_title = doc.title;
-    $scope.document_link = doc.versionUrl;
-    $scope.document_type = doc.type;
-    $scope.document_xp = doc.xp;
+    /*Lightbox.$on('click', function() {
+      console.log($scope);
+    })*/
 
-
-    //Show / hide document right
-  
-  }
-
-  $scope.documentsList = [
-  {
-    'order':1,
-    'date':'1298323623006',
-    'description':'Naissance de Paolo Salvatore',
-    'xp':'',
-    'documents':[
-    {
-      title: 'Photo de naissance',
-      thumbnail: 'img/imgPieceAConviction/imgPAC_thumb.jpg',
-      versionUrl: '',
-      src: 'http://...',
-      type: 'photo',
-      templateHtml:'http://',   
-      xp: '15'
-    },
-    {
-      title: 'Acte de naissance',
-      thumbnail: 'img/imgPieceAConviction/imgPAC_thumb.jpg',
-      versionUrl: 'http://...',
-      src: '',
-      type: 'image',
-      templateHtml:'http://...',    
-      xp: '16'
-    },
-       {
-      title: 'Acte de naissance',
-      thumbnail: 'img/imgPieceAConviction/imgPAC_thumb.jpg',
-      versionUrl: 'http://...',
-      src: '',
-      type: 'image',
-      templateHtml:'http://...',    
-      xp: '16'
-    },
-     {
-      title: 'Acte de naissance',
-      thumbnail: 'img/imgPieceAConviction/imgPAC_thumb.jpg',
-      versionUrl: 'http://...',
-      src: '',
-      type: 'image',
-      templateHtml:'http://...',    
-      xp: '16'
-    }
-    ]
-  },
-  {
-    'order':2,
-    'date':'1288323623006',
-    'description':'Emprisonnement de Daniele Salvatore',
-    'xp':'',
-    'documents': [
-    {
-      title: 'Vidéosurveillance transaction',
-      thumbnail: 'img/imgPieceAConviction/imgPAC_thumb.jpg',
-      versionUrl: '',
-      src: 'http://...',
-      type: 'video',
-      templateHtml:'http://',   
-      xp: '15'
-    }
-    ]
-  }
-  ]// \.documentsList
 
 
   
@@ -180,6 +114,7 @@
     }*/
 
 })
+
 
 
 
