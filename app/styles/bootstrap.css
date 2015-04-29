@@ -303,8 +303,6 @@ div.header {
     overflow-x: hidden;
     overflow-y: auto;
     /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
   }
 }
 /*
@@ -387,6 +385,12 @@ div.header {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-mafieu:before {
+  content: "\e619";
+}
+.icon-notification:before {
+  content: "\e61a";
 }
 .icon-iconeRound:before {
   content: "\ea92";
@@ -579,21 +583,117 @@ div.header {
   display: block;
   color: #444;
 }
-.description {
-  background-image: url('../img/halftone.png');
-  background-color: white;
-  margin-bottom: 10px;
+/*
+	.description{
+		background-image: url('../img/halftone.png');
+		background-color: white;
+		margin-bottom: 10px;
+	}
+
+	.organigrammeDescription {
+
+		.description{
+			background-image: url('../img/halftone.png');
+			background-color: white;
+			margin-top: 50px;
+			margin-bottom: 10px;
+		}
+	}
+
+
+
+	#mynetwork {
+		width: 600px;
+		min-height: 600px;
+		border: 1px solid lightgray;
+	}
+*/
+.mafia {
+  height: 100%;
 }
-.organigrammeDescription .description {
-  background-image: url('../img/halftone.png');
-  background-color: white;
-  margin-top: 50px;
-  margin-bottom: 10px;
+.mafia .mafiaList {
+  background: url('../img/side_nav_mafia.png') top right repeat-y;
+  border: none;
+  height: 100%;
+  position: fixed;
+  left: -5px;
+  padding: 70px 0 0 0;
+  z-index: 2;
+  overflow: hidden;
 }
-#mynetwork {
-  width: 600px;
-  min-height: 600px;
-  border: 1px solid lightgray;
+.mafia .mafiaList ul {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  overflow-x: visible;
+}
+.mafia .mafiaList ul li {
+  list-style: none;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  padding: 10px 0 0 5px;
+  width: 100%;
+  margin: 0 0 20px;
+  height: 45px;
+  float: left;
+}
+.mafia .mafiaList ul li h3 {
+  font-size: 1.2em;
+  margin: 0;
+  color: #817874;
+}
+.mafia .mafiaList ul li h3 span {
+  font-size: 1.5em;
+  margin-right: 5%;
+}
+.mafia .mafiaList ul li.active,
+.mafia .mafiaList ul li:hover {
+  cursor: pointer;
+  background: url('../img/side_nav_hover.png') top right no-repeat;
+}
+.mafia .mafiaList ul li.active h3,
+.mafia .mafiaList ul li:hover h3 {
+  color: #9e1915;
+}
+.mafia .mafiaList ul li:last-child {
+  margin-bottom: 0;
+}
+.mafia .mafiaList ul li:last-child a {
+  border-bottom: none;
+}
+.mafia .mafiaContent {
+  float: left;
+  position: absolute;
+  top: -30px;
+  padding: 0;
+  left: -11px;
+}
+.mafia .mafiaContent .content_wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+.mafia .mafiaContent .content_wrapper .locked {
+  background: rgba(0, 0, 0, 0.74);
+  position: fixed;
+  height: 100%;
+  width: 90%;
+}
+.mafia .mafiaContent .content_wrapper .locked img {
+  width: 10%;
+  position: absolute;
+  left: 45%;
+  top: 10%;
+}
+.mafia .mafiaContent .content_wrapper .locked h1 {
+  color: #eeece1;
+  text-transform: lowercase;
+  font-size: 5em;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-align: center;
+  padding-top: 20%;
 }
 #leafletMap {
   z-index: 1;
@@ -738,11 +838,19 @@ div.header {
   -o-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   cursor: pointer;
+<<<<<<< HEAD
   -ms-transform: rotate(3deg);
   /* IE 9 */
   -webkit-transform: rotate(3deg);
   /* Chrome, Safari, Opera */
   transform: rotate(3deg);
+=======
+  -ms-transform: rotate(1deg);
+  /* IE 9 */
+  -webkit-transform: rotate(1deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(1deg);
+>>>>>>> 5fc87380106c53b3251866b90b0dc5a2607045e6
 }
 .piecesCollection img:last-child {
   margin-right: 0px;

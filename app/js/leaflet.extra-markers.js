@@ -55,7 +55,7 @@
             return div;
         },
         _createCustomImg: function(){
-            return "<img src='"+this.options.iconImg+"' width='"+this.options.imgWidth+"' height='"+this.options.imgHeight+"'>";
+            return "<div><img src='"+this.options.iconImg+"' width='"+this.options.imgWidth+"' height='"+this.options.imgHeight+"'><i  class='" + this.options.extraClasses + "'></i></div>";
      
         },
 
