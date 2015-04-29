@@ -293,6 +293,10 @@ angular
         var actionPoint = []
         angular.forEach(sectors, function(sector, key) {
           angular.forEach(sector.properties.actionsPoint, function(point) {
+            var cpy = {}
+            cpy.id = sector.id
+            cpy.influence = sector.properties.influence
+            point.sector = cpy
             actionPoint.push(point)
           })
         })
@@ -326,12 +330,41 @@ angular
   .service('GameCoreService', function(){
 
     var core = {
-      getExpectedDrop: function (action) {
+      getExpectedDrop: function (action, sector) {
         return 1
       }
     }
     return core
 
+  })
+
+
+  /**
+   * Rajoute des fonctionnalite au rootScope
+   * Next step: créé un service pour le player
+   * 
+   */
+  .run(function ($rootScope) {
+    angular.extend($rootScope, {
+      getNbActionPerformed: function(theId) {
+        var actionPerformedInTheSector = 0
+        angular.forEach($rootScope.playerInfos.sectors, function(sector){
+          if(sector.sector_id == theId) {
+            actionPerformedInTheSector = sector.actionsPerformed
+          }
+        })
+        return actionPerformedInTheSector
+      },
+      isSectorActionPerformed: function(theId, actionToPerformed) {
+        var sectorIsDebloced = false
+        angular.forEach($rootScope.playerInfos.sectors, function(sector){
+          if(sector.sector_id == theId && sector.actionsPerformed >= actionToPerformed) {
+            sectorIsDebloced = true
+          }
+        })
+        return sectorIsDebloced
+      }
+    })
   })
 
 

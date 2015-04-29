@@ -253,29 +253,28 @@ var colors = {
       })
     })
     
-    angular.extend($rootScope, {
-      getNbActionPerformed: function(theId) {
-        var actionPerformedInTheSector = 0
-        angular.forEach($rootScope.playerInfos.sectors, function(sector){
-          if(sector.sector_id == theId) {
-            actionPerformedInTheSector = sector.actionsPerformed
-          }
-        })
-        return actionPerformedInTheSector
-      }
-    })
+    
     
     $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
       angular.forEach(featureSelected.properties.actionsPolygon, function(actionPolygon, key){
         featureSelected.properties.actionsPolygon[key].isAvailable = (actionPolygon.lastPerformed + actionPolygon.coolDown < Math.floor(Date.now()/1000))
-        featureSelected.properties.actionsPolygon[key].expectedDrop = GameCoreService.getExpectedDrop(featureSelected)
+        var data = {id: featureSelected.id, influence: featureSelected.properties.influence }
+        featureSelected.properties.actionsPolygon[key].expectedDrop = GameCoreService.getExpectedDrop(actionPolygon, data)
         featureSelected.properties.actionsPolygon[key].sectorInfluence = featureSelected.properties.influence
       })
-      $rootScope.$emit('click on sector', featureSelected)
-      $scope.sectorSelected = featureSelected.properties
+      
       $scope.completeSectorSelected = featureSelected
+      $scope.sectorSelected = featureSelected.properties
+      if ($rootScope.isSectorActionPerformed(featureSelected.id, featureSelected.properties.nbActions)) {
+        $scope.sectorSelected.fullLinkImg = Config.API_URL + featureSelected.properties.character.portrait
+      } else {
+        $scope.sectorSelected.fullLinkImg = Config.API_URL + 'portraits/unknown.png'
+        $scope.sectorSelected.character.sectorDescription = ''
+      }
       $scope.nbActionPerformed = Math.min($rootScope.getNbActionPerformed(featureSelected.id), featureSelected.properties.nbActions)
       $scope.updateActionDescription(featureSelected.properties.actionsPolygon[0])
+      
+      $rootScope.$emit('click on sector', featureSelected)
     })
 
  })

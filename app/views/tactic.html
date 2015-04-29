@@ -36,12 +36,10 @@
               <td>{{actionSelected.accessLevel}}</td>
             </tr>
             <tr>
-             <!-- KURWAAA!!!!!!!!!! -->
               <th>Influence prévue</th>
               <td>{{actionSelected.sectorInfluence - actionSelected.expectedDrop}}%</td>
             </tr>
             <tr>
-             <!-- KURWAAA!!!!!!!!!! -->
               <th>baisse</th>
               <td>{{actionSelected.expectedDrop}}%</td>
             </tr>
@@ -52,16 +50,20 @@
           </table>
         </section>
         <section class="col-md-2 col-md-offset-1 pull-down dash_btn">
-          <button type="button" class="btn btn-default btn-dash" ng-click="makeAction(actionSelected.id)">EFFECTUER</button>
+          <button 
+            type="button" 
+            class="btn btn-default btn-dash" 
+            ng-disabled="!actionSelected.isAvailable" 
+            ng-click="makeAction(actionSelected.id)">EFFECTUER</button>
         </section>
       </div>
       <div class="row">
         <section class="col-md-offset-1 col-md-1" >
-          <img src="img/mafiosiAvatar.png"class="img-responsive img-round" alt="imageMafioso">
+          <img src="{{sectorSelected.fullLinkImg}}" class="img-responsive img-round" alt="imageMafioso">
         </section>
         <section class="col-md-4" >
           <h1>{{sectorSelected.nomsquart}}</h1>
-          
+          <p>{{sectorSelected.character.sectorDescription}}</p>
 
         </section>
         <section class="col-md-3 col-md-offset-1">
