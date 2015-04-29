@@ -583,31 +583,6 @@ div.header {
   display: block;
   color: #444;
 }
-/*
-	.description{
-		background-image: url('../img/halftone.png');
-		background-color: white;
-		margin-bottom: 10px;
-	}
-
-	.organigrammeDescription {
-
-		.description{
-			background-image: url('../img/halftone.png');
-			background-color: white;
-			margin-top: 50px;
-			margin-bottom: 10px;
-		}
-	}
-
-
-
-	#mynetwork {
-		width: 600px;
-		min-height: 600px;
-		border: 1px solid lightgray;
-	}
-*/
 .mafia {
   height: 100%;
 }
@@ -631,7 +606,7 @@ div.header {
   list-style: none;
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
   text-transform: lowercase;
-  padding: 10px 0 0 5px;
+  padding: 10px 0 0 15px;
   width: 100%;
   margin: 0 0 20px;
   height: 45px;
@@ -640,7 +615,7 @@ div.header {
 .mafia .mafiaList ul li h3 {
   font-size: 1.2em;
   margin: 0;
-  color: #817874;
+  color: #eeece1;
 }
 .mafia .mafiaList ul li h3 span {
   font-size: 1.5em;
@@ -694,6 +669,77 @@ div.header {
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
   text-align: center;
   padding-top: 20%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc {
+  background: url('../img/halftone.png') top left repeat;
+  padding: 50px 20px 0;
+  float: left;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 50px;
+  color: #333033;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader {
+  float: left;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader img {
+  float: left;
+  width: 10%;
+  margin-right: 2%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h1 {
+  float: left;
+  width: 88%;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 3.5em;
+  color: #14333d;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h1 span {
+  color: #3e758e;
+  font-size: 0.7em;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h4 {
+  color: #14333d;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  float: left;
+  font-size: 2em;
+  width: 88%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_life {
+  float: left;
+  width: 49%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_life p {
+  font-size: 1.7em;
+  line-height: 1.1em;
+  margin-bottom: 1em;
+  letter-spacing: 1px;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table {
+  float: right;
+  width: 49%;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table th {
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 1.4em;
+  text-align: right;
+  width: 30%;
+  vertical-align: middle;
+}
+.mafia .mafiaContent .content_wrapper .mafieu_desc .desc_table table td {
+  width: 70%;
+  font-size: 1.5em;
+  text-rendering: optimizeLegibility;
+  vertical-align: middle;
 }
 #leafletMap {
   z-index: 1;
