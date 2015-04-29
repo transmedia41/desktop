@@ -88,11 +88,13 @@ angular.module('deskappApp')
       // DOCUMENT NOTIFICATIONS
       SocketService.getSocket().emit('get document count')
       SocketService.getSocket().on('document count responce', function(data){
-        $scope.notifDoc = data
+        console.log(data)
+        $scope.$apply($scope.notifDoc = data)
         localStorageService.set('notifDoc', data)
       })
       SocketService.getSocket().on('update document count', function(data){
-        $scope.notifDoc = data
+        console.log(data)
+        $scope.$apply($scope.notifDoc = data)
         localStorageService.set('notifDoc', data)
       })
     })

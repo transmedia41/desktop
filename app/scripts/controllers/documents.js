@@ -66,11 +66,6 @@
       $scope.documentsList = data
     })
 
-
-
-
-
-
     $scope.openLightboxModal = function (index, document) {
       $scope.images = document.documents
       $scope.rootUrl = Config.API_URL
@@ -89,6 +84,7 @@
 
   $scope.open = function (size, doc) {
     $scope.items = doc
+    SocketService.getSocket().emit('document vu', doc.id)
     console.log($scope.items)
     var modalInstance = $modal.open({
       templateUrl: 'views/modal.html',
