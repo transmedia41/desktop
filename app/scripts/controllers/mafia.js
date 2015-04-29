@@ -31,18 +31,24 @@ angular.module('deskappApp')
 
 
  .controller('MafiaCtrl', function ($scope, CharacterService) {
+	 
+
 
     $scope.showDesc = true
     $scope.showDescNotAvaible = true
-
+	$scope.active=[]
     
     CharacterService.getCharacters(function(data){
       console.log(data)
     })
 
+	
     $scope.showMafiosiContent = function(character){
+	
+	$scope.active=[]
+	$scope.active[character.id]='active'
+	    
       console.log(character)
-
       //$scope.isDisabled = true;
       //return false;
 
