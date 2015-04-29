@@ -29,7 +29,7 @@ angular
    */
   .constant('Config', {
     API_URL: 'http://localhost:3000/',
-    //API_URL: 'http://hydromerta.comem.ch:9001/',
+    //API_URL: 'http://hydromerta.comem.ch/backend/',
     mapboxMapId:  'hydromerta.lpkj6fe5',
     mapboxAccessToken: 'pk.eyJ1IjoiaHlkcm9tZXJ0YSIsImEiOiJZTUlDdVA0In0.Z7qJF3weLg5WuPpzt6fMdA'
   })
@@ -256,6 +256,10 @@ angular
           sectors = data
           callback(sectors)
         })
+        SocketService.getSocket().on('update sectors influence', function(data){
+          remplaceAllSector(data)
+          $rootScope.$emit('new sector available')
+        })
     }
   
     function remplaceSector(newSector) {
@@ -264,6 +268,12 @@ angular
           sectors[key] = newSector
         }
       })
+      localStorageService.set('sectors', sectors)
+      localStorageService.set('last update sectors', Date.now())
+    }
+    
+    function remplaceAllSector(newSectors) {
+      sectors = newSectors
       localStorageService.set('sectors', sectors)
       localStorageService.set('last update sectors', Date.now())
     }
