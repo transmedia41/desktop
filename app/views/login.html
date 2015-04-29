@@ -56,6 +56,7 @@
                         <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
                      </div>
                      <p class="help-block" ng-show="false">* mot de passe non valide</p>
+                     <div class="error-msg">{{error}}</div>
                      <button type="submit" class="btn btn-default" ng-click="loginFunc()">se connecter</button>
                   </form>
                </div>
@@ -67,16 +68,17 @@
                   <form class="form-inline">
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                        <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username">
+                        <input type="text" class="form-control" ng-model="username" id="exampleInputEmail1" placeholder="Enter username" required>
                      </div>
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                        <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password" requried>
                      </div>
                      <div class="input-group">
                         <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                        <input type="password" class="form-control" ng-model="confirm" id="confirm" placeholder="Confirm password">
+                        <input type="password" class="form-control" ng-model="confirm" id="confirm" placeholder="Confirm password" required>
                      </div>
+                     <div class='error-msg'>{{error}}</div>
                      <button type="submit" class="btn btn-default" ng-click="registerFunc()">créer un compte</button>
                   </form>
                </div>

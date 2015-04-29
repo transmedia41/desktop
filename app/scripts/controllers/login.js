@@ -47,6 +47,12 @@ angular.module('deskappApp')
           })
         }).
         error(function(data, status, headers, config) {
+          $scope.error = "Impossible de se connecter"
+          setTimeout(function () {
+            $scope.error = null
+            $rootScope.$apply();
+          }, 2000)
+          // TODO : Message d'erreur de login
           // called asynchronously if an error occurs
           // or server returns response with an error status.
         })
@@ -67,7 +73,6 @@ angular.module('deskappApp')
 
 
   .controller('registerController', function ($rootScope, $scope, HTTPAuhtService) {
-  
     $scope.registerFunc = function() {
       if($scope.password == $scope.confirm) {
         var dataReg = {
@@ -78,11 +83,21 @@ angular.module('deskappApp')
           success(function(data, status, headers, config) {
             $rootScope.$emit('register', dataReg)
           }).error(function(data, status, headers, config) {
+            $scope.error = "Impossible de s'enregistrer"
+            setTimeout(function () {
+              $scope.error = null
+              $rootScope.$apply();
+            }, 2000)
+            // TODO : message erreur de register
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           })
       } else {
-        console.log('invalide confirm password')
+        $scope.error = "Confirmation de password invalide"
+        setTimeout(function () {
+          $scope.error = null
+          $rootScope.$apply();
+        }, 2000)
       }
     }
     
