@@ -6913,7 +6913,7 @@ button.close {
   font-size: 2em;
 }
 .modal-footer span:hover {
-  cursor: hand;
+  cursor: pointer;
 }
 .modal-footer .btn + .btn {
   margin-left: 5px;
