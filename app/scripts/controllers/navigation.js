@@ -125,7 +125,8 @@ angular.module('deskappApp')
       $scope.playerInfos = data.username
       $scope.playerRank =  data.level.rankName
       $scope.level =  data.level.level
-      if(data.level.level == 12) {
+      console.log(data.level.level)
+      if(data.level.level == 11) {
         // general, last level
         $scope.nbXP = data.xp
         $timeout(function(){

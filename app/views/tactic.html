@@ -109,10 +109,10 @@
                 <h1>Liste des actions disponible sur ce secteur</h1>
                 <div class="iconeReturn" ng-repeat="action in sectorSelected.actionsPolygon" >
                 <span 
-                  class="icon-{{action.type}} icon-actionlist icon-btn active" 
+                  class="icon-{{action.type}} icon-actionlist icon-btn" 
                   action-name="{{action.name}}" 
                   ng-click="updateActionDescription(action)"
-                  ng-class="{orange: !action.isAvailable}"></span>
+                  ng-class="{unavailable: !action.isAvailable, active: action.isAvailable}"></span>
                 </div>
 
               </section>
