@@ -20,12 +20,16 @@ angular.module('deskappApp')
   })
 
 
-  .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService, GameCoreService) {
+  .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService, GameCoreService, SocketService) {
     
     $scope.visible = false
     
     $scope.closeDashboard = function(){
       $scope.visible = false
+    }
+    
+    $scope.makeActionPoint = function(){
+      SocketService.getSocket().emit('make action point')
     }
     
     $rootScope.$on('click on marker', function(e, featureSelected){
