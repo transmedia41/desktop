@@ -123,12 +123,6 @@ this.tab = 1;
   $scope.selected = {
     item: $scope.items[0]
   };
-
-    $scope.toggle = true;
-    $scope.$watch('toggle', function(){
-        $scope.toggleText = $scope.toggle ? 'Play' : 'Pause';
-    })
-
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
