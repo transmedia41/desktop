@@ -28,7 +28,7 @@ body input:focus,
   color: red;
 }
 .headerContent {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .typographie-preset h1 {
   font-size: 1.6em;
@@ -200,7 +200,7 @@ footer {
 }
 div.dashboard-footer {
   z-index: 2;
-}	
+}
 .dash_experience tr:first-child {
   border: none;
 }
@@ -871,6 +871,7 @@ div.header {
 }
 .notifResistance .dropdown a {
   padding: 0px;
+  margin-top: 18px;
 }
 .notifResistance .dropdown .badge {
   background-color: #d3d3d3;
@@ -881,6 +882,12 @@ div.header {
 .notifResistance .dropdown .icoResistance {
   color: #6b7f7f;
   font-size: 50px;
+}
+.notifResistance .dropdown i {
+  margin: 0px !important;
+}
+.notifResistance .dropdown .resistance-a {
+  padding: 5px 5px 0px 5px;
 }
 .notifResistance .divider {
   clear: both;
@@ -931,16 +938,7 @@ div.header {
   width: 180px;
 }
 .piecesCollection img:hover {
-  -webkit-transition: 1s ease-in-out;
-  -moz-transition: 1s ease-in-out;
-  -o-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
   cursor: pointer;
-  -ms-transform: rotate(3deg);
-  /* IE 9 */
-  -webkit-transform: rotate(3deg);
-  /* Chrome, Safari, Opera */
-  transform: rotate(3deg);
 }
 .piecesCollection img:last-child {
   margin-right: 0px;
@@ -6950,7 +6948,7 @@ button.close {
   font-size: 2em;
 }
 .modal-footer span:hover {
-  cursor: hand;
+  cursor: pointer;
 }
 .modal-footer .btn + .btn {
   margin-left: 5px;
