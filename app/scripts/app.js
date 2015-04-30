@@ -221,6 +221,7 @@ angular
     $rootScope.$on('register', function (event) {
       console.log('register')
       // TODO : inclure la vidéo du chef de la résistance
+      localStorageService.set('just registered', true)
       // ... do something
     })
     $rootScope.$on('disconnected', function (event) {
