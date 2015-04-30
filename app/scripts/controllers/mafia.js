@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('deskappApp')
 	.controller('MainMafiaCtrl', function($scope) {
 	//...
@@ -23,8 +24,8 @@ angular.module('deskappApp')
 		$scope.desc_available = false
 		$scope.active = []
 		CharacterService.getCharacters(function(data) {
-			console.log(data)
 			$scope.characters = data
+            $scope.showMafiosiContent(data[0])
 			$scope.$apply()
 		})
 		$scope.showMafiosiContent = function(character) {

@@ -78,7 +78,8 @@ angular.module('deskappApp')
     $scope.loginFunc = function() {
       var data = {
         username: $scope.username,
-        password: $scope.password
+        password: $scope.password,
+        plateform: 'desktop'
       }
       logFunc(data)
     }

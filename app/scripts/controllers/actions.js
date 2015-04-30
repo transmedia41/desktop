@@ -20,12 +20,16 @@ angular.module('deskappApp')
   })
 
 
-  .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService, GameCoreService) {
+  .controller('ActionDashboardCtrl', function ($scope, $rootScope, SectorService, GameCoreService, SocketService) {
     
     $scope.visible = false
     
     $scope.closeDashboard = function(){
       $scope.visible = false
+    }
+    
+    $scope.makeActionPoint = function(){
+      SocketService.getSocket().emit('make action point')
     }
     
     $rootScope.$on('click on marker', function(e, featureSelected){
@@ -45,7 +49,7 @@ angular.module('deskappApp')
       
       defaults: {
         maxZoom: 18,
-        minZoom: 15,
+        minZoom: 14,
         attributionControl: false,
         tileLayer: mapboxTileLayer,
         zoomControl:false
@@ -135,31 +139,31 @@ angular.module('deskappApp')
             switch(point.properties.type.toLowerCase()) {
               case 'hydrante':
                 marker.icon.extraClasses = 'icon-hydrante'
-                marker.icon.iconImg = '../images/hydrante.png'//hydrante
+                marker.icon.iconImg = '../img/hydrante.png'//hydrante
                 break;
               case 'fontaine':
                 marker.icon.extraClasses = 'icon-fontaine'
-                marker.icon.iconImg = '../images/fontaine.png'
+                marker.icon.iconImg = '../img/fontaine.png'
                 break;
               case 'arrosage':
                 marker.icon.extraClasses = 'icon-arrosage'
-                marker.icon.iconImg = '../images/arrosage.png'
+                marker.icon.iconImg = '../img/arrosage.png'
                 break;
               case 'affiche':
                 marker.icon.extraClasses = 'icon-affiche'
-                marker.icon.iconImg = '../images/affiche.png'
+                marker.icon.iconImg = '../img/affiche.png'
                 break;
               case 'toilettes':
                 marker.icon.extraClasses = 'icon-toilettes'
-                marker.icon.iconImg = '../images/toilettes.png'
+                marker.icon.iconImg = '../img/toilettes.png'
                 break;
               case 'bouche_egout':
                 marker.icon.extraClasses = 'icon-bouche_egout'
-                marker.icon.iconImg = '../images/bouche-egout.png'//'../images/bouche-egout.png'
+                marker.icon.iconImg = '../img/bouche-egout.png'//'../images/bouche-egout.png'
                 break;
               case 'dechet_lac':
                 marker.icon.extraClasses = 'icon-dechet_lac'
-                marker.icon.iconImg = '../images/dechet-lac.png'
+                marker.icon.iconImg = '../img/dechet-lac.png'
                 break;
             }
             marker.icon.type  = 'extraMarker'
