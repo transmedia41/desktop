@@ -967,6 +967,9 @@ div.header {
   letter-spacing: 1px;
   line-height: 1em;
 }
+.descriptionLandingPage p a {
+  font-size: 1em;
+}
 .descriptionLandingPage a {
   font-size: 1.4em;
 }
@@ -999,6 +1002,16 @@ div.header {
   background-image: url('../img/halftone.png');
   background-color: white;
   margin-bottom: 10px;
+}
+.descriptionLandingPage .description .side .mobile {
+  margin-top: 50px;
+}
+.descriptionLandingPage .description .side .mobile img {
+  width: 100%;
+}
+.descriptionLandingPage .description .side .mobile button {
+  width: 100%;
+  margin-top: 30px;
 }
 .mainLogo {
   text-align: center;
