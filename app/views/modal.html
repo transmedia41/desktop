@@ -9,13 +9,13 @@
   <section ng-controller="panelController as panel">
     <ul class="nav nav-pills">
       <li ng-class="{ active:panel.isSelected(1) }">
-       <a href ng-click="panel.selectTab(1)">Tab 1</a>
+       <a href ng-click="panel.selectTab(1)">Fichier - 1</a>
      </li>
      <li ng-class="{ active:panel.isSelected(2) }" ng-show="{{items.versionurl}}">
-      <a href ng-click="panel.selectTab(2)">Tab 2</a>
+      <a href ng-click="panel.selectTab(2)">Fichier - 2</a>
     </li>
     <li ng-class="{ active:panel.isSelected(3) }" ng-show="{{items.templateHtml}}">
-      <a href ng-click="panel.selectTab(3)">Tab 3</a>
+      <a href ng-click="panel.selectTab(3)">Fichier - 3</a>
     </li>
   </ul>
   <div class="panel" ng-show="panel.isSelected(1)">
