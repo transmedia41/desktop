@@ -167,6 +167,9 @@ footer {
 div.dashboard-footer {
   z-index: 2;
 }
+.dash_experience td:first-child {
+  border-top: solid 4px;
+}
 .dash_experience th {
   font-size: 1.4em;
   color: #2b1a11;
