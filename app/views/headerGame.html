@@ -22,7 +22,7 @@
         <li class="dropdown">
         <a class="dropdown-toggle resistance-a" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icoResistance icon-notification"></i><!--<i class="badge">99</i>--></a>
           <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="message in messages">
+            <li ng-repeat="message in messages | reverse">
               <section class="row">
                 <div class="col-md-11">
                   <h1>{{message.title}}</h1>

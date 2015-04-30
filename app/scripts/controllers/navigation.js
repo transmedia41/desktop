@@ -148,8 +148,9 @@ angular.module('deskappApp')
         $rootScope.$emit('complete sector update after action')
       }, 1000)
       $scope.rankClass = function() {
-        return 'icon-' + $rootScope.playerInfos.level.icon
+        return 'icon-' + data.level.icon
       }
+      $rootScope.$emit('new messages')
       $scope.$apply()
     }
     
@@ -206,51 +207,45 @@ angular.module('deskappApp')
     
     var messages = []
     
-    
+    function updateMessages(data) {
+      if(localStorageService.get('messages')) {
+        var storage = localStorageService.get('messages')
+        if(typeof storage[$rootScope.playerInfos.id] != 'undefined') {
+          storage[$rootScope.playerInfos.id].push({
+            title: 'Nouveau rang',
+            content: data
+          })
+        } else {
+          storage = {}
+          storage[$rootScope.playerInfos.id] = []
+          storage[$rootScope.playerInfos.id].push({
+            title: 'Nouveau rang',
+            content: data
+          })
+        }
+        messages = storage[$rootScope.playerInfos.id]
+        $rootScope.$emit('new messages')
+        localStorageService.set('messages', JSON.stringify(storage))
+      } else {
+        var m = {}
+        m[$rootScope.playerInfos.id] = []
+        m[$rootScope.playerInfos.id].push({
+          title: 'Nouveau rang',
+          content: data
+        })
+        messages = m[$rootScope.playerInfos.id]
+        $rootScope.$emit('new messages')
+        localStorageService.set('messages', JSON.stringify(m))
+      }
+    }
     
     // on connection
     $rootScope.$on('connection', function(){
       
-      $rootScope.$on('user responce', function(){
-        var data = localStorageService.get('messages')
-        if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
-          messages = data[$rootScope.playerInfos.id]
-          $rootScope.$emit('new messages')
-        }
-      })
-      
-      
       SocketService.getSocket().on('new rank', function(data){
-        if(localStorageService.get('messages')) {
-          var storage = localStorageService.get('messages')
-          if(typeof storage[$rootScope.playerInfos.id] != 'undefined') {
-            storage[$rootScope.playerInfos.id].push({
-              title: 'Nouveau rang',
-              content: data
-            })
-          } else {
-            storage = {}
-            storage[$rootScope.playerInfos.id] = []
-            storage[$rootScope.playerInfos.id].push({
-              title: 'Nouveau rang',
-              content: data
-            })
-          }
-          messages = storage[$rootScope.playerInfos.id]
-          $rootScope.$emit('new messages')
-          localStorageService.set('messages', JSON.stringify(storage))
-        } else {
-          var m = {}
-          m[$rootScope.playerInfos.id] = []
-          m[$rootScope.playerInfos.id].push({
-            title: 'Nouveau rang',
-            content: data
-          })
-          messages = m[$rootScope.playerInfos.id]
-          $rootScope.$emit('new messages')
-          localStorageService.set('messages', JSON.stringify(m))
-        }
+        updateMessages(data)
       })
+      
     })
     
     return {
@@ -258,28 +253,48 @@ angular.module('deskappApp')
         return messages
       },
       killMessage: function(data){
-        console.log('kill message', data)
+        var newMessages = []
         angular.forEach(messages, function(value, key){
-          if(value.content == data.content) {
-            return key
+          if(value.content != data.content) {
+            newMessages.push(value)
           }
         })
+        var old = localStorageService.get('messages')
+        old[$rootScope.playerInfos.id] = newMessages
+        localStorageService.set('messages', JSON.stringify(messages))
+        $rootScope.$emit('new messages')
       },
       hasMessages: function(){
-        return messages.length>0
+        var data = localStorageService.get('messages')
+        console.log(data[$rootScope.playerInfos.id], $rootScope.playerInfos.id)
+        //return data[$rootScope.playerInfos.id].length > 0
+        return true
       }
+    }
+  })
+
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse()
     }
   })
 
   .controller('MessagesCtrl', function ($rootScope, $scope, $location, MessagesService) {
     
+    $scope.messages = []
+    $scope.hasMessages = MessagesService.hasMessages()
+    
     $rootScope.$on('new messages', function(){
+      console.log('new messages')
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
-      $scope.$apply()
     })
     
-    $scope.hasMessages = MessagesService.hasMessages()
+    $rootScope.$on('user responce', function(){
+      console.log('user responce')
+      $scope.messages = MessagesService.getMessages()
+      $scope.hasMessages = MessagesService.hasMessages()
+    })
     
     $scope.closeMessage = function(data){
       MessagesService.killMessage(data)
