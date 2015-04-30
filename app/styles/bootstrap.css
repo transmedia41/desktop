@@ -419,10 +419,10 @@ div.header {
   display: block;
   position: absolute;
   background: rgba(238, 236, 225, 0.9);
-  width: 30vw;
+  width: 33vw;
   height: auto;
   top: 150px;
-  right: 55px;
+  right: 60px;
   padding: 10px;
   -webkit-transition: all 150ms ease-in-out;
   -moz-transition: all 150ms ease-in-out;
@@ -436,7 +436,7 @@ div.header {
   font-size: large;
 }
 #help .help_icon_wrap .trigger h1 {
-  opacity: 0.7;
+  opacity: 0.85;
   border-radius: 50%;
   cursor: pointer;
   background: #333033;
@@ -449,7 +449,7 @@ div.header {
   font-size: xx-large;
 }
 #help .help_icon_wrap .trigger:hover .tooltip_help {
-  top: 0px;
+  top: -70px;
   -webkit-transition: all 150ms ease-in-out;
   -moz-transition: all 150ms ease-in-out;
   -ms-transition: all 150ms ease-in-out;
