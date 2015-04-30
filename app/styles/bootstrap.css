@@ -27,6 +27,16 @@ body input:focus,
   font-size: 1.2em;
   color: red;
 }
+.headerContent {
+  margin-top: 10px;
+}
+.typographie-preset h1 {
+  font-size: 1.6em;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+}
+.typographie-preset p {
+  font-size: 1.4em;
+}
 .contentDashboard h1 {
   font-size: 1.6em;
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
@@ -77,6 +87,20 @@ body input:focus,
   margin-right: auto;
   margin-left: auto;
   height: 100px;
+}
+.mainDaschboard {
+  min-height: 200px;
+  background-image: url('../img/halftone.png');
+  border-top: solid 5px #817874;
+}
+.mainDaschboard h1 {
+  margin-top: 0px;
+}
+.mainDaschboard .sectorDescription h1 {
+  margin-top: 15px;
+}
+.mainDaschboard .sectorDescription p {
+  font-size: 1.4em;
 }
 .input {
   outline: none !important;
@@ -289,14 +313,6 @@ div.header {
   bottom: 0;
   position: absolute;
   height: 60px;
-}
-.mainDaschboard {
-  min-height: 200px;
-  background-image: url('../img/halftone.png');
-  border-top: solid 5px #817874;
-}
-.mainDaschboard h1 {
-  margin-top: 0px;
 }
 /*
  * Global add-ons
@@ -639,7 +655,7 @@ div.header {
   padding: 10px 0 0 15px;
   width: 100%;
   margin: 0 0 20px;
-  height: 45px;
+  height: 38px;
   float: left;
 }
 .mafia .mafiaList ul li h3 {
@@ -660,11 +676,11 @@ div.header {
 .mafia .mafiaList ul li:hover h3 {
   color: #9e1915;
 }
+.mafia .mafiaList ul li:nth-child(3n) {
+  margin-bottom: 45px;
+}
 .mafia .mafiaList ul li:last-child {
   margin-bottom: 0;
-}
-.mafia .mafiaList ul li:last-child a {
-  border-bottom: none;
 }
 .mafia .mafiaContent {
   float: left;
@@ -684,7 +700,8 @@ div.header {
   background: rgba(0, 0, 0, 0.74);
   position: fixed;
   height: 100%;
-  width: 90%;
+  width: 100%;
+  left: 5%;
 }
 .mafia .mafiaContent .content_wrapper .locked img {
   width: 10%;
@@ -707,6 +724,7 @@ div.header {
   width: 70%;
   margin-left: 15%;
   margin-top: 50px;
+  margin-bottom: 50px;
   color: #333033;
 }
 .mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader {
@@ -824,7 +842,11 @@ div.header {
   letter-spacing: 0.1em;
   word-spacing: 0.1em;
   text-transform: uppercase;
+  font-size: 1.6em;
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+}
+.descriptionLandingPage p {
+  font-size: 1.4em;
 }
 .descriptionLandingPage .description {
   background-image: url('../img/halftone.png');
@@ -847,16 +869,16 @@ div.header {
 .imgGD.ng-hide {
   opacity: 0;
 }
-.notifResistance a {
+.notifResistance .dropdown a {
   padding: 0px;
 }
-.notifResistance .badge {
+.notifResistance .dropdown .badge {
   background-color: #d3d3d3;
   border: solid 2px #6b7f7f;
   vertical-align: top;
   width: auto;
 }
-.notifResistance .icoResistance {
+.notifResistance .dropdown .icoResistance {
   color: #6b7f7f;
   font-size: 50px;
 }
@@ -5177,8 +5199,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin: 7.5px -15px;
 }
 .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
   line-height: 20px;
 }
 @media (max-width: 767px) {
