@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700);
 /*
  * Base structure
  */
@@ -345,6 +347,9 @@ div.header {
 /* Hide for mobile, show later */
 .sidebar {
   display: none;
+}
+.sidebar img {
+  width: 200px !important;
 }
 @media (min-width: 768px) {
   .sidebar {
