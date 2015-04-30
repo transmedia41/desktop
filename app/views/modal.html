@@ -10,7 +10,7 @@
 
   <section ng-controller="panelController as panel">
     <ul class="nav nav-pills">
-      <li ng-class="{ active:panel.isSelected(1) }" ng-show="{{items.versionUrl}}||{{items.templateHtml}}">
+      <li ng-class="{ active:panel.isSelected(1) }" ng-show="'{{items.versionUrl}}' && '{{items.versionUrl}}'">
        <a href ng-click="panel.selectTab(1)">Fichier - 1</a>
      </li>
      <li ng-class="{ active:panel.isSelected(2) }" ng-show="{{items.versionUrl}}">
@@ -25,8 +25,12 @@
       <img ng-src="{{rootUrl}}{{items.src}}" class="img-responsive">
     </div>
     <div ng-show="'{{items.type}}'=='video'">
-      <iframe ng-src="{{items.src}}" width="auto" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    {{items.src}}
+      <iframe src="{{items.src}}" width="auto" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    
     </div>
+
+
   </div>
   <div class="panel" ng-show="panel.isSelected(2)">
    <div ng-show="'{{items.type}}'=='image'">
