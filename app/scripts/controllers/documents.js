@@ -61,23 +61,25 @@
  .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log) {
 
     DocumentService.getDocuments(function(data){
-      console.log('documents',data)
+      console.log('documents', data)
       $scope.rootUrl = Config.API_URL
-      $scope.documentsList = data
+      $scope.$apply($scope.documentsList = data)
     })
 
-    $scope.openLightboxModal = function (index, document) {
-      $scope.images = document.documents
-      $scope.rootUrl = Config.API_URL
-
-      console.log(document.documents)
-      for (var i = 0; i < document.documents.length; i++) {
-        document.documents[i].src = Config.API_URL + document.documents[i].src
-        console.log(document.documents[i])
-      };
-
-      Lightbox.openModal($scope.images, index)
-    }
+    console.log($scope.documentList)
+//
+//    $scope.openLightboxModal = function (index, document) {
+//      $scope.images = document.documents
+//      $scope.rootUrl = Config.API_URL
+//
+//      console.log(document.documents)
+//      for (var i = 0; i < document.documents.length; i++) {
+//        document.documents[i].src = Config.API_URL + document.documents[i].src
+//        console.log(document.documents[i])
+//      };
+//
+//      Lightbox.openModal($scope.images, index)
+//    }
 
 
   $scope.items = ['item1', 'item2', 'item3'];
