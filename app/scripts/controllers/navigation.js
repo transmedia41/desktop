@@ -195,3 +195,72 @@ angular.module('deskappApp')
     
     
   })
+
+  .service('MessagesService', function($rootScope, localStorageService, SocketService){
+    
+    var messages = []
+    
+    if(localStorageService.get('messages')) {
+      var data = localStorageService.get('messages')
+      console.log(typeof data[$rootScope.playerInfos.id] != 'undefined')
+      if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
+        messages = data[$rootScope.playerInfos.id]
+        $rootScope.$emit('new messages')
+      }
+    }
+    
+    // on connection
+    $rootScope.$on('connection', function(){
+      
+      
+      
+      SocketService.getSocket().on('new rank', function(data){
+        if(localStorageService.get('messages')) {
+          storage = localStorageService.get('messages')
+          if(typeof storage[$rootScope.playerInfos.id] != 'undefined') {
+            storage[$rootScope.playerInfos.id].push({
+              title: 'Nouveau rang',
+              content: data
+            })
+          } else {
+            storage = {}
+            storage[$rootScope.playerInfos.id] = []
+            storage[$rootScope.playerInfos.id].push({
+              title: 'Nouveau rang',
+              content: data
+            })
+          }
+          messages = storage[$rootScope.playerInfos.id]
+          $rootScope.$emit('new messages')
+          localStorageService.set('messages', JSON.stringify(storage))
+        } else {
+          var m = {}
+          m[$rootScope.playerInfos.id] = []
+          m[$rootScope.playerInfos.id].push({
+            title: 'Nouveau rang',
+            content: data
+          })
+          messages = m[$rootScope.playerInfos.id]
+          $rootScope.$emit('new messages')
+          localStorageService.set('messages', JSON.stringify(m))
+        }
+      })
+    })
+    
+    return {
+      getMessages: function(){
+        return messages
+      }
+    }
+  
+  })
+
+  .controller('MessagesCtrl', function ($rootScope, $scope, $location, MessagesService, CharacterService, SocketService, localStorageService) {
+    
+    $rootScope.$on('new messages', function(){
+      $scope.messages = MessagesService.getMessages()
+      console.log($scope.messages)
+      $scope.$apply()
+    })
+    
+  })
