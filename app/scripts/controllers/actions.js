@@ -42,6 +42,10 @@ angular.module('deskappApp')
 
   .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, Config, ngProgress) {
     
+    $scope.$on('$viewContentLoaded', function(){
+      console.log('Map Action Fully Charged')
+    });
+    
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + Config.mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + Config.mapboxAccessToken
     
     

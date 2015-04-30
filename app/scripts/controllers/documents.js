@@ -88,7 +88,10 @@
       size: size,
       resolve: {
         items: function () {
-          return $scope.items;
+          return $scope.items
+        },
+        audio: function() {
+          return $scope.audio
         }
       }
     });
@@ -113,48 +116,18 @@ this.tab = 1;
     return this.tab === checkTab;
   } 
 
-
-
-    
-
-}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, $sce) {
+}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, ngAudio) {
   $scope.rootUrl = Config.API_URL
-  //console.log($scope.rootUrl)
-
-
-  //$scope.items.src = {};
+  if (items.type === "audio") $scope.audio = ngAudio.load($scope.rootUrl + items.src)
   $scope.items = items;
-
-  //console.log('items:',$scope.items)
-
-
-/*
-  if($scope.items.type == 'video'){
-    console.log('bonjour')
-    $scope.videUrl = $sce.getTrustedResourceUrl($scope.items.src)
-
-  if ($scope.items.type == 'audio') {
-    console.log('yes sire')
-    $sce.getTrustedResourceUrl($scope.items.src)
-  } else if ($scope.items.type == 'video'){
-    
-     $scope.items.src  =  $sce.getTrustedResourceUrl($scope.items.src)
-    console.log('yes sire', $scope.items.sr)
-
-  }
-  */
-
   $scope.selected = {
     item: $scope.items[0]
   };
-
-
-
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
-
   $scope.cancel = function () {
+    if ($scope.audio) $scope.audio.stop()
     $modalInstance.dismiss('cancel');
   };
 }).controller("panelController", function($scope, $sce) {
@@ -165,65 +138,4 @@ this.tab = 1;
   this.isSelected = function(checkTab) {
     return this.tab === checkTab;
   } 
-
-
-/*
-$scope.linkValidation = function(obj) {
-  console.log('liens', obj.src)
-   return $sce.getTrustedResourceUrl(obj.src)
-} 
-
-
-$scope.$watch('items.src', function(obj) {
-        obj = $sce.getTrustedResourceUrl(obj.src)
-       return obj
-   })
-
-  $sce.trustAsResourceUrl($scope.items.src);
-*/
-
 })
-
-
-
-
-
-
-
-
-/*Lightbox.$on('click', function() {
-      console.log($scope);
-    })*/
-
-
-
-  
-  // CODE DE JOEL : test d'interaction avec le web service
-  /*$scope.events = []
-    
-    if(localStorageService.isSupported){
-      if(!localStorageService.get('events')){
-        // events pas présents on les demande tous
-        SocketService.getSocket()
-          .emit('get events')
-          .on('events responce', function(data){
-            localStorageService.set('events', data)
-            console.log('get events')
-            $scope.events = data
-            updateEvent()
-          })
-      } else {
-        $scope.events = localStorageService.get('events')
-        updateEvent()
-      }
-    } else {
-      $rootScope.$emit('localstorage not supported')
-    }
-  
-    function updateEvent(){
-      console.log($scope.events)
-    }*/
-
-
-
-
