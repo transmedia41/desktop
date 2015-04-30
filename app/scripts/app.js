@@ -21,7 +21,8 @@ angular
     'geolocation',
     'ngProgress',
     'bootstrapLightbox',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'videosharing-embed'
   ])
 
 
