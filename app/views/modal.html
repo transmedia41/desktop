@@ -3,11 +3,6 @@
   <h3 class="modal-title">{{items.title}}</h3>
 </div>
 <div class="modal-body">
-
-  <!--<div ng-show="{{items.templateHtml}}">
-    {{items.templateHtml}}
-  </div>-->
-
   <section ng-controller="panelController as panel">
     <ul class="nav nav-pills">
       <li ng-class="{ active:panel.isSelected(1) }" ng-show="'{{items.versionUrl}}' || '{{items.versionHtml}}'">
@@ -31,17 +26,16 @@
     </div>
 
     <div ng-show="'{{items.type}}'=='audio'">
-    {{rootUrl+items.src}}
-    <audio>
+        <button ng-click='audio.paused ? audio.play() : audio.pause()'>Pause</button>
+        <button ng-click='audio.restart()'>Stop</button>
+        <button ng-click='audio.muting = !audio.muting'>Mute</button>
 
-        <source ng-src="{{rootUrl+items.src}}" type="audio/mpeg">
-         
-    </audio>
-    </div>
-
+        <label>Progress</label>
+        <input class='form-control' type=range min=0 max=1 step=0.001 ng-model='audio.progress'>
+        <label>Volume</label>
+        <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>    </div>
     <div ng-show="'{{items.type}}'=='video'">
-    <!--{{items.src}}-->
-    <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1"  width="600px" height="400px" ng-href="{{items.src}}"></embed-video>
+    <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1"  width="800px" height="600   px" ng-href="{{items.src}}"></embed-video>
     </div>
   </div>
 
@@ -59,12 +53,6 @@
 <div ng-bind-html=""></div>
 </div>
 </section>
-<!--
-<div class="modal-link">
-  <h1>En savoir plus ?</h1>
-  <a ng-href="http://www.gravatar.com/avatar/{{hash}}" target="_blank">http://www.gravatar.com/avatar/{{hash}}</a>
-</div>
--->
 </div>
 <div class="modal-footer">
   <span ng-click="cancel()">close</span>
