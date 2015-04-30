@@ -259,7 +259,7 @@ var colors = {
       angular.forEach(featureSelected.properties.actionsPolygon, function(actionPolygon, key){
         featureSelected.properties.actionsPolygon[key].isAvailable = (actionPolygon.lastPerformed + actionPolygon.coolDown < Math.floor(Date.now()/1000))
         var data = {id: featureSelected.id, influence: featureSelected.properties.influence }
-        featureSelected.properties.actionsPolygon[key].expectedDrop = GameCoreService.getExpectedDrop(actionPolygon, data)
+        //featureSelected.properties.actionsPolygon[key].expectedDrop = GameCoreService.getExpectedDrop(actionPolygon, data)
         featureSelected.properties.actionsPolygon[key].sectorInfluence = featureSelected.properties.influence
       })
       
