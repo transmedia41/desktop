@@ -66,22 +66,6 @@
       $scope.$apply($scope.documentsList = data)
     })
 
-    console.log($scope.documentList)
-//
-//    $scope.openLightboxModal = function (index, document) {
-//      $scope.images = document.documents
-//      $scope.rootUrl = Config.API_URL
-//
-//      console.log(document.documents)
-//      for (var i = 0; i < document.documents.length; i++) {
-//        document.documents[i].src = Config.API_URL + document.documents[i].src
-//        console.log(document.documents[i])
-//      };
-//
-//      Lightbox.openModal($scope.images, index)
-//    }
-
-
   $scope.items = ['item1', 'item2', 'item3'];
 
   $scope.open = function (size, doc) {
