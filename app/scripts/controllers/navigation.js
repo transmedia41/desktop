@@ -88,12 +88,10 @@ angular.module('deskappApp')
       // DOCUMENT NOTIFICATIONS
       SocketService.getSocket().emit('get document count')
       SocketService.getSocket().on('document count responce', function(data){
-        console.log(data)
         $scope.$apply($scope.notifDoc = data)
         localStorageService.set('notifDoc', data)
       })
       SocketService.getSocket().on('update document count', function(data){
-        console.log(data)
         $scope.$apply($scope.notifDoc = data)
         localStorageService.set('notifDoc', data)
       })
@@ -127,7 +125,6 @@ angular.module('deskappApp')
       $scope.playerInfos = data.username
       $scope.playerRank =  data.level.rankName
       $scope.level =  data.level.level
-      console.log(data.level.level)
       if(data.level.level == 11) {
         // general, last level
         $scope.nbXP = data.xp
@@ -150,12 +147,17 @@ angular.module('deskappApp')
       $timeout(function(){
         $rootScope.$emit('complete sector update after action')
       }, 1000)
+      $scope.rankClass = function() {
+        return 'icon-' + $rootScope.playerInfos.level.icon
+      }
       $scope.$apply()
     }
     
     $rootScope.$on('user responce', function(e, data){
       $rootScope.playerInfos = data
       updateInfos(data)
+      
+      
       
       // emulate new xp
       /*$timeout(function(){
@@ -175,6 +177,8 @@ angular.module('deskappApp')
         $rootScope.playerInfos = data
         updateInfos(data)
       })
+      
+      
     })
     
     
@@ -194,29 +198,31 @@ angular.module('deskappApp')
     }
     
     
+    
+    
   })
 
   .service('MessagesService', function($rootScope, localStorageService, SocketService){
     
     var messages = []
     
-    if(localStorageService.get('messages')) {
-      var data = localStorageService.get('messages')
-      console.log(typeof data[$rootScope.playerInfos.id] != 'undefined')
-      if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
-        messages = data[$rootScope.playerInfos.id]
-        $rootScope.$emit('new messages')
-      }
-    }
+    
     
     // on connection
     $rootScope.$on('connection', function(){
       
+      $rootScope.$on('user responce', function(){
+        var data = localStorageService.get('messages')
+        if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
+          messages = data[$rootScope.playerInfos.id]
+          $rootScope.$emit('new messages')
+        }
+      })
       
       
       SocketService.getSocket().on('new rank', function(data){
         if(localStorageService.get('messages')) {
-          storage = localStorageService.get('messages')
+          var storage = localStorageService.get('messages')
           if(typeof storage[$rootScope.playerInfos.id] != 'undefined') {
             storage[$rootScope.playerInfos.id].push({
               title: 'Nouveau rang',
@@ -250,17 +256,33 @@ angular.module('deskappApp')
     return {
       getMessages: function(){
         return messages
+      },
+      killMessage: function(data){
+        console.log('kill message', data)
+        angular.forEach(messages, function(value, key){
+          if(value.content == data.content) {
+            return key
+          }
+        })
+      },
+      hasMessages: function(){
+        return messages.length>0
       }
     }
-  
   })
 
-  .controller('MessagesCtrl', function ($rootScope, $scope, $location, MessagesService, CharacterService, SocketService, localStorageService) {
+  .controller('MessagesCtrl', function ($rootScope, $scope, $location, MessagesService) {
     
     $rootScope.$on('new messages', function(){
       $scope.messages = MessagesService.getMessages()
-      console.log($scope.messages)
+      $scope.hasMessages = MessagesService.hasMessages()
       $scope.$apply()
     })
+    
+    $scope.hasMessages = MessagesService.hasMessages()
+    
+    $scope.closeMessage = function(data){
+      MessagesService.killMessage(data)
+    }
     
   })

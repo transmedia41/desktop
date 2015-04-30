@@ -10,7 +10,7 @@
         <span class="xp">xp </span>
         <span ng-bind="nbXP"></span><span>pts</span> <span ng-show="level<11">/</span> 
         <span ng-bind="nextLvlXP" ng-show="level<11"></span><span ng-show="level<11">pts</span>
-        <span class="icon-premiere_classe"></span>
+        <span ng-class="rankClass()"></span>
         <span ng-bind="playerRank | uppercase"></span>
         <span ng-bind="playerInfos"></span>       
         <div class="loader_wrap">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <ul class="nav navbar-nav notifResistance" ng-controller="MessagesCtrl">
+      <ul class="nav navbar-nav notifResistance" ng-controller="MessagesCtrl" ng-show="hasMessages">
         <li class="dropdown">
         <a class="dropdown-toggle resistance-a" data-toggle="dropdown" role="button" aria-expanded="false"><i class="icoResistance icon-notification"></i><!--<i class="badge">99</i>--></a>
           <ul class="dropdown-menu" role="menu">
@@ -29,7 +29,7 @@
                   <p>{{message.content}}</p>
                 </div>
                 <div class="col-md-1 closeNotification">
-                  <a ng-click="closeMessage(message)"><span class="icon-cross"></span></a>
+                  <a href="" ng-click="closeMessage(message)"><span class="icon-cross"></span></a>
                 </div>
               </section>
             </li>
