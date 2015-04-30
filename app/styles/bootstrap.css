@@ -11,6 +11,10 @@ button:active {
   outline: none !important;
   border: none !important;
 }
+.btn-credit {
+  letter-spacing: 0.1em;
+  font-size: 1.5em;
+}
 html,
 body,
 #content,
@@ -402,11 +406,11 @@ div.header {
 *		HELP Button
 */
 #help {
-  position: absolute;
+  position: fixed;
   z-index: 25;
   bottom: 10px;
   right: 10px;
-  color: #817874;
+  color: #eeece1;
 }
 #help .help_icon_wrap {
   position: relative;
@@ -418,7 +422,7 @@ div.header {
   width: 30vw;
   height: auto;
   top: 150px;
-  right: 50px;
+  right: 55px;
   padding: 10px;
   -webkit-transition: all 150ms ease-in-out;
   -moz-transition: all 150ms ease-in-out;
@@ -432,6 +436,7 @@ div.header {
   font-size: large;
 }
 #help .help_icon_wrap .trigger h1 {
+  opacity: 0.7;
   border-radius: 50%;
   cursor: pointer;
   background: #333033;
@@ -737,8 +742,8 @@ div.header {
 }
 .mafia .mafiaList ul li .spacer {
   margin: 25px 0px;
-  height: 2px;
-  background: #333033;
+  height: 1px;
+  background: #eeece1;
   width: 90%;
 }
 .mafia .mafiaList ul li.active,
@@ -824,7 +829,9 @@ div.header {
 }
 .mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h1 span {
   color: #3e758e;
-  font-size: 0.7em;
+  font-family: 'fairviewregular';
+  text-transform: capitalize;
+  font-size: 0.9em;
 }
 .mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader h4 {
   color: #14333d;
@@ -6934,14 +6941,23 @@ button.close {
   margin-left: auto;
   margin-right: auto;
 }
-.modal-body h2 {
+.modal-credit h2 {
   font-size: 2em;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
 }
-.modal-body dt {
-  font-size: 1.2em;
+.modal-credit h3 {
+  font-size: 1.8em;
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
 }
-.modal-body dd {
+.modal-credit dt {
+  font-size: 1.8em;
+  padding-left: 5px;
+}
+.modal-credit dd {
   font-style: italic;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  padding-left: 5px;
 }
 .modal {
   display: none;
