@@ -49,7 +49,7 @@ angular.module('deskappApp')
       
       defaults: {
         maxZoom: 18,
-        minZoom: 15,
+        minZoom: 14,
         attributionControl: false,
         tileLayer: mapboxTileLayer,
         zoomControl:false
