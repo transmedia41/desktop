@@ -28,10 +28,6 @@ angular.module('deskappApp')
       $scope.visible = false
     }
     
-    $scope.makeActionPoint = function(){
-      SocketService.getSocket().emit('make action point')
-    }
-    
     $rootScope.$on('click on marker', function(e, featureSelected){
       $scope.visible = true
       $scope.markerSelected = featureSelected
