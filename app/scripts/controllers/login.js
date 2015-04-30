@@ -84,6 +84,11 @@ angular.module('deskappApp')
       logFunc(data)
     }
     $rootScope.$on('register', function(e, data) {
+      var data = {
+        username: data.username,
+        password: data.password,
+        plateform: 'desktop'
+      }
       logFunc(data)
     })
 
