@@ -259,15 +259,20 @@ angular.module('deskappApp')
         }
       },
       killMessage: function(data){
+        console.log(data)
         var newMessages = []
-        angular.forEach(messages, function(value, key){
+        var data2 = localStorageService.get('messages')
+        angular.forEach(data2[$rootScope.playerInfos.id], function(value, key){
+          console.log(value.content, data.content)
           if(value.content != data.content) {
             newMessages.push(value)
           }
         })
-        var old = localStorageService.get('messages')
-        old[$rootScope.playerInfos.id] = newMessages
-        localStorageService.set('messages', JSON.stringify(messages))
+        
+        data2[$rootScope.playerInfos.id] = []
+        data2[$rootScope.playerInfos.id] = newMessages
+        console.log(data2[$rootScope.playerInfos.id], newMessages)
+        localStorageService.set('messages', JSON.stringify(data2))
         $rootScope.$emit('new messages')
       },
       hasMessages: function(){
@@ -294,7 +299,7 @@ angular.module('deskappApp')
     
     $rootScope.$on('new messages', function(){
       console.log('new messages')
-      console.log(MessagesService.getMessages())
+      //console.log(MessagesService.getMessages())
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
     })
