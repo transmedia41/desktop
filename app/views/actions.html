@@ -2,7 +2,18 @@
   <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" layers="layers" maxbounds="maxbounds" markers="markers"></leaflet>
 </div>
 
-
+<div id="help">
+		<div class="help_icon_wrap">
+			<div class="trigger">
+				<h1>?</h1>
+				<div class="tooltip_help">
+					<p>Dans cette section sont affichées toutes les actions géolocalisées.</p>
+                    <p>Tu peux de cette manière visualiser les détails, avoir une vue générale et créer ta stratégie.</p>
+                    <p>Aucune action n'est disponible depuis ton QG mais seulement depuis ton mobile.</p>
+				</div>
+			</div>
+		</div>	
+	</div>
 <!-- Fin contenu -->
 <footer ng-controller="ActionDashboardCtrl" ng-show="visible">
     <div class="navbar navbar-fixed-bottom dashboard-footer">

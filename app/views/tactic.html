@@ -1,6 +1,17 @@
 <div ng-controller="MapSectorCtrl" class="fullpage"> 
   <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" maxbounds="maxbounds"></leaflet>
-
+<div id="help">
+		<div class="help_icon_wrap">
+			<div class="trigger">
+				<h1>?</h1>
+				<div class="tooltip_help">
+					<p>Dans cette section sont affichés tous les secteurs de la ville.</p>
+          <p>Pour chaque secteur tu peux voir ses détails avec le membre qui en est le responsable et le nombre d'actions à réaliser pour débloquer le profil.</p>
+          <p>Tu peux également voir l'influence de la mafia dans ce secteur, les actions à réaliser pour la réduire et les détails de chacunes.</p>
+				</div>
+			</div>
+		</div>	
+	</div>
 
 <!-- Fin contenu -->
 <footer ng-controller="SectorDashboardCtrl" ng-show="visible">

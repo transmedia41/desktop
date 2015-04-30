@@ -32,7 +32,7 @@ angular.module('deskappApp')
                         console.log(character)
                         SocketService.getSocket().emit('character vu', character.id)
 			$scope.active = []
-			$scope.active[character.char_id - 2] = 'active'
+			$scope.active[character.char_id - 1] = 'active'
 			$scope.locked = null;
 			$scope.showDesc = true;
 			if (!character.available) $scope.locked = "locked"
