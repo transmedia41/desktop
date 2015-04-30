@@ -925,12 +925,42 @@ div.header {
 .descriptionLandingPage h1 {
   letter-spacing: 0.1em;
   word-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-size: 1.6em;
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
 }
 .descriptionLandingPage p {
   font-size: 1.4em;
+  letter-spacing: 1px;
+  line-height: 1em;
+}
+.descriptionLandingPage a {
+  font-size: 1.4em;
+}
+.descriptionLandingPage .tuto {
+  list-style: none;
+  margin-top: 20px;
+  float: left;
+  width: 100%;
+  padding: 0;
+}
+.descriptionLandingPage .tuto li {
+  float: left;
+  width: 22%;
+  margin: 0;
+  text-align: center;
+  margin-left: 4%;
+}
+.descriptionLandingPage .tuto li span {
+  font-size: 3vw;
+}
+.descriptionLandingPage .tuto li p {
+  font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 1.5em;
+}
+.descriptionLandingPage .tuto li:first-child {
+  margin: 0;
 }
 .descriptionLandingPage .description {
   background-image: url('../img/halftone.png');
