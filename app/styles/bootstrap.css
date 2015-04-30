@@ -6,12 +6,16 @@
 *:focus {
   outline: 0;
 }
+button:active {
+  outline: 0;
+  border: 0;
+}
 button:focus {
   outline: 0;
 }
 button:active {
-  outline: none !important;
-  border: none !important;
+  outline: 0 !important;
+  border: 0 !important;
 }
 .btn-credit {
   letter-spacing: 0.1em;
@@ -2251,9 +2255,7 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline: none;
 }
 figure {
   margin: 0;
@@ -3672,7 +3674,7 @@ input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: 0px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 output {
@@ -4163,7 +4165,7 @@ select[multiple].form-group-lg .form-control {
 .btn:active.focus,
 .btn.active.focus {
   outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: 0px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 .btn:hover,
@@ -5118,7 +5120,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs.nav-justified > .active > a,
 .nav-tabs.nav-justified > .active > a:hover,
 .nav-tabs.nav-justified > .active > a:focus {
-  border: 1px solid #dddddd;
+  border: 0px solid #dddddd;
 }
 @media (min-width: 768px) {
   .nav-tabs.nav-justified > li > a {
@@ -5187,7 +5189,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs-justified > .active > a,
 .nav-tabs-justified > .active > a:hover,
 .nav-tabs-justified > .active > a:focus {
-  border: 1px solid #dddddd;
+  border: 0px solid #dddddd;
 }
 @media (min-width: 768px) {
   .nav-tabs-justified > li > a {
@@ -7006,6 +7008,10 @@ button.close {
 .modal-open {
   overflow: hidden;
 }
+.btn-sound {
+  font-size: 1.6em;
+  letter-spacing: 0.2em;
+}
 .modal-link h1 {
   font-size: 1.4em;
   margin: 0;
@@ -7018,6 +7024,9 @@ button.close {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+.modal-body .input-group {
+  margin-bottom: 10px;
 }
 .modal-credit h2 {
   font-size: 2em;
