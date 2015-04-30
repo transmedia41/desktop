@@ -23,6 +23,7 @@
   <div class="panel" ng-show="panel.isSelected(1)">
     <div ng-show="'{{items.type}}'=='image'">
       <img ng-src="{{rootUrl}}{{items.src}}" class="img-responsive">
+    
     </div>
 
     <div ng-show="'{{items.type}}'=='photo'">
@@ -37,14 +38,18 @@
 
     <div ng-show="'{{items.type}}'=='video'">
     <!--{{items.src}}-->
-    <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1" ng-href="{{items.src}}"></embed-video>
+    <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1"  width="600px" height="400px" ng-href="{{items.src}}"></embed-video>
     </div>
   </div>
 
   <div class="panel" ng-show="panel.isSelected(2)">
    <div ng-show="'{{items.type}}'=='image'">
-    <img ng-src="{{items.versionUrl}}" class="img-responsive">
+    <img ng-src=" {{rootUrl}}{{items.versionUrl}}" class="img-responsive">
   </div>
+
+
+
+  
 </div>
 
 <div class="panel" ng-show="panel.isSelected(3)">

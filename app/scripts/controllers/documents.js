@@ -128,7 +128,6 @@ this.tab = 1;
 
   //$scope.items.src = {};
   $scope.items = items;
-
   //console.log('items:',$scope.items)
 
 
