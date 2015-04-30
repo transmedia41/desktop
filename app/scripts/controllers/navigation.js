@@ -150,7 +150,7 @@ angular.module('deskappApp')
       $scope.rankClass = function() {
         return 'icon-' + data.level.icon
       }
-      $rootScope.$emit('new messages')
+      //$rootScope.$emit('new messages')
       $scope.$apply()
     }
     
@@ -224,7 +224,7 @@ angular.module('deskappApp')
           })
         }
         messages = storage[$rootScope.playerInfos.id]
-        $rootScope.$emit('new messages')
+        //$rootScope.$emit('new messages')
         localStorageService.set('messages', JSON.stringify(storage))
       } else {
         var m = {}
@@ -234,7 +234,7 @@ angular.module('deskappApp')
           content: data
         })
         messages = m[$rootScope.playerInfos.id]
-        $rootScope.$emit('new messages')
+        //$rootScope.$emit('new messages')
         localStorageService.set('messages', JSON.stringify(m))
       }
     }
@@ -244,13 +244,19 @@ angular.module('deskappApp')
       
       SocketService.getSocket().on('new rank', function(data){
         updateMessages(data)
+        $rootScope.$emit('new messages')
       })
       
     })
     
     return {
       getMessages: function(){
-        return messages
+        var data = localStorageService.get('messages')
+        if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
+          return data[$rootScope.playerInfos.id]
+        } else {
+          return []
+        }
       },
       killMessage: function(data){
         var newMessages = []
@@ -266,9 +272,11 @@ angular.module('deskappApp')
       },
       hasMessages: function(){
         var data = localStorageService.get('messages')
-        console.log(data[$rootScope.playerInfos.id], $rootScope.playerInfos.id)
-        //return data[$rootScope.playerInfos.id].length > 0
-        return true
+        if(typeof data[$rootScope.playerInfos.id] != 'undefined') {
+          return data[$rootScope.playerInfos.id].length
+        } else {
+          return false
+        }
       }
     }
   })
@@ -282,16 +290,18 @@ angular.module('deskappApp')
   .controller('MessagesCtrl', function ($rootScope, $scope, $location, MessagesService) {
     
     $scope.messages = []
-    $scope.hasMessages = MessagesService.hasMessages()
+    $scope.hasMessages = false
     
     $rootScope.$on('new messages', function(){
       console.log('new messages')
+      console.log(MessagesService.getMessages())
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
     })
     
     $rootScope.$on('user responce', function(){
       console.log('user responce')
+      console.log(MessagesService.getMessages())
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
     })
