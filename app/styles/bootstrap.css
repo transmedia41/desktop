@@ -407,7 +407,7 @@ div.header {
 */
 #help {
   position: fixed;
-  z-index: 25;
+  z-index: 2;
   bottom: 10px;
   right: 10px;
   color: #eeece1;
@@ -504,6 +504,39 @@ div.header {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-soldat:before {
+  content: "\e61b";
+}
+.icon-premiere_classe:before {
+  content: "\e61c";
+}
+.icon-caporal:before {
+  content: "\e61d";
+}
+.icon-sergent:before {
+  content: "\e61e";
+}
+.icon-sergent_chef:before {
+  content: "\e61f";
+}
+.icon-adjudant:before {
+  content: "\e620";
+}
+.icon-major:before {
+  content: "\e621";
+}
+.icon-lieutenant:before {
+  content: "\e622";
+}
+.icon-capitaine:before {
+  content: "\e623";
+}
+.icon-colonel:before {
+  content: "\e624";
+}
+.icon-general:before {
+  content: "\e625";
 }
 .icon-mafieu:before {
   content: "\e619";
