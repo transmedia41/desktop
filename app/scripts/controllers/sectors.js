@@ -77,7 +77,7 @@ var colors = {
   })
  
  
-  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, GameCoreService, Config) {
+  .controller('MapSectorCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, GameCoreService, Config, ngProgress, SocketService) {
    
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + Config.mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + Config.mapboxAccessToken
     
@@ -253,9 +253,18 @@ var colors = {
       })
     })
     
+    $scope.$on("leafletDirectiveMap.loading", function(){
+      console.log('load les donées')
+      ngProgress.start()
+    })
+    
+    $scope.$on("leafletDirectiveMap.load", function(){
+      console.log('fini de mettre les donées')
+      ngProgress.complete()
+    })
     
     
-    $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
+    $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected) {
       angular.forEach(featureSelected.properties.actionsPolygon, function(actionPolygon, key){
         featureSelected.properties.actionsPolygon[key].isAvailable = (actionPolygon.lastPerformed + actionPolygon.coolDown < Math.floor(Date.now()/1000))
         var data = {id: featureSelected.id, influence: featureSelected.properties.influence }
