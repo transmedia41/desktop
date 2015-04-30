@@ -60,11 +60,13 @@
 
  .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log) {
 
-//    DocumentService.getDocuments(function(data){
-//      console.log('documents',data)
-//      $scope.rootUrl = Config.API_URL
-//      $scope.documentsList = data
-//    })
+    DocumentService.getDocuments(function(data){
+      console.log('documents', data)
+      $scope.rootUrl = Config.API_URL
+      $scope.$apply($scope.documentsList = data)
+    })
+
+    console.log($scope.documentList)
 //
 //    $scope.openLightboxModal = function (index, document) {
 //      $scope.images = document.documents
