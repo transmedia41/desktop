@@ -24,17 +24,20 @@
     <div ng-show="'{{items.type}}'=='image'">
       <img ng-src="{{rootUrl}}{{items.src}}" class="img-responsive">
     </div>
+
+    <div ng-show="'{{items.type}}'=='photo'">
+      <img ng-src="{{rootUrl}}{{items.src}}" class="img-responsive">
+    </div>
     <div ng-show="'{{items.type}}'=='video'">
     {{items.src}}
       <iframe src="{{items.src}}" width="auto" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    
     </div>
 
 
   </div>
   <div class="panel" ng-show="panel.isSelected(2)">
    <div ng-show="'{{items.type}}'=='image'">
-    <img ng-src="{{rootUrl}}{{items.versionurl}}" class="img-responsive">
+    <img ng-src="{{rootUrl}}{{items.versionUrl}}" class="img-responsive">
   </div>
 </div>
 <div class="panel" ng-show="panel.isSelected(3)">
