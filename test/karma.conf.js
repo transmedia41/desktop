@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/ngprogress/build/ngProgress.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/ng-videosharing-embed/build/ng-videosharing-embed.min.js',
+      'bower_components/angular-audio/app/angular.audio.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -68,7 +68,7 @@
 })
 
 
- .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log) {
+ .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log, ngAudio) {
 
     DocumentService.getDocuments(function(data){
       console.log('documents', data)
@@ -88,7 +88,10 @@
       size: size,
       resolve: {
         items: function () {
-          return $scope.items;
+          return $scope.items
+        },
+        audio: function() {
+          return $scope.audio
         }
       }
     });
@@ -119,6 +122,7 @@ this.tab = 1;
 
 }).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, $sce) {
   $scope.rootUrl = Config.API_URL
+  console.log(items)
   //console.log($scope.rootUrl)
 
 
@@ -148,8 +152,6 @@ this.tab = 1;
     item: $scope.items[0]
   };
 
-
-
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
@@ -165,14 +167,11 @@ this.tab = 1;
   this.isSelected = function(checkTab) {
     return this.tab === checkTab;
   } 
-
-
 /*
 $scope.linkValidation = function(obj) {
   console.log('liens', obj.src)
    return $sce.getTrustedResourceUrl(obj.src)
 } 
-
 
 $scope.$watch('items.src', function(obj) {
         obj = $sce.getTrustedResourceUrl(obj.src)
@@ -184,19 +183,9 @@ $scope.$watch('items.src', function(obj) {
 
 })
 
-
-
-
-
-
-
-
 /*Lightbox.$on('click', function() {
       console.log($scope);
     })*/
-
-
-
   
   // CODE DE JOEL : test d'interaction avec le web service
   /*$scope.events = []

@@ -22,7 +22,8 @@ angular
     'ngProgress',
     'bootstrapLightbox',
     'ui.bootstrap',
-    'videosharing-embed'
+    'videosharing-embed',
+    'ngAudio'
   ])
 
 

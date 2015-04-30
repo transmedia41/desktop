@@ -30,11 +30,8 @@
     </div>
 
     <div ng-show="'{{items.type}}'=='audio'">
-    {{rootUrl}}
     <audio>
-
-        <source ng-src="{{items.src}}" type="audio/mpeg">
-         
+        <source ng-src="{{rootUrl+items.src}}" type="audio/mpeg">
     </audio>
     </div>
 
