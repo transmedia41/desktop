@@ -176,7 +176,7 @@ footer {
 }
 div.dashboard-footer {
   z-index: 2;
-}
+}	
 .dash_experience tr:first-child {
   border: none;
 }
@@ -639,7 +639,7 @@ div.header {
   padding: 10px 0 0 15px;
   width: 100%;
   margin: 0 0 20px;
-  height: 45px;
+  height: 38px;
   float: left;
 }
 .mafia .mafiaList ul li h3 {
@@ -660,11 +660,11 @@ div.header {
 .mafia .mafiaList ul li:hover h3 {
   color: #9e1915;
 }
+.mafia .mafiaList ul li:nth-child(3n) {
+  margin-bottom: 45px;
+}
 .mafia .mafiaList ul li:last-child {
   margin-bottom: 0;
-}
-.mafia .mafiaList ul li:last-child a {
-  border-bottom: none;
 }
 .mafia .mafiaContent {
   float: left;
@@ -684,7 +684,8 @@ div.header {
   background: rgba(0, 0, 0, 0.74);
   position: fixed;
   height: 100%;
-  width: 90%;
+  width: 100%;
+  left: 5%;
 }
 .mafia .mafiaContent .content_wrapper .locked img {
   width: 10%;
@@ -707,6 +708,7 @@ div.header {
   width: 70%;
   margin-left: 15%;
   margin-top: 50px;
+  margin-bottom: 50px;
   color: #333033;
 }
 .mafia .mafiaContent .content_wrapper .mafieu_desc .descHeader {
@@ -847,16 +849,16 @@ div.header {
 .imgGD.ng-hide {
   opacity: 0;
 }
-.notifResistance a {
+.notifResistance .dropdown a {
   padding: 0px;
 }
-.notifResistance .badge {
+.notifResistance .dropdown .badge {
   background-color: #d3d3d3;
   border: solid 2px #6b7f7f;
   vertical-align: top;
   width: auto;
 }
-.notifResistance .icoResistance {
+.notifResistance .dropdown .icoResistance {
   color: #6b7f7f;
   font-size: 50px;
 }
@@ -909,7 +911,16 @@ div.header {
   width: 180px;
 }
 .piecesCollection img:hover {
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
   cursor: pointer;
+  -ms-transform: rotate(3deg);
+  /* IE 9 */
+  -webkit-transform: rotate(3deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(3deg);
 }
 .piecesCollection img:last-child {
   margin-right: 0px;
@@ -6921,7 +6932,7 @@ button.close {
   font-size: 2em;
 }
 .modal-footer span:hover {
-  cursor: pointer;
+  cursor: hand;
 }
 .modal-footer .btn + .btn {
   margin-left: 5px;
