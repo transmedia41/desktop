@@ -26,14 +26,28 @@
     </div>
 
     <div ng-show="'{{items.type}}'=='audio'">
-        <button ng-click='audio.paused ? audio.play() : audio.pause()'>Pause</button>
-        <button ng-click='audio.restart()'>Stop</button>
-        <button ng-click='audio.muting = !audio.muting'>Mute</button>
+    <div class="form-group">
+            <button class="btn btn-primary ng-binding btn-sound" ng-click="toggle = !toggle; audio.paused ? audio.play() : audio.pause()">{{toggleText}}</button>
+            <button class="btn btn-danger btn-sound" ng-click="audio.restart()">Stop</button>
+            <button class="btn btn-neutral ng-binding btn-sound" ng-click="audio.muting = !audio.muting">Mute</button>      
+ </div>
+ 
 
-        <label>Progress</label>
-        <input class='form-control' type=range min=0 max=1 step=0.001 ng-model='audio.progress'>
-        <label>Volume</label>
-        <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>    </div>
+
+        <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon glyphicon-dashboard"></span>
+        <input class='form-control ng-pristine ng-valid' type=range min=0 max=1 step=0.001 ng-model='audio.progress'>
+       </div>
+
+
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-volume-up"></span>
+        <input class='form-control ng-pristine ng-valid' type=range min=0 max=1 step=0.001 ng-model='audio.volume'>
+       </div>
+
+
+        
+
     <div ng-show="'{{items.type}}'=='video'">
     <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1"  width="800px" height="600px" ng-href="{{items.src}}"></embed-video>
     </div>
