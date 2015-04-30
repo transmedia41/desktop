@@ -1,6 +1,15 @@
 <div ng-controller="MapSectorCtrl" class="fullpage"> 
   <leaflet id="leafletMap" defaults="defaults" center="mapCenter" geojson="geojson" maxbounds="maxbounds"></leaflet>
-
+<div id="help">
+		<div class="help_icon_wrap">
+			<div class="trigger">
+				<h1>?</h1>
+				<div class="tooltip_help">
+					<p>Blublublublublublublub blublublublub</p>
+				</div>
+			</div>
+		</div>	
+	</div>
 
 <!-- Fin contenu -->
 <footer ng-controller="SectorDashboardCtrl" ng-show="visible">
