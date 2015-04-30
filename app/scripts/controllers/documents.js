@@ -8,10 +8,20 @@
  * Controller of the deskappApp
  */
  angular.module('deskappApp')
- 
+
+
+
   .controller('MainDocumentsCtrl', function ($scope) {
     //...
-  })
+  }).config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'https://vimeo.com/**',
+    'http://localhost:3000/**'
+  ])
+})
  
    .service('DocumentService', function($rootScope, SocketService){
 
@@ -107,13 +117,38 @@ this.tab = 1;
 
     
 
-}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config) {
+}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, $sce) {
   $scope.rootUrl = Config.API_URL
-  console.log($scope.rootUrl)
+  //console.log($scope.rootUrl)
+
+
+  //$scope.items.src = {};
   $scope.items = items;
+
+  //console.log('items:',$scope.items)
+
+
+/*
+  if($scope.items.type == 'video'){
+    console.log('bonjour')
+    $scope.videUrl = $sce.getTrustedResourceUrl($scope.items.src)
+
+  if ($scope.items.type == 'audio') {
+    console.log('yes sire')
+    $sce.getTrustedResourceUrl($scope.items.src)
+  } else if ($scope.items.type == 'video'){
+    
+     $scope.items.src  =  $sce.getTrustedResourceUrl($scope.items.src)
+    console.log('yes sire', $scope.items.sr)
+
+  }
+  */
+
   $scope.selected = {
     item: $scope.items[0]
   };
+
+
 
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
@@ -122,7 +157,7 @@ this.tab = 1;
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-}).controller("panelController", function($scope) {
+}).controller("panelController", function($scope, $sce) {
   this.tab = 1;
   this.selectTab = function(setTab) {
     this.tab = setTab;
@@ -130,9 +165,24 @@ this.tab = 1;
   this.isSelected = function(checkTab) {
     return this.tab === checkTab;
   } 
+
+
+/*
+$scope.linkValidation = function(obj) {
+  console.log('liens', obj.src)
+   return $sce.getTrustedResourceUrl(obj.src)
+} 
+
+
+$scope.$watch('items.src', function(obj) {
+        obj = $sce.getTrustedResourceUrl(obj.src)
+       return obj
+   })
+
+  $sce.trustAsResourceUrl($scope.items.src);
+*/
+
 })
-
-
 
 
 

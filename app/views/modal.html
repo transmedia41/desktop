@@ -10,14 +10,14 @@
 
   <section ng-controller="panelController as panel">
     <ul class="nav nav-pills">
-      <li ng-class="{ active:panel.isSelected(1) }" ng-show="'{{items.versionUrl}}' && '{{items.versionUrl}}'">
-       <a href ng-click="panel.selectTab(1)">Fichier - 1</a>
+      <li ng-class="{ active:panel.isSelected(1) }" ng-show="'{{items.versionUrl}}' || '{{items.versionHtml}}'">
+       <a href ng-click="panel.selectTab(1)">Iamge FR</a>
      </li>
      <li ng-class="{ active:panel.isSelected(2) }" ng-show="{{items.versionUrl}}">
-      <a href ng-click="panel.selectTab(2)">Fichier - 2</a>
+      <a href ng-click="panel.selectTab(2)">Image IT</a>
     </li>
     <li ng-class="{ active:panel.isSelected(3) }" ng-show="{{items.templateHtml}}">
-      <a href ng-click="panel.selectTab(3)">Fichier - 3</a>
+      <a href ng-click="panel.selectTab(3)">HTML</a>
     </li>
   </ul>
   <div class="panel" ng-show="panel.isSelected(1)">
@@ -28,20 +28,30 @@
     <div ng-show="'{{items.type}}'=='photo'">
       <img ng-src="{{rootUrl}}{{items.src}}" class="img-responsive">
     </div>
-    <div ng-show="'{{items.type}}'=='video'">
-    {{items.src}}
-      <iframe src="{{items.src}}" width="auto" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    <div ng-show="'{{items.type}}'=='audio'">
+    {{rootUrl}}
+    <audio>
+
+        <source ng-src="{{items.src}}" type="audio/mpeg">
+         
+    </audio>
     </div>
 
-
+    <div ng-show="'{{items.type}}'=='video'">
+    <!--{{items.src}}-->
+    <embed-video iframe-id="vimeo1" api="1" player_id="vimeo1" ng-href="{{items.src}}"></embed-video>
+    </div>
   </div>
+
   <div class="panel" ng-show="panel.isSelected(2)">
    <div ng-show="'{{items.type}}'=='image'">
-    <img ng-src="{{rootUrl}}{{items.versionUrl}}" class="img-responsive">
+    <img ng-src="{{items.versionUrl}}" class="img-responsive">
   </div>
 </div>
+
 <div class="panel" ng-show="panel.isSelected(3)">
-  Tab 3 Content
+<div ng-bind-html=""></div>
 </div>
 </section>
 <!--
