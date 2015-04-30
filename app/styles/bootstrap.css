@@ -419,7 +419,7 @@ div.header {
   display: block;
   position: absolute;
   background: rgba(238, 236, 225, 0.9);
-  width: 33vw;
+  width: 50vw;
   height: auto;
   top: 150px;
   right: 60px;
@@ -5795,13 +5795,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0;
 }
 #nav-left .nav li a span {
-  font-size: 55px;
+  font-size: 3vw;
 }
 #nav-left .nav li a span:before {
   color: #817874;
 }
 #nav-left .nav li a p {
   font-family: "hoverageregular", Helvetica, Arial, sans-serif;
+  font-size: 1vw;
   color: #817874;
 }
 #nav-left .nav li a:not(.active) {
@@ -5816,10 +5817,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-bottom: none;
   margin-bottom: 2px;
   background: none;
-}
-#nav-left .nav li.active a span,
-#nav-left .nav li:hover a span {
-  font-size: 55px;
 }
 #nav-left .nav li.active a span:before,
 #nav-left .nav li:hover a span:before {
