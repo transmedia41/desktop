@@ -3,15 +3,17 @@
   <h3 class="modal-title">{{items.title}}</h3>
 </div>
 <div class="modal-body">
-  <div ng-show="{{items.templateHtml}}">
+
+  <!--<div ng-show="{{items.templateHtml}}">
     {{items.templateHtml}}
-  </div>
+  </div>-->
+
   <section ng-controller="panelController as panel">
     <ul class="nav nav-pills">
-      <li ng-class="{ active:panel.isSelected(1) }">
+      <li ng-class="{ active:panel.isSelected(1) }" ng-show="{{items.versionUrl}}||{{items.templateHtml}}">
        <a href ng-click="panel.selectTab(1)">Fichier - 1</a>
      </li>
-     <li ng-class="{ active:panel.isSelected(2) }" ng-show="{{items.versionurl}}">
+     <li ng-class="{ active:panel.isSelected(2) }" ng-show="{{items.versionUrl}}">
       <a href ng-click="panel.selectTab(2)">Fichier - 2</a>
     </li>
     <li ng-class="{ active:panel.isSelected(3) }" ng-show="{{items.templateHtml}}">
