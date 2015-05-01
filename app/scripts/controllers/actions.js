@@ -39,7 +39,6 @@ angular.module('deskappApp')
   .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, Config, ngProgress) {
     
     $scope.$on('$viewContentLoaded', function(){
-      console.log('Map Action Fully Charged')
     });
     
     var mapboxTileLayer = "http://api.tiles.mapbox.com/v4/" + Config.mapboxMapId + "/{z}/{x}/{y}.png?access_token=" + Config.mapboxAccessToken
@@ -184,7 +183,6 @@ angular.module('deskappApp')
     
 
     $rootScope.$on('new sector available', function(){
-      console.log('sectors update')
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
         $scope.markers = $scope.addMarkersToMap(SectorService.getActionPoint())
@@ -192,7 +190,6 @@ angular.module('deskappApp')
     })
 
     $rootScope.$on('sector available', function(){
-      console.log('sectors charged')
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
         $scope.markers = $scope.addMarkersToMap(SectorService.getActionPoint())
@@ -200,12 +197,10 @@ angular.module('deskappApp')
     })
     
     $scope.$on("leafletDirectiveMap.loading", function(){
-      console.log('load les donées')
       ngProgress.start()
     })
     
     $scope.$on("leafletDirectiveMap.load", function(){
-      console.log('fini de mettre les donées')
       ngProgress.complete()
     })
     
@@ -217,11 +212,9 @@ angular.module('deskappApp')
     //$scope.markers = $scope.addSectorMarkersToMap(SectorService.getSectors())
     
     /*SectorService.getSectors(function(data){
-      //console.log(data)
       //$scope.markers = $scope.addSectorMarkersToMap(data)
       //$scope.addSectorsPathToMap(data)
       $scope.addSectorsGeoJSONToMap(data)
-      //console.log($scope.paths)
     })*/
     
     //var map = leafletData.getMap()
@@ -234,7 +227,6 @@ angular.module('deskappApp')
     
     /*$scope.$on('leafletDirectivePath.dblclick',function(ev, featureSelected, leafletEvent){
       var sectorName = featureSelected.pathName
-      console.log(featureSelected)
     })*/
 
 //	$scope.markers = $scope.addSectorMarkersToMap(sectors);

@@ -71,7 +71,6 @@
  .controller('DocumentsCtrl', function ($scope, DocumentService, SocketService, localStorageService, Lightbox, Config, $modal, $log) {
 
     DocumentService.getDocuments(function(data){
-      console.log('documents', data)
       $scope.rootUrl = Config.API_URL
       $scope.$apply($scope.documentsList = data)
     })
@@ -81,7 +80,6 @@
   $scope.open = function (size, doc) {
     $scope.items = doc
     SocketService.getSocket().emit('document vu', doc.id)
-    console.log($scope.items)
     var modalInstance = $modal.open({
       templateUrl: 'views/modal.html',
       controller: 'ModalInstanceCtrl',
@@ -109,7 +107,6 @@
 
 this.tab = 1;
   this.selectTab = function(setTab) {
-    console.log('click');
     this.tab = setTab;
   }
   this.isSelected = function(checkTab) {
@@ -119,7 +116,6 @@ this.tab = 1;
 }).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, ngAudio) {
   $scope.rootUrl = Config.API_URL
   $scope.itemSrc = items.type !== "video" ? $scope.rootUrl + items.src : items.src
-  console.log("itemSrc", $scope.itemSrc)
   $scope.audio = items.type === "audio" ? ngAudio.load($scope.rootUrl + items.src) : null
   $scope.html = {
     show: false,

@@ -110,7 +110,6 @@ angular.module('deskappApp')
         if(t){
           HTTPAuhtService.logout().
             success(function(data, status, headers, config) {
-              // console.log('disconnect')
               /*$rootScope.gameBar = false
               localStorageService.remove('currentPage')*/
             }).
@@ -162,7 +161,6 @@ angular.module('deskappApp')
       
       // emulate new xp
       /*$timeout(function(){
-        console.log('progress')
         $scope.progressBar = {
           transition: 'width 1s ease-in-out',
           width: ((data.xp+16)/(data.level.xpMax)*100)+'%'
@@ -259,11 +257,9 @@ angular.module('deskappApp')
         }
       },
       killMessage: function(data){
-        console.log(data)
         var newMessages = []
         var data2 = localStorageService.get('messages')
         angular.forEach(data2[$rootScope.playerInfos.id], function(value, key){
-          console.log(value.content, data.content)
           if(value.content != data.content) {
             newMessages.push(value)
           }
@@ -271,7 +267,6 @@ angular.module('deskappApp')
         
         data2[$rootScope.playerInfos.id] = []
         data2[$rootScope.playerInfos.id] = newMessages
-        console.log(data2[$rootScope.playerInfos.id], newMessages)
         localStorageService.set('messages', JSON.stringify(data2))
         $rootScope.$emit('new messages')
       },
@@ -298,15 +293,11 @@ angular.module('deskappApp')
     $scope.hasMessages = false
     
     $rootScope.$on('new messages', function(){
-      console.log('new messages')
-      //console.log(MessagesService.getMessages())
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
     })
     
     $rootScope.$on('user responce', function(){
-      console.log('user responce')
-      console.log(MessagesService.getMessages())
       $scope.messages = MessagesService.getMessages()
       $scope.hasMessages = MessagesService.hasMessages()
     })
