@@ -13,7 +13,6 @@
 		</div>	
 	</div>
 
-<!-- Fin contenu -->
 <footer ng-controller="SectorDashboardCtrl" ng-show="visible">
   <div class="navbar navbar-fixed-bottom  dashboard-footer">
 
@@ -21,7 +20,7 @@
     <div class="col-md-11 col-md-offset-1">
       <div class="pannelClose"><!--close-->
         <button ng-click="closeDashboard()"> <i class="icon-cross"></i> </button>
-      </div><!-- \. close -->
+      </div>
     </div>
 
 
@@ -46,10 +45,6 @@
               <th>XP min</th>
               <td>{{actionSelected.accessLevel}}</td>
             </tr>
-            <!-- <tr>
-              <th>Influence prévue</th>
-              <td>{{actionSelected.sectorInfluence - actionSelected.expectedDrop}}%</td>
-            </tr> -->
             <tr>
               <th>Baisse d'influence</th>
               <td>{{actionSelected.influence}}%</td>
@@ -96,26 +91,6 @@
             </div>
           </div>
         </section>
-<!--
-                <section class="col-md-3 col-md-offset-1">
-                    <div class="dash_influence">
-                        <div class="circle_1"></div>
-                        <div class="influence">
-                            <h1>Influence</h1>
-                        </div>
-                    </div>
-                    <div class="dash_secteurs">				
-                        <div class="secteur">
-                            <div class="secteur_qte">
-                                <i>2</i> - 5
-                            </div>
-                            <div class="secteur_titre">
-                                <h1>SECTEUR(S)</h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-              -->
               <section class="col-md-2">
                 <h1>Liste des actions disponible sur ce secteur</h1>
                 <div class="iconeReturn" ng-repeat="action in sectorSelected.actionsPolygon" >
@@ -128,7 +103,7 @@
 
               </section>
             </div>
-          </div> <!-- \. DashboardControll" -->
+          </div>
         </div>
       </footer>
       </div>

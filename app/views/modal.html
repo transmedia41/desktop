@@ -7,15 +7,12 @@
     <ul class="nav nav-pills">
       <li ng-show="'{{items.versionUrl}}' || '{{items.versionHtml}}'">
        <a href ng-click="changeSrc(items.src, 1)">Version IT</a>
-       <!--<a href ng-click="panel.selectTab(1)">Iamge IT</a>-->
      </li>
      <li ng-show="{{items.versionUrl}}">
-      <!--<a href ng-click="panel.selectTab(2)">Image IT</a>-->
       <a href ng-click="changeSrc(items.versionUrl, 2)">Version FR</a>
     </li>
     <li ng-show="{{items.templateHtml}}">
       <a href ng-click="showHTML()">{{html.title}}</a>
-      <!--<a href ng-click="panel.selectTab(3)">HTML</a>-->
     </li>
   </ul>
   <div class="panel" ng-show="panel.isSelected(1)">

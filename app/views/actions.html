@@ -14,31 +14,28 @@
 			</div>
 		</div>	
 	</div>
-<!-- Fin contenu -->
 <footer ng-controller="ActionDashboardCtrl" ng-show="visible">
     <div class="navbar navbar-fixed-bottom dashboard-footer">
 
 
         <div class="col-md-11 col-md-offset-1">
-            <div class="pannelClose"><!--close-->
+            <div class="pannelClose">
                 <button ng-click="closeDashboard()"> <i class="icon-cross"></i> </button>
-            </div><!-- \. close -->
+            </div>
         </div>
 
-        <div ng-controller="SectorsCtrl" class="col-md-12 mainDaschboard"> <!-- DashboardControll" -->
+        <div ng-controller="SectorsCtrl" class="col-md-12 mainDaschboard"> 
             <div class="row contentDashboardRow">
                 <section class="col-md-offset-1 col-md-1" >
-<!--                     <img src="img/iconesAction.png"class="img-responsive img-rounded" alt="Cinque Terre"> -->
-						
                     <span id="actiondetail" class="icon-{{markerSelected.properties.type}} icon-actionlist"></span>
                 </section>
-                <section class="col-md-4 contentDashboard"> <!-- Action -->
+                <section class="col-md-4 contentDashboard"> 
                     <h1>{{markerSelected.properties.name}}</h1>
                     <p>{{markerSelected.properties.description}}</p>
                     
-                </section><!-- \. Action-->
+                </section>
 
-                <section class="col-md-2 col-md-offset-1"> <!-- XP -->
+                <section class="col-md-2 col-md-offset-1"> 
                     <table class="table dash_experience">
                         <tr>
                             <th>XP max</th>
@@ -48,10 +45,6 @@
                             <th>XP min</th>
                             <td>{{markerSelected.properties.accessLevel}}</td>
                         </tr>
-                        <!--<tr>
-                            <th>Influence prévue</th>
-                            <td>56%</td>
-                        </tr>-->
                         <tr>
                             <th>Baisse d'influence</th>
                             <td>{{markerSelected.properties.influence}}%</td>
@@ -61,7 +54,7 @@
                             <td>{{markerSelected.properties.coolDown/60}} min</td>
                         </tr>
                     </table>
-                </section> <!-- XP -->
+                </section> 
                 
                 
             <section class="col-md-2 col-md-offset-1 pull-down dash_btn">
@@ -74,6 +67,6 @@
      
 
             </div>
-        </div> <!-- \. DashboardControll" -->
+        </div> 
     </div>
 </footer>
