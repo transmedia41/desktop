@@ -28,10 +28,6 @@ angular.module('deskappApp')
       $scope.visible = false
     }
     
-    $scope.makeActionPoint = function(){
-      SocketService.getSocket().emit('make action point')
-    }
-    
     $rootScope.$on('click on marker', function(e, featureSelected){
       $scope.visible = true
       $scope.markerSelected = featureSelected
@@ -40,7 +36,7 @@ angular.module('deskappApp')
     
   })
 
-  .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, Config) {
+  .controller('MapActionCtrl', function ($scope, $rootScope, leafletData, geolocation, SectorService, Config, ngProgress) {
     
     $scope.$on('$viewContentLoaded', function(){
       console.log('Map Action Fully Charged')
@@ -143,31 +139,31 @@ angular.module('deskappApp')
             switch(point.properties.type.toLowerCase()) {
               case 'hydrante':
                 marker.icon.extraClasses = 'icon-hydrante'
-                marker.icon.iconImg = '../img/hydrante.png'//hydrante
+                marker.icon.iconImg = 'img/hydrante.png'//hydrante
                 break;
               case 'fontaine':
                 marker.icon.extraClasses = 'icon-fontaine'
-                marker.icon.iconImg = '../img/fontaine.png'
+                marker.icon.iconImg = 'img/fontaine.png'
                 break;
               case 'arrosage':
                 marker.icon.extraClasses = 'icon-arrosage'
-                marker.icon.iconImg = '../img/arrosage.png'
+                marker.icon.iconImg = 'img/arrosage.png'
                 break;
               case 'affiche':
                 marker.icon.extraClasses = 'icon-affiche'
-                marker.icon.iconImg = '../img/affiche.png'
+                marker.icon.iconImg = 'img/affiche.png'
                 break;
               case 'toilettes':
                 marker.icon.extraClasses = 'icon-toilettes'
-                marker.icon.iconImg = '../img/toilettes.png'
+                marker.icon.iconImg = 'img/toilettes.png'
                 break;
               case 'bouche_egout':
                 marker.icon.extraClasses = 'icon-bouche_egout'
-                marker.icon.iconImg = '../img/bouche-egout.png'//'../images/bouche-egout.png'
+                marker.icon.iconImg = 'img/bouche-egout.png'
                 break;
               case 'dechet_lac':
                 marker.icon.extraClasses = 'icon-dechet_lac'
-                marker.icon.iconImg = '../img/dechet-lac.png'
+                marker.icon.iconImg = 'img/dechet-lac.png'
                 break;
             }
             marker.icon.type  = 'extraMarker'
@@ -201,6 +197,16 @@ angular.module('deskappApp')
         $scope.addSectorsGeoJSONToMap(data)
         $scope.markers = $scope.addMarkersToMap(SectorService.getActionPoint())
       })
+    })
+    
+    $scope.$on("leafletDirectiveMap.loading", function(){
+      console.log('load les donées')
+      ngProgress.start()
+    })
+    
+    $scope.$on("leafletDirectiveMap.load", function(){
+      console.log('fini de mettre les donées')
+      ngProgress.complete()
     })
     
     $scope.$on("leafletDirectiveMarker.click", function(ev, featureSelected, leafletEvent) {
