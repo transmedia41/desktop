@@ -1,0 +1,24 @@
+<div class="col-md-11 col-md-offset-1">
+  <div class="col-md-12 piecesConviction">
+    <table class="table table-condensed" style="font-size:2em;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Rank</th>
+          <th>XP</th>
+          <th>Connected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="player in players">
+          <th>{{$index+1}}</th>
+          <th>{{player.username}}</th>
+          <th>{{player.level.rankName}}</th>
+          <th>{{player.xp}} pts</th>
+          <th><span ng-show="player.connected">Online</span><span ng-show="!player.connected">Offline</span</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
