@@ -240,26 +240,22 @@ var colors = {
     })
     
     $rootScope.$on('new sector available', function(){
-      console.log('sectors update')
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
       })
     })
     
     $rootScope.$on('sector available', function(){
-      console.log('sectors charged')
       SectorService.getSectorsLocal(function(data){
         $scope.addSectorsGeoJSONToMap(data)
       })
     })
     
     $scope.$on("leafletDirectiveMap.loading", function(){
-      console.log('load les donées')
       ngProgress.start()
     })
     
     $scope.$on("leafletDirectiveMap.load", function(){
-      console.log('fini de mettre les donées')
       ngProgress.complete()
     })
     

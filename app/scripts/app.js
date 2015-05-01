@@ -123,7 +123,6 @@ angular
               $rootScope.$emit('user responce', data)
             })
             socket.on('user responce 404', function(){
-              console.log('user responce 404')
             })
           }).on('disconnect', function () {
             socket.close()
@@ -180,10 +179,8 @@ angular
       if(localStorageService.isSupported) {
         var t = localStorageService.get('wstoken')
         if(!t){
-          console.log('not autorized')
           $location.path('/')
         } else {
-          console.log('autorized', $location.path())
           switch($location.path()) {
             case '/actions':
               localStorageService.set('currentPage', '/actions')
@@ -216,18 +213,15 @@ angular
    */
   .run(function ($rootScope, $location, localStorageService) {
     $rootScope.$on('connection', function (event) {
-      console.log('connection')
       $rootScope.gameBar = true
       //$location.path('/actions')
     })
     $rootScope.$on('register', function (event) {
-      console.log('register')
       // TODO : inclure la vidéo du chef de la résistance
       localStorageService.set('just registered', true)
       // ... do something
     })
     $rootScope.$on('disconnected', function (event) {
-      console.log('disconnected')
       localStorageService.set('last disconnect', Date.now())
       $rootScope.gameBar = false
       localStorageService.remove('currentPage')
@@ -248,7 +242,6 @@ angular
     
     $rootScope.$on('connection', function (e) {
       SocketService.getSocket().on('action polygon performed', function(data){
-        //console.log(data)
         remplaceSector(data)
         $rootScope.$emit('new sector available')
       })
@@ -260,7 +253,6 @@ angular
         .on('sectors responce', function(data){
           localStorageService.set('sectors', data)
           localStorageService.set('last update sectors', Date.now())
-          //console.log('get sectors')
           sectors = data
           callback(sectors)
         })
