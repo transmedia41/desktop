@@ -118,7 +118,13 @@ this.tab = 1;
 
 }).controller('ModalInstanceCtrl', function ($scope, $modalInstance, items, Config, ngAudio) {
   $scope.rootUrl = Config.API_URL
-  if (items.type === "audio") $scope.audio = ngAudio.load($scope.rootUrl + items.src)
+  $scope.itemSrc = items.type !== "video" ? $scope.rootUrl + items.src : items.src
+  console.log("itemSrc", $scope.itemSrc)
+  $scope.audio = items.type === "audio" ? ngAudio.load($scope.rootUrl + items.src) : null
+  $scope.html = {
+    show: false,
+    title: "Plus d'informations..."
+  }
   $scope.items = items;
   $scope.selected = {
     item: $scope.items[0]
@@ -127,10 +133,19 @@ this.tab = 1;
     $modalInstance.close($scope.selected.item);
   };
   $scope.cancel = function () {
-    if ($scope.audio) $scope.audio.stop()
+    if ($scope.audio !== null) $scope.audio.stop()
     $modalInstance.dismiss('cancel');
   };
-}).controller("panelController", function($scope, $sce) {
+  $scope.showHTML = function() {
+    $scope.html.show = !$scope.html.show;
+    $scope.html.title = $scope.html.title === "Plus d'informations..." ? $scope.html.title = "Moins d'informations..." : $scope.html.title = "Plus d'informations..."
+  };
+  $scope.changeSrc = function(src) {
+    $scope.$apply($scope.itemSrc = $scope.rootUrl + src)
+  };
+})
+  
+  .controller("panelController", function($scope, $sce) {
   this.tab = 1;
   this.selectTab = function(setTab) {
     this.tab = setTab;
